@@ -7,12 +7,4 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                         http://www.springframework.org/schema/flex  http://www.springframework.org/schema/flex/spring-flex-1.5.xsd">
 
-	<beans:bean id="testService" class="net.twerno.eduserver.services.TestServiceImpl">
-		<flex:remoting-destination />
-	</beans:bean>
-	
-	<beans:bean id="userService" class="net.twerno.eduserver.user.services.UserServiceImpl">
-		<flex:remoting-destination />
-	</beans:bean>
-
 </beans:beans>

@@ -7,12 +7,15 @@ import javax.persistence.EntityNotFoundException;
 import net.twerno.eduserver.user.UserHelper;
 import net.twerno.eduserver.user.domain.Account;
 import net.twerno.eduserver.user.domain.Grupa;
-import net.twerno.eduserver.services.UserService;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+@Component
+@Service("userService")
 public class UserServiceImpl implements UserService {
 
 	@Override
