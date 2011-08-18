@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.4" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+<web-app 
+  xmlns="http://java.sun.com/xml/ns/j2ee" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  version="2.4" 
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
     
-    <display-name>EduServer2</display-name>
+    <display-name>EduServer</display-name>
     
-    <description>Roo generated EduServer2 application</description>
+    <description>Roo generated EduServer application</description>
 
     
     <!-- Enable escaping of form submission contents -->
@@ -76,7 +80,7 @@
     
     <!-- Handles Spring requests -->
     <servlet>
-        <servlet-name>EduServer2</servlet-name>
+        <servlet-name>EduServer</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
@@ -86,7 +90,7 @@
     </servlet>
     
     <servlet-mapping>
-        <servlet-name>EduServer2</servlet-name>
+        <servlet-name>EduServer</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     

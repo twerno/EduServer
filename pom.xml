@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.twerno.eduserver</groupId>
-    <artifactId>EduServer2</artifactId>
+    <artifactId>EduServer</artifactId>
     <packaging>war</packaging>
     <version>0.1.0.BUILD-SNAPSHOT</version>
-    <name>EduServer2</name>
+    <name>EduServer</name>
     <properties>
         <roo.version>1.1.5.RELEASE</roo.version>
         <spring.version>3.0.5.RELEASE</spring.version>
@@ -579,7 +579,7 @@
                     </webAppConfig>
                 </configuration>
             </plugin>
-            <plugin>
+<!--            <plugin>
                 <groupId>org.sonatype.flexmojos</groupId>
                 <artifactId>flexmojos-maven-plugin</artifactId>
                 <version>3.7.1</version>
@@ -591,16 +591,16 @@
                             <goal>compile-swf</goal>
                         </goals>
                     <configuration>
-	<incremental>true</incremental>
-	<sourceFile>${basedir}/src/main/flex/${project.name}_scaffold.mxml</sourceFile>
-	<sourcePaths>
-		<path>${basedir}/src/main/flex</path>
-	</sourcePaths>
-	<output>${basedir}/src/main/webapp/${project.name}_scaffold.swf</output>
-	<contextRoot>/${project.build.finalName}</contextRoot>
-	<services>${basedir}/src/main/webapp/WEB-INF/flex/services-config.xml</services>
-	<debug>true</debug>
-</configuration>
+						<incremental>true</incremental>
+						<sourceFile>${basedir}/src/main/flex/${project.name}_scaffold.mxml</sourceFile>
+						<sourcePaths>
+							<path>${basedir}/src/main/flex</path>
+						</sourcePaths>
+						<output>${basedir}/src/main/webapp/${project.name}_scaffold.swf</output>
+						<contextRoot>/${project.build.finalName}</contextRoot>
+						<services>${basedir}/src/main/webapp/WEB-INF/flex/services-config.xml</services>
+						<debug>true</debug>
+					</configuration>
                     </execution>
                 </executions>
                 <dependencies>
@@ -612,7 +612,7 @@
                     <type>pom</type>
                     </dependency>
                 </dependencies>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 </project>
