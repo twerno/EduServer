@@ -10,4 +10,9 @@
 	<beans:bean id="testService" class="net.twerno.eduserver.services.TestServiceImpl">
 		<flex:remoting-destination />
 	</beans:bean>
+	
+	<beans:bean id="userService" class="net.twerno.eduserver.user.services.UserServiceImpl">
+		<flex:remoting-destination />
+	</beans:bean>
+
 </beans:beans>
