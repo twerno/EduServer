@@ -20,6 +20,9 @@
 
 	<!-- Configure Authentication mechanism -->
     <authentication-manager alias="authenticationManager">
+    	<authentication-provider>
+    		<jdbc-user-service data-source-ref="userServices"/>
+    	</authentication-provider>
     	<!-- SHA-256 values can be produced using 'echo -n your_desired_password | sha256sum' (using normal *nix environments) -->
     	<authentication-provider>
 	    	<password-encoder hash="sha-256"/>
@@ -30,4 +33,5 @@
     	</authentication-provider>
 	</authentication-manager>
 
+	<global-method-security secured-annotations="enabled" />
 </beans:beans>
