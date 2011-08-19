@@ -12,7 +12,9 @@ import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import net.twerno.eduserver.user.domain.Account;
+
+import net.twerno.eduserver.user.entities.Account;
+
 import org.springframework.stereotype.Component;
 
 privileged aspect AccountDataOnDemand_Roo_DataOnDemand {
@@ -77,7 +79,7 @@ privileged aspect AccountDataOnDemand_Roo_DataOnDemand {
             return;
         }
         
-        data = new ArrayList<net.twerno.eduserver.user.domain.Account>();
+        data = new ArrayList<net.twerno.eduserver.user.entities.Account>();
         for (int i = 0; i < 10; i++) {
             Account obj = getNewTransientAccount(i);
             try {

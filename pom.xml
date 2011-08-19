@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project 
+  xmlns="http://maven.apache.org/POM/4.0.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.twerno.eduserver</groupId>
     <artifactId>EduServer</artifactId>
@@ -11,9 +14,9 @@
         <spring.version>3.0.5.RELEASE</spring.version>
         <aspectj.version>1.6.11</aspectj.version>
         <slf4j.version>1.6.1</slf4j.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <flex.version>4.0.0.14159</flex.version>
-    <spring-security.version>3.0.5.RELEASE</spring-security.version>
+		<flex.version>4.0.0.14159</flex.version>
+		<spring-security.version>3.0.5.RELEASE</spring-security.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <repositories>
         <repository>
@@ -380,7 +383,7 @@
             <version>1.4</version>
             <classifier/>
         </dependency>
-    <dependency>
+		<dependency>
             <groupId>com.adobe.flex.framework</groupId>
             <artifactId>flex-framework</artifactId>
             <version>${flex.version}</version>
@@ -399,7 +402,7 @@
             <version>1.0.0.BUILD-SNAPSHOT</version>
             <classifier/>
         </dependency>
-    <dependency>
+		<dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
             <version>${spring-security.version}</version>

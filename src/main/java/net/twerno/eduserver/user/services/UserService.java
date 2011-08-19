@@ -2,7 +2,7 @@ package net.twerno.eduserver.user.services;
 
 import java.util.Set;
 
-import net.twerno.eduserver.user.domain.Grupa;
+import net.twerno.eduserver.user.entities.Grupa;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.flex.remoting.RemotingDestination;

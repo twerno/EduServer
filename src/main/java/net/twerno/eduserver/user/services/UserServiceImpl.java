@@ -5,8 +5,8 @@ import java.util.Set;
 import javax.persistence.EntityNotFoundException;
 
 import net.twerno.eduserver.user.UserHelper;
-import net.twerno.eduserver.user.domain.Account;
-import net.twerno.eduserver.user.domain.Grupa;
+import net.twerno.eduserver.user.entities.Account;
+import net.twerno.eduserver.user.entities.Grupa;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.userdetails.UserDetails;

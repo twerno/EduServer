@@ -3,7 +3,7 @@ package net.twerno.eduserver.user;
 import java.util.ArrayList;
 import java.util.Set;
 
-import net.twerno.eduserver.user.domain.Account;
+import net.twerno.eduserver.user.entities.Account;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;

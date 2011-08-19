@@ -25,17 +25,17 @@ privileged aspect AccountIntegrationTest_Roo_IntegrationTest {
     @Test
     public void AccountIntegrationTest.testCountAccounts() {
         org.junit.Assert.assertNotNull("Data on demand for 'Account' failed to initialize correctly", dod.getRandomAccount());
-        long count = net.twerno.eduserver.user.domain.Account.countAccounts();
+        long count = net.twerno.eduserver.user.entities.Account.countAccounts();
         org.junit.Assert.assertTrue("Counter for 'Account' incorrectly reported there were no entries", count > 0);
     }
     
     @Test
     public void AccountIntegrationTest.testFindAccount() {
-        net.twerno.eduserver.user.domain.Account obj = dod.getRandomAccount();
+        net.twerno.eduserver.user.entities.Account obj = dod.getRandomAccount();
         org.junit.Assert.assertNotNull("Data on demand for 'Account' failed to initialize correctly", obj);
         java.lang.Long id = obj.getId();
         org.junit.Assert.assertNotNull("Data on demand for 'Account' failed to provide an identifier", id);
-        obj = net.twerno.eduserver.user.domain.Account.findAccount(id);
+        obj = net.twerno.eduserver.user.entities.Account.findAccount(id);
         org.junit.Assert.assertNotNull("Find method for 'Account' illegally returned null for id '" + id + "'", obj);
         org.junit.Assert.assertEquals("Find method for 'Account' returned the incorrect identifier", id, obj.getId());
     }
@@ -43,9 +43,9 @@ privileged aspect AccountIntegrationTest_Roo_IntegrationTest {
     @Test
     public void AccountIntegrationTest.testFindAllAccounts() {
         org.junit.Assert.assertNotNull("Data on demand for 'Account' failed to initialize correctly", dod.getRandomAccount());
-        long count = net.twerno.eduserver.user.domain.Account.countAccounts();
+        long count = net.twerno.eduserver.user.entities.Account.countAccounts();
         org.junit.Assert.assertTrue("Too expensive to perform a find all test for 'Account', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
-        java.util.List<net.twerno.eduserver.user.domain.Account> result = net.twerno.eduserver.user.domain.Account.findAllAccounts();
+        java.util.List<net.twerno.eduserver.user.entities.Account> result = net.twerno.eduserver.user.entities.Account.findAllAccounts();
         org.junit.Assert.assertNotNull("Find all method for 'Account' illegally returned null", result);
         org.junit.Assert.assertTrue("Find all method for 'Account' failed to return any data", result.size() > 0);
     }
@@ -53,20 +53,20 @@ privileged aspect AccountIntegrationTest_Roo_IntegrationTest {
     @Test
     public void AccountIntegrationTest.testFindAccountEntries() {
         org.junit.Assert.assertNotNull("Data on demand for 'Account' failed to initialize correctly", dod.getRandomAccount());
-        long count = net.twerno.eduserver.user.domain.Account.countAccounts();
+        long count = net.twerno.eduserver.user.entities.Account.countAccounts();
         if (count > 20) count = 20;
-        java.util.List<net.twerno.eduserver.user.domain.Account> result = net.twerno.eduserver.user.domain.Account.findAccountEntries(0, (int) count);
+        java.util.List<net.twerno.eduserver.user.entities.Account> result = net.twerno.eduserver.user.entities.Account.findAccountEntries(0, (int) count);
         org.junit.Assert.assertNotNull("Find entries method for 'Account' illegally returned null", result);
         org.junit.Assert.assertEquals("Find entries method for 'Account' returned an incorrect number of entries", count, result.size());
     }
     
     @Test
     public void AccountIntegrationTest.testFlush() {
-        net.twerno.eduserver.user.domain.Account obj = dod.getRandomAccount();
+        net.twerno.eduserver.user.entities.Account obj = dod.getRandomAccount();
         org.junit.Assert.assertNotNull("Data on demand for 'Account' failed to initialize correctly", obj);
         java.lang.Long id = obj.getId();
         org.junit.Assert.assertNotNull("Data on demand for 'Account' failed to provide an identifier", id);
-        obj = net.twerno.eduserver.user.domain.Account.findAccount(id);
+        obj = net.twerno.eduserver.user.entities.Account.findAccount(id);
         org.junit.Assert.assertNotNull("Find method for 'Account' illegally returned null for id '" + id + "'", obj);
         boolean modified =  dod.modifyAccount(obj);
         java.lang.Integer currentVersion = obj.getVersion();
@@ -76,14 +76,14 @@ privileged aspect AccountIntegrationTest_Roo_IntegrationTest {
     
     @Test
     public void AccountIntegrationTest.testMerge() {
-        net.twerno.eduserver.user.domain.Account obj = dod.getRandomAccount();
+        net.twerno.eduserver.user.entities.Account obj = dod.getRandomAccount();
         org.junit.Assert.assertNotNull("Data on demand for 'Account' failed to initialize correctly", obj);
         java.lang.Long id = obj.getId();
         org.junit.Assert.assertNotNull("Data on demand for 'Account' failed to provide an identifier", id);
-        obj = net.twerno.eduserver.user.domain.Account.findAccount(id);
+        obj = net.twerno.eduserver.user.entities.Account.findAccount(id);
         boolean modified =  dod.modifyAccount(obj);
         java.lang.Integer currentVersion = obj.getVersion();
-        net.twerno.eduserver.user.domain.Account merged =  obj.merge();
+        net.twerno.eduserver.user.entities.Account merged =  obj.merge();
         obj.flush();
         org.junit.Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
         org.junit.Assert.assertTrue("Version for 'Account' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
@@ -92,7 +92,7 @@ privileged aspect AccountIntegrationTest_Roo_IntegrationTest {
     @Test
     public void AccountIntegrationTest.testPersist() {
         org.junit.Assert.assertNotNull("Data on demand for 'Account' failed to initialize correctly", dod.getRandomAccount());
-        net.twerno.eduserver.user.domain.Account obj = dod.getNewTransientAccount(Integer.MAX_VALUE);
+        net.twerno.eduserver.user.entities.Account obj = dod.getNewTransientAccount(Integer.MAX_VALUE);
         org.junit.Assert.assertNotNull("Data on demand for 'Account' failed to provide a new transient entity", obj);
         org.junit.Assert.assertNull("Expected 'Account' identifier to be null", obj.getId());
         obj.persist();
@@ -102,14 +102,14 @@ privileged aspect AccountIntegrationTest_Roo_IntegrationTest {
     
     @Test
     public void AccountIntegrationTest.testRemove() {
-        net.twerno.eduserver.user.domain.Account obj = dod.getRandomAccount();
+        net.twerno.eduserver.user.entities.Account obj = dod.getRandomAccount();
         org.junit.Assert.assertNotNull("Data on demand for 'Account' failed to initialize correctly", obj);
         java.lang.Long id = obj.getId();
         org.junit.Assert.assertNotNull("Data on demand for 'Account' failed to provide an identifier", id);
-        obj = net.twerno.eduserver.user.domain.Account.findAccount(id);
+        obj = net.twerno.eduserver.user.entities.Account.findAccount(id);
         obj.remove();
         obj.flush();
-        org.junit.Assert.assertNull("Failed to remove 'Account' with identifier '" + id + "'", net.twerno.eduserver.user.domain.Account.findAccount(id));
+        org.junit.Assert.assertNull("Failed to remove 'Account' with identifier '" + id + "'", net.twerno.eduserver.user.entities.Account.findAccount(id));
     }
     
 }
