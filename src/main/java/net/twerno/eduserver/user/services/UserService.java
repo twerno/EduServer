@@ -2,6 +2,7 @@ package net.twerno.eduserver.user.services;
 
 import java.util.Set;
 
+import net.twerno.eduserver.user.UserRole;
 import net.twerno.eduserver.user.entities.Grupa;
 
 import org.springframework.dao.DataAccessException;
@@ -28,10 +29,11 @@ public interface UserService extends UserDetailsService {
 	Set<Grupa> getUserGroups(String username) 
 			throws UsernameNotFoundException;
 	
-	@Secured("ROLE_ADMIN")
+	@Secured(UserRole._ROLE_ADMIN)
 	boolean dodajDoGrupy(String username, String grupa) 
 			throws UsernameNotFoundException;
 	
+	@Secured(UserRole._ROLE_ADMIN)
 	boolean usunZGrupy(String username, String grupa) 
 			throws UsernameNotFoundException;
 }
