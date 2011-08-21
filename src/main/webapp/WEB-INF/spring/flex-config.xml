@@ -11,6 +11,7 @@
 	<flex:message-broker mapping-order="1">
 		<flex:mapping pattern="/messagebroker/*"/>
 		<flex:message-service default-channels="longpolling-amf" />
+		<flex:secured/>
 	</flex:message-broker>
 	
 </beans>
