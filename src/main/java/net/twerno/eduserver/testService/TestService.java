@@ -4,5 +4,6 @@ import org.springframework.flex.remoting.RemotingDestination;
 
 @RemotingDestination
 public interface TestService {
-	String helloWord();
+	String helloWorld();
+	String sayHello(String name);
 }

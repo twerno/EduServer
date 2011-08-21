@@ -3,8 +3,9 @@
 
 package net.twerno.eduserver.user.entities;
 
+import java.lang.Integer;
+import java.lang.Long;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -13,7 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Version;
-
+import net.twerno.eduserver.user.entities.Grupa;
 import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect Grupa_Roo_Entity {

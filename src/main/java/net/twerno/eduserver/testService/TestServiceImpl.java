@@ -8,7 +8,12 @@ import org.springframework.stereotype.Service;
 public class TestServiceImpl implements TestService {
 
 	@Override
-	public String helloWord() {
+	public String helloWorld() {
 		return "hello world";
+	}
+
+	@Override
+	public String sayHello(String name) {
+		return "Hello "+name;
 	}
 }

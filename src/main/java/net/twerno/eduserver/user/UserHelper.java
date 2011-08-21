@@ -15,9 +15,9 @@ public class UserHelper {
 	  User result = new User(account.getUsername(), 
 			                 account.getPassword(),
 		                     account.getEnabled(), 
-				             false, 
-				             false, 
-				             false,
+				             true, 
+				             true, 
+				             true,
 				             getAuthorities(account.getRoles()));
       return result;
 	}
