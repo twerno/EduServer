@@ -10,7 +10,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooEntity
+@RooEntity(finders = { "findGrupasByNazwaEquals" })
 public class Grupa {
 
     @NotNull

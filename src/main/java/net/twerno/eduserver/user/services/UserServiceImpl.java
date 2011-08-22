@@ -1,11 +1,11 @@
 package net.twerno.eduserver.user.services;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.EntityNotFoundException;
 
 import net.twerno.eduserver.user.UserHelper;
+import net.twerno.eduserver.user.UserQueries;
 import net.twerno.eduserver.user.entities.Account;
 import net.twerno.eduserver.user.entities.Grupa;
 
@@ -24,48 +24,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDetails loadUserByUsername(String arg0)
 			throws UsernameNotFoundException, DataAccessException {
-		Account account = null;
-        try {
-        	account = Account.findAccountsByUsernameEquals(arg0).getSingleResult();
-        } catch (EntityNotFoundException e) {
-            throw new UsernameNotFoundException(
-            		String.format("Nie znaleziono uzytkownika o nazwie: '%s'.", arg0));
-        }
+		Account account = loadAccountByName(arg0);
 		return UserHelper.getUserDetailsFromAccount(account);
-	}
-
-	public boolean saveUser(UserDetails userDetails) {
-		Account account = UserHelper.getAccountFromUserDetails(userDetails);
-		account.persist();
-//		Account.
-		return true;
-	}
-
-	@Override
-	public Set<Grupa> getCurrentUserGroups() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Set<Grupa> getUserGroups(String username)
-			throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean dodajDoGrupy(String username, String grupa)
-			throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean usunZGrupy(String username, String grupa)
-			throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
@@ -76,22 +36,68 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Account getAccount() {
-//		System.out.println("get account");
+	public Account getLoggedUser() {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		System.out.println("user: "+user.getUsername());
 		Account account = UserHelper.getAccountFromUserDetails(user);
-		account.setPassword("****");
-//		System.out.println(account.toString());
+		UserHelper.zamazHaslo(account);
 		return account;
 	}
 
 	@Override
 	public List<Account> findAllAccounds() {
 		List<Account> accounts = Account.findAllAccounts();
-		for (Account account : accounts) {
-			account.setPassword("****");
-		}
+		UserHelper.zamazHasla(accounts);
 		return accounts;
+	}
+
+	@Override
+	public void dodajDoGrupy(String username, String nazwaGrupy)
+			throws UsernameNotFoundException {
+		Account account = loadAccountByName(username);
+		Grupa grupa = Grupa.findGrupasByNazwaEquals(nazwaGrupy).getSingleResult();
+		account.getGrupy().add(grupa);
+		account.persist();
+	}
+
+	@Override
+	public void usunZGrupy(String username, String nazwaGrupy)
+			throws UsernameNotFoundException {
+		Account account = loadAccountByName(username);
+		for (Grupa grupa : account.getGrupy())
+			if (grupa.getNazwa() == nazwaGrupy)
+				account.getGrupy().remove(grupa);
+		account.persist();
+	}
+
+	@Override
+	public boolean dodajGrupe(String nazwaGrupy) {
+		if (!UserQueries.GrupaByNameExisits(nazwaGrupy)) {
+			Grupa grupa = new Grupa();
+			grupa.setNazwa(nazwaGrupy);
+			grupa.merge();
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean usunGrupe(String nazwaGrupy) {
+		if (UserQueries.GrupaByNameExisits(nazwaGrupy)) {
+			Grupa grupa = Grupa.findGrupasByNazwaEquals(nazwaGrupy).getSingleResult();
+			grupa.remove();
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public Account loadAccountByName(String username)
+			throws UsernameNotFoundException {
+        try {
+        	return Account.findAccountsByUsernameEquals(username).getSingleResult();
+        } catch (EntityNotFoundException e) {
+            throw new UsernameNotFoundException(
+            		String.format("Nie znaleziono uzytkownika o nazwie: '%s'.", username));
+        }
 	}
 }
