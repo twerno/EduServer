@@ -4,24 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import net.twerno.eduserver.security.SaltedUser;
+import net.twerno.eduserver.security.SaltedUserDetails;
 import net.twerno.eduserver.user.entities.Account;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 
 public class UserHelper {
-	public static UserDetails getUserDetailsFromAccount(Account account) {
+	public static SaltedUserDetails getUserDetailsFromAccount(Account account) {
 		if (account == null) return null;
-
-		return new User(account.getUsername(), 
+		SaltedUser userDetails = new SaltedUser(account.getUsername(), 
 			            account.getPassword(),
 		                account.getEnabled(), 
 				        true, 
 				        true, 
 				        true,
 				        getAuthorities(account.getRoles()));
+		userDetails.setSalt(account.getSalt());
+		return userDetails;
 	}
 
 	public static ArrayList<GrantedAuthorityImpl> getAuthorities(
@@ -32,7 +33,7 @@ public class UserHelper {
 	  return result;
 	}
 	
-	public static Account getAccountFromUserDetails(UserDetails userDetails) {
+	public static Account getAccountFromUserDetails(SaltedUserDetails userDetails) {
 		Account account = new Account();
 		account.setEnabled(true);
 		account.setUsername(userDetails.getUsername());
@@ -50,8 +51,17 @@ public class UserHelper {
 		account.setPassword("***");
 	}
 	
+	public static void zamazSalt(Account account) {
+		account.setSalt("");
+	}
+	
 	public static void zamazHasla(List<Account> accounts) {
 		for (Account account : accounts) 
 			zamazHaslo(account);
+	}
+	
+	public static void zamazSalt(List<Account> accounts) {
+		for (Account account : accounts) 
+			zamazSalt(account);
 	}
 }

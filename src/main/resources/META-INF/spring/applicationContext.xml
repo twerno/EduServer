@@ -45,8 +45,8 @@
     -->
     <context:component-scan base-package="net.twerno.eduserver">
         <context:exclude-filter expression=".*_Roo_.*" type="regex"/>
-<!--         <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/> -->
     </context:component-scan>
+    <!--         <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/> -->
 
     <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
         <property name="driverClassName" value="${database.driverClassName}"/>
@@ -59,6 +59,7 @@
         <property name="timeBetweenEvictionRunsMillis" value="1800000"/>
         <property name="numTestsPerEvictionRun" value="3"/>
         <property name="minEvictableIdleTimeMillis" value="1800000"/>
+        <property name="validationQuery" value="SELECT 1"/>
     </bean>
     <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>

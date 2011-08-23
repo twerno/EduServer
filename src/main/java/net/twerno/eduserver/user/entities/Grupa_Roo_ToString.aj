@@ -3,7 +3,6 @@
 
 package net.twerno.eduserver.user.entities;
 
-import java.lang.String;
 
 privileged aspect Grupa_Roo_ToString {
     

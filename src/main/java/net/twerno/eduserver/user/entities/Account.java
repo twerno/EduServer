@@ -27,19 +27,28 @@ public class Account {
     private String username;
 
     @NotNull
-    @Size(min = 3, max = 30)
     private String password;
 
     @NotNull
     private Boolean enabled;
+    
+    @NotNull
+    private String salt;
 
     @ElementCollection
     private Set<UserRole> roles = new HashSet<UserRole>();
 
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Grupa> grupy = new HashSet<Grupa>();
+    
+    public Account(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.enabled = true;
+	}
 
-    public Account() {
+	public Account() {
         enabled = true;
     }
 }

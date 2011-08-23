@@ -4,14 +4,20 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import net.twerno.eduserver.security.SaltHelper;
+import net.twerno.eduserver.security.SaltedUser;
 import net.twerno.eduserver.user.UserHelper;
 import net.twerno.eduserver.user.UserQueries;
+import net.twerno.eduserver.user.UserRole;
 import net.twerno.eduserver.user.entities.Account;
 import net.twerno.eduserver.user.entities.Grupa;
+import net.twerno.eduserver.user.exceptions.NoRolesException;
+import net.twerno.eduserver.user.exceptions.UserExistsException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
@@ -21,6 +27,9 @@ import org.springframework.stereotype.Service;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
+	@Autowired
+	private ShaPasswordEncoder shaPasswordEncoder;
+
 	@Override
 	public UserDetails loadUserByUsername(String arg0)
 			throws UsernameNotFoundException, DataAccessException {
@@ -29,17 +38,33 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean registerUser(Account account) {
+	public void registerUser(String username, String password,
+			boolean role_uczen, boolean role_nauczyciel)
+			throws UserExistsException, NoRolesException {
+		if (!role_uczen && !role_nauczyciel)
+			throw new NoRolesException("Nie przypisano ¿adnej roli do u¿ytkownika: "+username);
+		if (UserQueries.UserByNameExisits(username))
+			throw new UserExistsException("U¿ytkownik o nazwie: " +username +" ju¿ istnieje.");
+
+		String salt = SaltHelper.getSalt();
+		Account account = new Account();
+		account.setUsername(username);
+		account.setPassword( shaPasswordEncoder.encodePassword(password, salt) );
+		account.setSalt(salt);
 		account.setEnabled(true);
+		if (role_uczen)
+			account.getRoles().add(UserRole.ROLE_UCZEN);
+		else if (role_nauczyciel)
+			account.getRoles().add(UserRole.ROLE_NAUCZYCIEL);
 		account.merge();
-		return true;
 	}
 
 	@Override
 	public Account getLoggedUser() {
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		SaltedUser user = (SaltedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Account account = UserHelper.getAccountFromUserDetails(user);
 		UserHelper.zamazHaslo(account);
+		UserHelper.zamazSalt(account);
 		return account;
 	}
 
@@ -47,6 +72,7 @@ public class UserServiceImpl implements UserService {
 	public List<Account> findAllAccounds() {
 		List<Account> accounts = Account.findAllAccounts();
 		UserHelper.zamazHasla(accounts);
+		UserHelper.zamazSalt(accounts);
 		return accounts;
 	}
 
@@ -97,7 +123,12 @@ public class UserServiceImpl implements UserService {
         	return Account.findAccountsByUsernameEquals(username).getSingleResult();
         } catch (EntityNotFoundException e) {
             throw new UsernameNotFoundException(
-            		String.format("Nie znaleziono uzytkownika o nazwie: '%s'.", username));
+            	String.format("Nie znaleziono uzytkownika o nazwie: '%s'.", username));
         }
+	}
+
+	@Override
+	public List<Grupa> findAllGroups() {
+		return Grupa.findAllGrupas();
 	}
 }

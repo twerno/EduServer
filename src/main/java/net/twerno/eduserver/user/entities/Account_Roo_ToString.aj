@@ -3,7 +3,6 @@
 
 package net.twerno.eduserver.user.entities;
 
-import java.lang.String;
 
 privileged aspect Account_Roo_ToString {
     
@@ -14,6 +13,7 @@ privileged aspect Account_Roo_ToString {
         sb.append("Id: ").append(getId()).append(", ");
         sb.append("Password: ").append(getPassword()).append(", ");
         sb.append("Roles: ").append(getRoles() == null ? "null" : getRoles().size()).append(", ");
+        sb.append("Salt: ").append(getSalt()).append(", ");
         sb.append("Username: ").append(getUsername()).append(", ");
         sb.append("Version: ").append(getVersion());
         return sb.toString();

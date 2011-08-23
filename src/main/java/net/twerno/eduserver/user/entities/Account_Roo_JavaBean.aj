@@ -3,11 +3,9 @@
 
 package net.twerno.eduserver.user.entities;
 
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Set;
+
 import net.twerno.eduserver.user.UserRole;
-import net.twerno.eduserver.user.entities.Grupa;
 
 privileged aspect Account_Roo_JavaBean {
     
@@ -33,6 +31,14 @@ privileged aspect Account_Roo_JavaBean {
     
     public void Account.setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+    
+    public String Account.getSalt() {
+        return this.salt;
+    }
+    
+    public void Account.setSalt(String salt) {
+        this.salt = salt;
     }
     
     public Set<UserRole> Account.getRoles() {

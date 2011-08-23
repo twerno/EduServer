@@ -3,10 +3,8 @@
 
 package net.twerno.eduserver.user.entities;
 
-import java.lang.String;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import net.twerno.eduserver.user.entities.Grupa;
 
 privileged aspect Grupa_Roo_Finder {
     
