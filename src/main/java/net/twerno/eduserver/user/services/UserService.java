@@ -28,6 +28,9 @@ public interface UserService extends UserDetailsService {
 	UserDetails loadUserByUsername(String arg0) 
 			throws UsernameNotFoundException, DataAccessException;
 	
+	@RemotingExclude
+	void InternalRegisterUser(String username, String password, UserRole role);
+	
 	@PreAuthorize("permitAll()")
 	void registerUser(String username, String password, boolean role_uczen, boolean role_nauczyciel)
 			throws UserExistsException, NoRolesException;

@@ -3,9 +3,11 @@
 
 package net.twerno.eduserver.user.entities;
 
+import java.lang.Boolean;
+import java.lang.String;
 import java.util.Set;
-
 import net.twerno.eduserver.user.UserRole;
+import net.twerno.eduserver.user.entities.Grupa;
 
 privileged aspect Account_Roo_JavaBean {
     

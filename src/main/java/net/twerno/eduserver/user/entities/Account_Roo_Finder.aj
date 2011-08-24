@@ -3,8 +3,10 @@
 
 package net.twerno.eduserver.user.entities;
 
+import java.lang.String;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import net.twerno.eduserver.user.entities.Account;
 
 privileged aspect Account_Roo_Finder {
     

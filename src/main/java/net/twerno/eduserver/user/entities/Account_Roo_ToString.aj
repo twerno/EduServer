@@ -3,6 +3,7 @@
 
 package net.twerno.eduserver.user.entities;
 
+import java.lang.String;
 
 privileged aspect Account_Roo_ToString {
     

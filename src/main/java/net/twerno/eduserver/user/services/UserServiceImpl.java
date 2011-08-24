@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private ShaPasswordEncoder shaPasswordEncoder;
-
+	
 	@Override
 	public UserDetails loadUserByUsername(String arg0)
 			throws UsernameNotFoundException, DataAccessException {
@@ -43,20 +43,14 @@ public class UserServiceImpl implements UserService {
 			throws UserExistsException, NoRolesException {
 		if (!role_uczen && !role_nauczyciel)
 			throw new NoRolesException("Nie przypisano ¿adnej roli do u¿ytkownika: "+username);
-		if (UserQueries.UserByNameExisits(username))
-			throw new UserExistsException("U¿ytkownik o nazwie: " +username +" ju¿ istnieje.");
 
-		String salt = SaltHelper.getSalt();
-		Account account = new Account();
-		account.setUsername(username);
-		account.setPassword( shaPasswordEncoder.encodePassword(password, salt) );
-		account.setSalt(salt);
-		account.setEnabled(true);
+		UserRole role = null;
 		if (role_uczen)
-			account.getRoles().add(UserRole.ROLE_UCZEN);
+			role = UserRole.ROLE_UCZEN;
 		else if (role_nauczyciel)
-			account.getRoles().add(UserRole.ROLE_NAUCZYCIEL);
-		account.merge();
+			role = UserRole.ROLE_NAUCZYCIEL;
+		
+		InternalRegisterUser(username, password, role);
 	}
 
 	@Override
@@ -130,5 +124,23 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<Grupa> findAllGroups() {
 		return Grupa.findAllGrupas();
+	}
+
+	@Override
+	public void InternalRegisterUser(String username, String password,
+			UserRole role) {
+		if (UserQueries.UserByNameExisits(username))
+			throw new UserExistsException("U¿ytkownik o nazwie: " +username +" ju¿ istnieje.");
+		if (role == null)
+			throw new NoRolesException("Nie przypisano ¿adnej roli do u¿ytkownika: "+username);
+
+		String salt = SaltHelper.getSalt();
+		Account account = new Account();
+		account.setUsername(username);
+		account.setPassword( shaPasswordEncoder.encodePassword(password, salt) );
+		account.setSalt(salt);
+		account.setEnabled(true);
+		account.getRoles().add(role);
+		account.merge();
 	}
 }
