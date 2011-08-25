@@ -17,7 +17,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooEntity(finders = { "findZadaniesByAutor" })
+@RooEntity(finders = { "findZadaniesByAutorAndUsuniete" })
 public class Zadanie {
 
     @NotNull
@@ -36,4 +36,7 @@ public class Zadanie {
     @NotNull
     @ManyToMany
     private Set<ZbiorPytan> zbiorPytan = new HashSet<ZbiorPytan>();
+    
+    @NotNull
+    private boolean usuniete;
 }

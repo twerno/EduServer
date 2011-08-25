@@ -10,11 +10,12 @@ import net.twerno.eduserver.zadanie.entity.Zadanie;
 
 privileged aspect Zadanie_Roo_Finder {
     
-    public static TypedQuery<Zadanie> Zadanie.findZadaniesByAutor(Account autor) {
+    public static TypedQuery<Zadanie> Zadanie.findZadaniesByAutorAndUsuniete(Account autor, boolean usuniete) {
         if (autor == null) throw new IllegalArgumentException("The autor argument is required");
         EntityManager em = Zadanie.entityManager();
-        TypedQuery<Zadanie> q = em.createQuery("SELECT o FROM Zadanie AS o WHERE o.autor = :autor", Zadanie.class);
+        TypedQuery<Zadanie> q = em.createQuery("SELECT o FROM Zadanie AS o WHERE o.autor = :autor AND o.usuniete = :usuniete", Zadanie.class);
         q.setParameter("autor", autor);
+        q.setParameter("usuniete", usuniete);
         return q;
     }
     

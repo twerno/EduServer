@@ -15,7 +15,8 @@ privileged aspect Zadanie_Roo_ToString {
         sb.append("Opis: ").append(getOpis()).append(", ");
         sb.append("TypZdania: ").append(getTypZdania()).append(", ");
         sb.append("Version: ").append(getVersion()).append(", ");
-        sb.append("ZbiorPytan: ").append(getZbiorPytan() == null ? "null" : getZbiorPytan().size());
+        sb.append("ZbiorPytan: ").append(getZbiorPytan() == null ? "null" : getZbiorPytan().size()).append(", ");
+        sb.append("Usuniete: ").append(isUsuniete());
         return sb.toString();
     }
     

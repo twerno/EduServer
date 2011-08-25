@@ -22,7 +22,7 @@ public class ZadanieServiceImpl implements ZadanieService {
 
 	@Override
 	public List<Zadanie> dajMojeZadania() {
-		return Zadanie.findZadaniesByAutor(UserHelper.getCurrentUser()).getResultList();
+		return Zadanie.findZadaniesByAutorAndUsuniete(UserHelper.getCurrentUser(), false).getResultList();
 	}
 	
 	@Override

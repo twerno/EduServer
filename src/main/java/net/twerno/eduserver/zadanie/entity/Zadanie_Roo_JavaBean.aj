@@ -51,4 +51,12 @@ privileged aspect Zadanie_Roo_JavaBean {
         this.zbiorPytan = zbiorPytan;
     }
     
+    public boolean Zadanie.isUsuniete() {
+        return this.usuniete;
+    }
+    
+    public void Zadanie.setUsuniete(boolean usuniete) {
+        this.usuniete = usuniete;
+    }
+    
 }
