@@ -6,9 +6,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class UserSaltSource implements SaltSource {
 	
     public Object getSalt(UserDetails user) {
-    	if (user instanceof SaltedUserDetails) {
+    	if (user instanceof SaltedUserDetails)
     		return ((SaltedUserDetails) user).getSalt();
-    	} else 
-    		return "";
+    	else
+			return "";
     }
 }

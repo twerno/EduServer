@@ -1,4 +1,4 @@
-package net.twerno.eduserver.user.entities;
+package net.twerno.eduserver.user.entity;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -51,4 +51,8 @@ public class Account {
 	public Account() {
         enabled = true;
     }
+	
+	public boolean equals(Account account) {
+		return this.getId() == account.getId();
+	}
 }

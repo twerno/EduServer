@@ -5,19 +5,17 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 
 import net.twerno.eduserver.security.SaltHelper;
-import net.twerno.eduserver.security.SaltedUser;
 import net.twerno.eduserver.user.UserHelper;
 import net.twerno.eduserver.user.UserQueries;
 import net.twerno.eduserver.user.UserRole;
-import net.twerno.eduserver.user.entities.Account;
-import net.twerno.eduserver.user.entities.Grupa;
+import net.twerno.eduserver.user.entity.Account;
+import net.twerno.eduserver.user.entity.Grupa;
 import net.twerno.eduserver.user.exceptions.NoRolesException;
 import net.twerno.eduserver.user.exceptions.UserExistsException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
@@ -55,11 +53,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Account getLoggedUser() {
-		SaltedUser user = (SaltedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Account account = UserHelper.getAccountFromUserDetails(user);
-		UserHelper.zamazHaslo(account);
-		UserHelper.zamazSalt(account);
-		return account;
+		return UserHelper.getCurrentUser();
 	}
 
 	@Override

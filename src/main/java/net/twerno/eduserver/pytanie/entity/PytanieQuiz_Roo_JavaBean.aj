@@ -6,6 +6,7 @@ package net.twerno.eduserver.pytanie.entity;
 import java.lang.String;
 import java.util.Set;
 import net.twerno.eduserver.pytanie.entity.PytanieQuizOdpowiedz;
+import net.twerno.eduserver.pytanie.entity.ZbiorPytan;
 
 privileged aspect PytanieQuiz_Roo_JavaBean {
     
@@ -25,12 +26,20 @@ privileged aspect PytanieQuiz_Roo_JavaBean {
         this.odpowiedzi = odpowiedzi;
     }
     
-    public long PytanieQuiz.getZbiorPytanId() {
-        return this.zbiorPytanId;
+    public ZbiorPytan PytanieQuiz.getZbiorPytan() {
+        return this.zbiorPytan;
     }
     
-    public void PytanieQuiz.setZbiorPytanId(long zbiorPytanId) {
-        this.zbiorPytanId = zbiorPytanId;
+    public void PytanieQuiz.setZbiorPytan(ZbiorPytan zbiorPytan) {
+        this.zbiorPytan = zbiorPytan;
+    }
+    
+    public boolean PytanieQuiz.isUsuniety() {
+        return this.usuniety;
+    }
+    
+    public void PytanieQuiz.setUsuniety(boolean usuniety) {
+        this.usuniety = usuniety;
     }
     
 }

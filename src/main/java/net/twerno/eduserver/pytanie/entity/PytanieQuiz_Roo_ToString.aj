@@ -13,7 +13,8 @@ privileged aspect PytanieQuiz_Roo_ToString {
         sb.append("Odpowiedzi: ").append(getOdpowiedzi() == null ? "null" : getOdpowiedzi().size()).append(", ");
         sb.append("TrescPytania: ").append(getTrescPytania()).append(", ");
         sb.append("Version: ").append(getVersion()).append(", ");
-        sb.append("ZbiorPytanId: ").append(getZbiorPytanId());
+        sb.append("ZbiorPytan: ").append(getZbiorPytan()).append(", ");
+        sb.append("Usuniety: ").append(isUsuniety());
         return sb.toString();
     }
     

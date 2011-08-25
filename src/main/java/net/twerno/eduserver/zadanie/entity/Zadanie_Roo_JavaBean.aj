@@ -6,6 +6,7 @@ package net.twerno.eduserver.zadanie.entity;
 import java.lang.String;
 import java.util.Set;
 import net.twerno.eduserver.pytanie.entity.ZbiorPytan;
+import net.twerno.eduserver.user.entity.Account;
 import net.twerno.eduserver.zadanie.TypZadania;
 
 privileged aspect Zadanie_Roo_JavaBean {
@@ -26,12 +27,12 @@ privileged aspect Zadanie_Roo_JavaBean {
         this.opis = opis;
     }
     
-    public long Zadanie.getAutorId() {
-        return this.autorId;
+    public Account Zadanie.getAutor() {
+        return this.autor;
     }
     
-    public void Zadanie.setAutorId(long autorId) {
-        this.autorId = autorId;
+    public void Zadanie.setAutor(Account autor) {
+        this.autor = autor;
     }
     
     public TypZadania Zadanie.getTypZdania() {

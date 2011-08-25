@@ -9,7 +9,7 @@ privileged aspect Zadanie_Roo_ToString {
     
     public String Zadanie.toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("AutorId: ").append(getAutorId()).append(", ");
+        sb.append("Autor: ").append(getAutor()).append(", ");
         sb.append("Id: ").append(getId()).append(", ");
         sb.append("Nazwa: ").append(getNazwa()).append(", ");
         sb.append("Opis: ").append(getOpis()).append(", ");

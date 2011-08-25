@@ -13,7 +13,8 @@ privileged aspect PytaniePosortuj_Roo_ToString {
         sb.append("StElement: ").append(getStElement()).append(", ");
         sb.append("StKategoria: ").append(getStKategoria()).append(", ");
         sb.append("Version: ").append(getVersion()).append(", ");
-        sb.append("ZbiorPytanId: ").append(getZbiorPytanId());
+        sb.append("ZbiorPytan: ").append(getZbiorPytan()).append(", ");
+        sb.append("Usuniety: ").append(isUsuniety());
         return sb.toString();
     }
     

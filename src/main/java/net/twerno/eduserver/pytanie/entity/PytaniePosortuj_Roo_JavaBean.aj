@@ -4,6 +4,7 @@
 package net.twerno.eduserver.pytanie.entity;
 
 import java.lang.String;
+import net.twerno.eduserver.pytanie.entity.ZbiorPytan;
 
 privileged aspect PytaniePosortuj_Roo_JavaBean {
     
@@ -23,12 +24,20 @@ privileged aspect PytaniePosortuj_Roo_JavaBean {
         this.stKategoria = stKategoria;
     }
     
-    public long PytaniePosortuj.getZbiorPytanId() {
-        return this.zbiorPytanId;
+    public ZbiorPytan PytaniePosortuj.getZbiorPytan() {
+        return this.zbiorPytan;
     }
     
-    public void PytaniePosortuj.setZbiorPytanId(long zbiorPytanId) {
-        this.zbiorPytanId = zbiorPytanId;
+    public void PytaniePosortuj.setZbiorPytan(ZbiorPytan zbiorPytan) {
+        this.zbiorPytan = zbiorPytan;
+    }
+    
+    public boolean PytaniePosortuj.isUsuniety() {
+        return this.usuniety;
+    }
+    
+    public void PytaniePosortuj.setUsuniety(boolean usuniety) {
+        this.usuniety = usuniety;
     }
     
 }

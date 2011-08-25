@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -13,7 +14,8 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooEntity
+@RooEntity(finders = { "findPytanieQuizesByZbiorPytan", 
+                       "findPytanieQuizesByZbiorPytanAndUsuniety"})
 public class PytanieQuiz {
 	
 	@NotNull
@@ -24,5 +26,16 @@ public class PytanieQuiz {
 	private Set<PytanieQuizOdpowiedz> odpowiedzi = new HashSet<PytanieQuizOdpowiedz>(); 
 	
 	@NotNull
-	private long zbiorPytanId;
+	@ManyToOne
+	private ZbiorPytan zbiorPytan;
+	
+	@NotNull
+	private boolean usuniety;
+	
+    @Override
+    public boolean equals(Object obj) {
+    	if (obj instanceof PytanieQuiz)
+    		return ((PytanieQuiz)obj).getId() == this.getId();
+    	return super.equals(obj);
+    }
 }

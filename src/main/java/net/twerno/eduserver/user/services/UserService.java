@@ -3,8 +3,8 @@ package net.twerno.eduserver.user.services;
 import java.util.List;
 
 import net.twerno.eduserver.user.UserRole;
-import net.twerno.eduserver.user.entities.Account;
-import net.twerno.eduserver.user.entities.Grupa;
+import net.twerno.eduserver.user.entity.Account;
+import net.twerno.eduserver.user.entity.Grupa;
 import net.twerno.eduserver.user.exceptions.NoRolesException;
 import net.twerno.eduserver.user.exceptions.UserExistsException;
 

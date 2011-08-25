@@ -4,6 +4,7 @@
 package net.twerno.eduserver.pytanie.entity;
 
 import java.lang.String;
+import net.twerno.eduserver.user.entity.Account;
 import net.twerno.eduserver.zadanie.TypZadania;
 
 privileged aspect ZbiorPytan_Roo_JavaBean {
@@ -32,12 +33,12 @@ privileged aspect ZbiorPytan_Roo_JavaBean {
         this.kategoria = kategoria;
     }
     
-    public long ZbiorPytan.getAutorId() {
-        return this.autorId;
+    public Account ZbiorPytan.getAutor() {
+        return this.autor;
     }
     
-    public void ZbiorPytan.setAutorId(long autorId) {
-        this.autorId = autorId;
+    public void ZbiorPytan.setAutor(Account autor) {
+        this.autor = autor;
     }
     
     public boolean ZbiorPytan.isIsPublic() {
@@ -46,6 +47,14 @@ privileged aspect ZbiorPytan_Roo_JavaBean {
     
     public void ZbiorPytan.setIsPublic(boolean isPublic) {
         this.isPublic = isPublic;
+    }
+    
+    public boolean ZbiorPytan.isUsuniety() {
+        return this.usuniety;
+    }
+    
+    public void ZbiorPytan.setUsuniety(boolean usuniety) {
+        this.usuniety = usuniety;
     }
     
 }

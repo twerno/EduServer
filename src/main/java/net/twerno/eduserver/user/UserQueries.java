@@ -2,7 +2,7 @@ package net.twerno.eduserver.user;
 
 import javax.persistence.TypedQuery;
 
-import net.twerno.eduserver.user.entities.Grupa;
+import net.twerno.eduserver.user.entity.Grupa;
 
 public class UserQueries {
 	

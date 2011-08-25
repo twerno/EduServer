@@ -6,10 +6,11 @@ import java.util.Set;
 
 import net.twerno.eduserver.security.SaltedUser;
 import net.twerno.eduserver.security.SaltedUserDetails;
-import net.twerno.eduserver.user.entities.Account;
+import net.twerno.eduserver.user.entity.Account;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 public class UserHelper {
 	public static SaltedUserDetails getUserDetailsFromAccount(Account account) {
@@ -63,5 +64,19 @@ public class UserHelper {
 	public static void zamazSalt(List<Account> accounts) {
 		for (Account account : accounts) 
 			zamazSalt(account);
+	}
+	
+	public static Account getCurrentUser(boolean zamazDaneWrazliwe) {
+		SaltedUser user = (SaltedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Account account = getAccountFromUserDetails(user);
+		if (zamazDaneWrazliwe) {
+			zamazHaslo(account);
+			zamazSalt(account);
+		}
+		return account;
+	}
+	
+	public static Account getCurrentUser() {
+		return getCurrentUser(true);
 	}
 }

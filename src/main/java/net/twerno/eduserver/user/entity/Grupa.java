@@ -1,4 +1,4 @@
-package net.twerno.eduserver.user.entities;
+package net.twerno.eduserver.user.entity;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotNull;

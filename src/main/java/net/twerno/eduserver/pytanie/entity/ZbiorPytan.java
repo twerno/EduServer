@@ -1,7 +1,9 @@
 package net.twerno.eduserver.pytanie.entity;
 
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+import net.twerno.eduserver.user.entity.Account;
 import net.twerno.eduserver.zadanie.TypZadania;
 
 import org.springframework.roo.addon.entity.RooEntity;
@@ -10,21 +12,25 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooEntity
+@RooEntity(finders = { "findZbiorPytansByAutorAndUsuniety", "findZbiorPytansByIsPublicAndUsuniety" })
 public class ZbiorPytan {
 
-	@NotNull
-	private TypZadania typZdania;
+    @NotNull
+    private TypZadania typZdania;
 
-	@NotNull
-	private String opis;
+    @NotNull
+    private String opis;
 
-	@NotNull
-	private String kategoria;
+    @NotNull
+    private String kategoria;
 
-	@NotNull
-	private long autorId;
+    @NotNull
+    @OneToOne
+    private Account autor;
 
-	@NotNull
-	private boolean isPublic;
+    @NotNull
+    private boolean isPublic;
+
+    @NotNull
+    private boolean usuniety;
 }

@@ -9,6 +9,8 @@ privileged aspect ZadaneZadanie_Roo_ToString {
     
     public String ZadaneZadanie.toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append("Autor: ").append(getAutor()).append(", ");
+        sb.append("DataUtworzenia: ").append(getDataUtworzenia()).append(", ");
         sb.append("DtDo: ").append(getDtDo()).append(", ");
         sb.append("DtOd: ").append(getDtOd()).append(", ");
         sb.append("Grupy: ").append(getGrupy() == null ? "null" : getGrupy().size()).append(", ");

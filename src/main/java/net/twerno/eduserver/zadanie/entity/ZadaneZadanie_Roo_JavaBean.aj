@@ -5,7 +5,8 @@ package net.twerno.eduserver.zadanie.entity;
 
 import java.util.Date;
 import java.util.Set;
-import net.twerno.eduserver.user.entities.Grupa;
+import net.twerno.eduserver.user.entity.Account;
+import net.twerno.eduserver.user.entity.Grupa;
 import net.twerno.eduserver.zadanie.entity.TypWyboru;
 import net.twerno.eduserver.zadanie.entity.Zadanie;
 
@@ -33,6 +34,14 @@ privileged aspect ZadaneZadanie_Roo_JavaBean {
     
     public void ZadaneZadanie.setGrupy(Set<Grupa> grupy) {
         this.grupy = grupy;
+    }
+    
+    public Date ZadaneZadanie.getDataUtworzenia() {
+        return this.dataUtworzenia;
+    }
+    
+    public void ZadaneZadanie.setDataUtworzenia(Date dataUtworzenia) {
+        this.dataUtworzenia = dataUtworzenia;
     }
     
     public Date ZadaneZadanie.getDtOd() {
@@ -65,6 +74,14 @@ privileged aspect ZadaneZadanie_Roo_JavaBean {
     
     public void ZadaneZadanie.setTypWyboru(TypWyboru typWyboru) {
         this.typWyboru = typWyboru;
+    }
+    
+    public Account ZadaneZadanie.getAutor() {
+        return this.autor;
+    }
+    
+    public void ZadaneZadanie.setAutor(Account autor) {
+        this.autor = autor;
     }
     
 }
