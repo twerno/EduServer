@@ -14,99 +14,99 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Version;
-import net.twerno.eduserver.pytanie.entity.PytanieQuiz;
+import net.twerno.eduserver.pytanie.entity.OdpPytanieZamkniete;
 import org.springframework.transaction.annotation.Transactional;
 
-privileged aspect PytanieQuiz_Roo_Entity {
+privileged aspect OdpPytanieZamkniete_Roo_Entity {
     
-    declare @type: PytanieQuiz: @Entity;
+    declare @type: OdpPytanieZamkniete: @Entity;
     
     @PersistenceContext
-    transient EntityManager PytanieQuiz.entityManager;
+    transient EntityManager OdpPytanieZamkniete.entityManager;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long PytanieQuiz.id;
+    private Long OdpPytanieZamkniete.id;
     
     @Version
     @Column(name = "version")
-    private Integer PytanieQuiz.version;
+    private Integer OdpPytanieZamkniete.version;
     
-    public Long PytanieQuiz.getId() {
+    public Long OdpPytanieZamkniete.getId() {
         return this.id;
     }
     
-    public void PytanieQuiz.setId(Long id) {
+    public void OdpPytanieZamkniete.setId(Long id) {
         this.id = id;
     }
     
-    public Integer PytanieQuiz.getVersion() {
+    public Integer OdpPytanieZamkniete.getVersion() {
         return this.version;
     }
     
-    public void PytanieQuiz.setVersion(Integer version) {
+    public void OdpPytanieZamkniete.setVersion(Integer version) {
         this.version = version;
     }
     
     @Transactional
-    public void PytanieQuiz.persist() {
+    public void OdpPytanieZamkniete.persist() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.persist(this);
     }
     
     @Transactional
-    public void PytanieQuiz.remove() {
+    public void OdpPytanieZamkniete.remove() {
         if (this.entityManager == null) this.entityManager = entityManager();
         if (this.entityManager.contains(this)) {
             this.entityManager.remove(this);
         } else {
-            PytanieQuiz attached = PytanieQuiz.findPytanieQuiz(this.id);
+            OdpPytanieZamkniete attached = OdpPytanieZamkniete.findOdpPytanieZamkniete(this.id);
             this.entityManager.remove(attached);
         }
     }
     
     @Transactional
-    public void PytanieQuiz.flush() {
+    public void OdpPytanieZamkniete.flush() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.flush();
     }
     
     @Transactional
-    public void PytanieQuiz.clear() {
+    public void OdpPytanieZamkniete.clear() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.clear();
     }
     
     @Transactional
-    public PytanieQuiz PytanieQuiz.merge() {
+    public OdpPytanieZamkniete OdpPytanieZamkniete.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
-        PytanieQuiz merged = this.entityManager.merge(this);
+        OdpPytanieZamkniete merged = this.entityManager.merge(this);
         this.entityManager.flush();
         return merged;
     }
     
-    public static final EntityManager PytanieQuiz.entityManager() {
-        EntityManager em = new PytanieQuiz().entityManager;
+    public static final EntityManager OdpPytanieZamkniete.entityManager() {
+        EntityManager em = new OdpPytanieZamkniete().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
         return em;
     }
     
-    public static long PytanieQuiz.countPytanieQuizes() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM PytanieQuiz o", Long.class).getSingleResult();
+    public static long OdpPytanieZamkniete.countOdpPytanieZamknietes() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM OdpPytanieZamkniete o", Long.class).getSingleResult();
     }
     
-    public static List<PytanieQuiz> PytanieQuiz.findAllPytanieQuizes() {
-        return entityManager().createQuery("SELECT o FROM PytanieQuiz o", PytanieQuiz.class).getResultList();
+    public static List<OdpPytanieZamkniete> OdpPytanieZamkniete.findAllOdpPytanieZamknietes() {
+        return entityManager().createQuery("SELECT o FROM OdpPytanieZamkniete o", OdpPytanieZamkniete.class).getResultList();
     }
     
-    public static PytanieQuiz PytanieQuiz.findPytanieQuiz(Long id) {
+    public static OdpPytanieZamkniete OdpPytanieZamkniete.findOdpPytanieZamkniete(Long id) {
         if (id == null) return null;
-        return entityManager().find(PytanieQuiz.class, id);
+        return entityManager().find(OdpPytanieZamkniete.class, id);
     }
     
-    public static List<PytanieQuiz> PytanieQuiz.findPytanieQuizEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM PytanieQuiz o", PytanieQuiz.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<OdpPytanieZamkniete> OdpPytanieZamkniete.findOdpPytanieZamknieteEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM OdpPytanieZamkniete o", OdpPytanieZamkniete.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

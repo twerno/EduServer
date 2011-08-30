@@ -1,7 +1,12 @@
 package net.twerno.eduserver.user;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.hibernate.Session;
+
+import net.twerno.eduserver.helpers.HibernateHelper;
+import net.twerno.eduserver.user.entity.Account;
 import net.twerno.eduserver.user.entity.Grupa;
 
 public class UserQueries {
@@ -18,5 +23,27 @@ public class UserQueries {
 		TypedQuery<Long> q = Grupa.entityManager().createQuery("SELECT COUNT(o.username) FROM Account o WHERE o.username = :username", Long.class);
 		q.setParameter("username", username);
 		return q.getSingleResult() == 1;
+	}
+	
+	
+	public static void deleteGrupa(long grupaID) throws Exception {
+		String SQL_1 = "delete from account_grupy where grupy = :grupaId";
+		String SQL_2 = "delete from grupa where id = :grupaId";
+		
+//		getHi
+//		
+//		HibernateTemplate t = HibernateTempl
+//		org.springframework.orm.hibernate3.
+		
+		Session session = HibernateHelper.getSessionFactory().getCurrentSession();// .getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		try {
+			session.createSQLQuery(SQL_1).setParameter("grupaId", grupaID).executeUpdate();
+			session.createSQLQuery(SQL_2).setParameter("grupaId", grupaID).executeUpdate();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			throw e;
+		}
 	}
 }

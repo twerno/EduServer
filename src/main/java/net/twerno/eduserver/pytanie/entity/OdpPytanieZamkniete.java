@@ -10,15 +10,15 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJavaBean
 @RooToString
 @RooEntity
-public class PytanieQuizOdpowiedz {
+public class OdpPytanieZamkniete {
 	
-	@NotNull
-	private String trescOdpowiedzi;
-	
-	@NotNull
-	private boolean poprawnaOdpowiedz;
-
 	@NotNull
 	@ManyToOne
-	private PytanieQuiz pytanieQuiz;
+	private PytanieZamkniete pytanieZamkniete;
+	
+	@NotNull
+	private String stOdpowiedz;
+	
+	@NotNull 
+	private boolean tnPoprawna;
 }

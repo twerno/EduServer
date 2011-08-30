@@ -5,8 +5,8 @@ package net.twerno.eduserver.pytanie.entity;
 
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect PytanieQuiz_Roo_Configurable {
+privileged aspect PytanieZamkniete_Roo_Configurable {
     
-    declare @type: PytanieQuiz: @Configurable;
+    declare @type: PytanieZamkniete: @Configurable;
     
 }

@@ -6,6 +6,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -39,6 +41,9 @@ public class Account {
     private Set<UserRole> roles = new HashSet<UserRole>();
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="account_grupa",
+    	       joinColumns={@JoinColumn(name="account_id")},
+    	       inverseJoinColumns={@JoinColumn(name="grupa_id")})
     private Set<Grupa> grupy = new HashSet<Grupa>();
     
     public Account(String username, String password) {

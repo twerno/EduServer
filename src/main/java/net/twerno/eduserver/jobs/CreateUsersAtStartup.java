@@ -1,5 +1,7 @@
 package net.twerno.eduserver.jobs;
 import net.twerno.eduserver.user.UserRole;
+import net.twerno.eduserver.user.entity.Account;
+import net.twerno.eduserver.user.entity.Grupa;
 import net.twerno.eduserver.user.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,15 @@ public class CreateUsersAtStartup implements ApplicationListener<ContextRefreshe
 
 		 try {
 			 userService.InternalRegisterUser("nauczyciel", "nauczyciel", UserRole.ROLE_NAUCZYCIEL);
+		 } catch (Exception e) {System.out.println(e.getMessage());}
+		 
+		 try {
+			 Grupa grupa = new Grupa();
+			 grupa.setNazwa("klasa 1a");
+			 grupa.getAccounts().add(Account.findAccountsByUsernameEquals("admin").getSingleResult());
+			 grupa.getAccounts().add(Account.findAccountsByUsernameEquals("uczen").getSingleResult());
+			 grupa.getAccounts().add(Account.findAccountsByUsernameEquals("nauczyciel").getSingleResult());
+			 grupa.merge();
 		 } catch (Exception e) {System.out.println(e.getMessage());}
     }
 }

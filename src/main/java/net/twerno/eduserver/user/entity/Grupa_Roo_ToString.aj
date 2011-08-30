@@ -9,6 +9,7 @@ privileged aspect Grupa_Roo_ToString {
     
     public String Grupa.toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append("Accounts: ").append(getAccounts() == null ? "null" : getAccounts().size()).append(", ");
         sb.append("Id: ").append(getId()).append(", ");
         sb.append("Nazwa: ").append(getNazwa()).append(", ");
         sb.append("Version: ").append(getVersion());

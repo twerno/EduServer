@@ -13,7 +13,7 @@ privileged aspect ZbiorPytan_Roo_ToString {
         sb.append("Id: ").append(getId()).append(", ");
         sb.append("Kategoria: ").append(getKategoria()).append(", ");
         sb.append("Opis: ").append(getOpis()).append(", ");
-        sb.append("TypZdania: ").append(getTypZdania()).append(", ");
+        sb.append("TypZadania: ").append(getTypZadania()).append(", ");
         sb.append("Version: ").append(getVersion()).append(", ");
         sb.append("IsPublic: ").append(isIsPublic()).append(", ");
         sb.append("Usuniety: ").append(isUsuniety());

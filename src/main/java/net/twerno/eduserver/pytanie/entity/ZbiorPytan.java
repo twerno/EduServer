@@ -16,7 +16,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 public class ZbiorPytan {
 
     @NotNull
-    private TypZadania typZdania;
+    private TypZadania typZadania;
 
     @NotNull
     private String opis;
@@ -32,5 +32,5 @@ public class ZbiorPytan {
     private boolean isPublic;
 
     @NotNull
-    private boolean usuniety;
+    private boolean usuniety; 
 }

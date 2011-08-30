@@ -7,6 +7,7 @@ import java.util.Set;
 import net.twerno.eduserver.security.SaltedUser;
 import net.twerno.eduserver.security.SaltedUserDetails;
 import net.twerno.eduserver.user.entity.Account;
+import net.twerno.eduserver.user.entity.Grupa;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
@@ -66,17 +67,51 @@ public class UserHelper {
 			zamazSalt(account);
 	}
 	
+	public static void usunKontaZGrupy(Grupa grupa) {
+		grupa.getAccounts().clear();
+	}
+	
+	public static void usunKontaZGrupy(List<Grupa> grupy) {
+		for (Grupa grupa : grupy) 
+			usunKontaZGrupy(grupa);
+	}
+	
+	public static void usunKontaZGrup(Account account) {
+		for (Grupa grupa: account.getGrupy())
+			usunKontaZGrupy(grupa);
+	}
+	
+	public static void usunKontaZGrup(List<Account> accounts) {
+		for (Account account : accounts) 
+			usunKontaZGrup(account);
+	}
+	
 	public static Account getCurrentUser(boolean zamazDaneWrazliwe) {
 		SaltedUser user = (SaltedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Account account = getAccountFromUserDetails(user);
 		if (zamazDaneWrazliwe) {
 			zamazHaslo(account);
 			zamazSalt(account);
+			usunKontaZGrup(account);
 		}
 		return account;
 	}
 	
 	public static Account getCurrentUser() {
 		return getCurrentUser(true);
+	}
+	
+	public static void przygotujAccount(Account account) {
+		zamazHaslo(account);
+		zamazSalt(account);
+		usunKontaZGrup(account);
+	}
+	
+	public static void przygotujAccount(List<Account> accounts) {
+		for (Account account : accounts) {
+			zamazHaslo(account);
+			zamazSalt(account);
+			usunKontaZGrup(account);
+		}
 	}
 }

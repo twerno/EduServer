@@ -5,15 +5,15 @@ package net.twerno.eduserver.pytanie.entity;
 
 import java.lang.String;
 
-privileged aspect PytanieQuizOdpowiedz_Roo_ToString {
+privileged aspect OdpPytanieZamkniete_Roo_ToString {
     
-    public String PytanieQuizOdpowiedz.toString() {
+    public String OdpPytanieZamkniete.toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Id: ").append(getId()).append(", ");
-        sb.append("PytanieQuiz: ").append(getPytanieQuiz()).append(", ");
-        sb.append("TrescOdpowiedzi: ").append(getTrescOdpowiedzi()).append(", ");
+        sb.append("PytanieZamkniete: ").append(getPytanieZamkniete()).append(", ");
+        sb.append("StOdpowiedz: ").append(getStOdpowiedz()).append(", ");
         sb.append("Version: ").append(getVersion()).append(", ");
-        sb.append("PoprawnaOdpowiedz: ").append(isPoprawnaOdpowiedz());
+        sb.append("TnPoprawna: ").append(isTnPoprawna());
         return sb.toString();
     }
     

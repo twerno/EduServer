@@ -5,8 +5,8 @@ package net.twerno.eduserver.pytanie.entity;
 
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect PytaniePosortuj_Roo_Configurable {
+privileged aspect OdpPytanieZamkniete_Roo_Configurable {
     
-    declare @type: PytaniePosortuj: @Configurable;
+    declare @type: OdpPytanieZamkniete: @Configurable;
     
 }

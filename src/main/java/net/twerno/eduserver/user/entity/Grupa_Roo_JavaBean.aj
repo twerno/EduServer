@@ -4,6 +4,8 @@
 package net.twerno.eduserver.user.entity;
 
 import java.lang.String;
+import java.util.Set;
+import net.twerno.eduserver.user.entity.Account;
 
 privileged aspect Grupa_Roo_JavaBean {
     
@@ -13,6 +15,14 @@ privileged aspect Grupa_Roo_JavaBean {
     
     public void Grupa.setNazwa(String nazwa) {
         this.nazwa = nazwa;
+    }
+    
+    public Set<Account> Grupa.getAccounts() {
+        return this.accounts;
+    }
+    
+    public void Grupa.setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
     }
     
 }

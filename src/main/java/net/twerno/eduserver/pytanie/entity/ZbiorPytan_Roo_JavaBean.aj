@@ -9,12 +9,12 @@ import net.twerno.eduserver.zadanie.TypZadania;
 
 privileged aspect ZbiorPytan_Roo_JavaBean {
     
-    public TypZadania ZbiorPytan.getTypZdania() {
-        return this.typZdania;
+    public TypZadania ZbiorPytan.getTypZadania() {
+        return this.typZadania;
     }
     
-    public void ZbiorPytan.setTypZdania(TypZadania typZdania) {
-        this.typZdania = typZdania;
+    public void ZbiorPytan.setTypZadania(TypZadania typZadania) {
+        this.typZadania = typZadania;
     }
     
     public String ZbiorPytan.getOpis() {

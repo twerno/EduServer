@@ -15,6 +15,7 @@ import net.twerno.eduserver.user.exceptions.UserExistsException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.flex.remoting.RemotingExclude;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -59,8 +60,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<Account> findAllAccounds() {
 		List<Account> accounts = Account.findAllAccounts();
-		UserHelper.zamazHasla(accounts);
-		UserHelper.zamazSalt(accounts);
+		UserHelper.przygotujAccount(accounts);
 		return accounts;
 	}
 
@@ -84,27 +84,27 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean dodajGrupe(String nazwaGrupy) {
-		if (!UserQueries.GrupaByNameExisits(nazwaGrupy)) {
-			Grupa grupa = new Grupa();
-			grupa.setNazwa(nazwaGrupy);
-			grupa.merge();
-			return true;
-		}
-		return false;
+	public Grupa dodajGrupe(String nazwaGrupy) throws Exception {
+		if (UserQueries.GrupaByNameExisits(nazwaGrupy))
+			throw new Exception("Grupa o nazwie: "+nazwaGrupy+" ju¿ istnieje.");
+		Grupa grupa = new Grupa();
+		grupa.setNazwa(nazwaGrupy);
+		grupa.merge();
+		return grupa;
 	}
 
 	@Override
-	public boolean usunGrupe(String nazwaGrupy) {
-		if (UserQueries.GrupaByNameExisits(nazwaGrupy)) {
-			Grupa grupa = Grupa.findGrupasByNazwaEquals(nazwaGrupy).getSingleResult();
-			grupa.remove();
-			return true;
-		}
-		return false;
+	public void usunGrupe(String nazwaGrupy) throws Exception {
+		if (!UserQueries.GrupaByNameExisits(nazwaGrupy))
+			return;
+
+		Grupa grupa = Grupa.findGrupasByNazwaEquals(nazwaGrupy).getSingleResult();
+		grupa.getAccounts().clear();
+		grupa.remove();
 	}
 
 	@Override
+//	@RemotingExclude
 	public Account loadAccountByName(String username)
 			throws UsernameNotFoundException {
         try {
@@ -117,7 +117,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<Grupa> findAllGroups() {
-		return Grupa.findAllGrupas();
+		List<Grupa> grupy = Grupa.findAllGrupas(); 
+		UserHelper.usunKontaZGrupy(grupy);
+		return grupy;
 	}
 
 	@Override
@@ -136,5 +138,34 @@ public class UserServiceImpl implements UserService {
 		account.setEnabled(true);
 		account.getRoles().add(role);
 		account.merge();
+	}
+
+	@Override
+	public void zapiszAccount(Account account) {
+		Account cleanAccount = Account.findAccount(account.getId());
+		cleanAccount.setEnabled(account.getEnabled());
+
+		cleanAccount.getRoles().clear();
+		for (UserRole role: account.getRoles())
+			cleanAccount.getRoles().add(role);
+
+		cleanAccount.getGrupy().clear();
+		for (Grupa grupa: account.getGrupy())
+			cleanAccount.getGrupy().add(Grupa.findGrupa(grupa.getId()));
+		cleanAccount.merge();
+	}
+
+	@Override
+	public void zmienMojeHaslo(String noweHaslo) {
+		Account account = getLoggedUser();
+		account.setPassword( shaPasswordEncoder.encodePassword(noweHaslo, account.getSalt()) );
+		account.merge();
+	}
+
+	@Override
+	public void zmienHaslo(String username, String noweHaslo) {
+		Account account = Account.findAccountsByUsernameEquals(username).getSingleResult();
+		account.setPassword( shaPasswordEncoder.encodePassword(noweHaslo, account.getSalt()) );
+		account.merge();		
 	}
 }

@@ -53,8 +53,19 @@ public interface UserService extends UserDetailsService {
 	List<Grupa> findAllGroups();
 	
 	@Secured(UserRole._ROLE_ADMIN)
-	boolean dodajGrupe(String nazwaGrupy);
+	Grupa dodajGrupe(String nazwaGrupy)
+			throws Exception;
 
 	@Secured(UserRole._ROLE_ADMIN)
-	boolean usunGrupe(String nazwaGrupy);
+	void usunGrupe(String nazwaGrupy) 
+			throws Exception;
+	
+	@Secured(UserRole._ROLE_ADMIN)
+	void zapiszAccount(Account account);
+	
+	@PreAuthorize("isAuthenticated()")
+	void zmienMojeHaslo(String noweHaslo);
+	
+	@Secured(UserRole._ROLE_ADMIN)
+	void zmienHaslo(String username, String noweHaslo);
 }
