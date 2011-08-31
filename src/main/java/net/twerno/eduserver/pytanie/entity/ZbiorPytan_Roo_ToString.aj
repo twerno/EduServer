@@ -9,7 +9,7 @@ privileged aspect ZbiorPytan_Roo_ToString {
     
     public String ZbiorPytan.toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Autor: ").append(getAutor()).append(", ");
+        sb.append("AutorId: ").append(getAutorId()).append(", ");
         sb.append("Id: ").append(getId()).append(", ");
         sb.append("Kategoria: ").append(getKategoria()).append(", ");
         sb.append("Opis: ").append(getOpis()).append(", ");

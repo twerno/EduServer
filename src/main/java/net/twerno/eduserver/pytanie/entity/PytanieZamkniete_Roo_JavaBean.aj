@@ -10,6 +10,14 @@ import net.twerno.eduserver.zadanie.TypZadania;
 
 privileged aspect PytanieZamkniete_Roo_JavaBean {
     
+    public String PytanieZamkniete.getId() {
+        return this.id;
+    }
+    
+    public void PytanieZamkniete.setId(String id) {
+        this.id = id;
+    }
+    
     public boolean PytanieZamkniete.isUsuniety() {
         return this.usuniety;
     }
@@ -18,11 +26,11 @@ privileged aspect PytanieZamkniete_Roo_JavaBean {
         this.usuniety = usuniety;
     }
     
-    public long PytanieZamkniete.getZbiorPytanId() {
+    public String PytanieZamkniete.getZbiorPytanId() {
         return this.zbiorPytanId;
     }
     
-    public void PytanieZamkniete.setZbiorPytanId(long zbiorPytanId) {
+    public void PytanieZamkniete.setZbiorPytanId(String zbiorPytanId) {
         this.zbiorPytanId = zbiorPytanId;
     }
     
@@ -34,12 +42,12 @@ privileged aspect PytanieZamkniete_Roo_JavaBean {
         this.trescPytania = trescPytania;
     }
     
-    public TypZadania PytanieZamkniete.getTypZdania() {
-        return this.typZdania;
+    public TypZadania PytanieZamkniete.getTypZadania() {
+        return this.typZadania;
     }
     
-    public void PytanieZamkniete.setTypZdania(TypZadania typZdania) {
-        this.typZdania = typZdania;
+    public void PytanieZamkniete.setTypZadania(TypZadania typZadania) {
+        this.typZadania = typZadania;
     }
     
     public String PytanieZamkniete.getKategoria() {

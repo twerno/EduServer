@@ -4,14 +4,11 @@
 package net.twerno.eduserver.user.entity;
 
 import java.lang.Integer;
-import java.lang.Long;
+import java.lang.String;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Version;
 import net.twerno.eduserver.user.entity.Account;
@@ -24,22 +21,9 @@ privileged aspect Account_Roo_Entity {
     @PersistenceContext
     transient EntityManager Account.entityManager;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long Account.id;
-    
     @Version
     @Column(name = "version")
     private Integer Account.version;
-    
-    public Long Account.getId() {
-        return this.id;
-    }
-    
-    public void Account.setId(Long id) {
-        this.id = id;
-    }
     
     public Integer Account.getVersion() {
         return this.version;
@@ -100,8 +84,8 @@ privileged aspect Account_Roo_Entity {
         return entityManager().createQuery("SELECT o FROM Account o", Account.class).getResultList();
     }
     
-    public static Account Account.findAccount(Long id) {
-        if (id == null) return null;
+    public static Account Account.findAccount(String id) {
+        if (id == null || id.length() == 0) return null;
         return entityManager().find(Account.class, id);
     }
     

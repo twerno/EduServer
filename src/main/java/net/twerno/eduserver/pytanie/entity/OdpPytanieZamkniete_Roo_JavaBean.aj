@@ -8,6 +8,14 @@ import net.twerno.eduserver.pytanie.entity.PytanieZamkniete;
 
 privileged aspect OdpPytanieZamkniete_Roo_JavaBean {
     
+    public String OdpPytanieZamkniete.getId() {
+        return this.id;
+    }
+    
+    public void OdpPytanieZamkniete.setId(String id) {
+        this.id = id;
+    }
+    
     public PytanieZamkniete OdpPytanieZamkniete.getPytanieZamkniete() {
         return this.pytanieZamkniete;
     }

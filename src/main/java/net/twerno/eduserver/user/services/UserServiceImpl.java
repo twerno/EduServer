@@ -15,7 +15,6 @@ import net.twerno.eduserver.user.exceptions.UserExistsException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.flex.remoting.RemotingExclude;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -54,7 +53,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Account getLoggedUser() {
-		return UserHelper.getCurrentUser();
+		Account account = UserHelper.getCurrentUser();
+		UserHelper.przygotujAccount(account);
+		return account;
 	}
 
 	@Override

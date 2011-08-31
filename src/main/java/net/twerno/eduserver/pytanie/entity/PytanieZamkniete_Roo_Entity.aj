@@ -4,14 +4,11 @@
 package net.twerno.eduserver.pytanie.entity;
 
 import java.lang.Integer;
-import java.lang.Long;
+import java.lang.String;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Version;
 import net.twerno.eduserver.pytanie.entity.PytanieZamkniete;
@@ -24,22 +21,9 @@ privileged aspect PytanieZamkniete_Roo_Entity {
     @PersistenceContext
     transient EntityManager PytanieZamkniete.entityManager;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long PytanieZamkniete.id;
-    
     @Version
     @Column(name = "version")
     private Integer PytanieZamkniete.version;
-    
-    public Long PytanieZamkniete.getId() {
-        return this.id;
-    }
-    
-    public void PytanieZamkniete.setId(Long id) {
-        this.id = id;
-    }
     
     public Integer PytanieZamkniete.getVersion() {
         return this.version;
@@ -100,8 +84,8 @@ privileged aspect PytanieZamkniete_Roo_Entity {
         return entityManager().createQuery("SELECT o FROM PytanieZamkniete o", PytanieZamkniete.class).getResultList();
     }
     
-    public static PytanieZamkniete PytanieZamkniete.findPytanieZamkniete(Long id) {
-        if (id == null) return null;
+    public static PytanieZamkniete PytanieZamkniete.findPytanieZamkniete(String id) {
+        if (id == null || id.length() == 0) return null;
         return entityManager().find(PytanieZamkniete.class, id);
     }
     

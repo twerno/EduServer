@@ -3,16 +3,19 @@
 
 package net.twerno.eduserver.pytanie.entity;
 
+import java.lang.String;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import net.twerno.eduserver.pytanie.entity.PytanieZamkniete;
 
 privileged aspect PytanieZamkniete_Roo_Finder {
     
-    public static TypedQuery<PytanieZamkniete> PytanieZamkniete.findPytanieZamknietesByZbiorPytanId(long zbiorPytanId) {
+    public static TypedQuery<PytanieZamkniete> PytanieZamkniete.findPytanieZamknietesByZbiorPytanIdAndUsuniety(String zbiorPytanId, boolean usuniety) {
+        if (zbiorPytanId == null || zbiorPytanId.length() == 0) throw new IllegalArgumentException("The zbiorPytanId argument is required");
         EntityManager em = PytanieZamkniete.entityManager();
-        TypedQuery<PytanieZamkniete> q = em.createQuery("SELECT o FROM PytanieZamkniete AS o WHERE o.zbiorPytanId = :zbiorPytanId", PytanieZamkniete.class);
+        TypedQuery<PytanieZamkniete> q = em.createQuery("SELECT o FROM PytanieZamkniete AS o WHERE o.zbiorPytanId = :zbiorPytanId AND o.usuniety = :usuniety", PytanieZamkniete.class);
         q.setParameter("zbiorPytanId", zbiorPytanId);
+        q.setParameter("usuniety", usuniety);
         return q;
     }
     

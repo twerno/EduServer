@@ -9,6 +9,14 @@ import net.twerno.eduserver.user.entity.Account;
 
 privileged aspect Grupa_Roo_JavaBean {
     
+    public String Grupa.getId() {
+        return this.id;
+    }
+    
+    public void Grupa.setId(String id) {
+        this.id = id;
+    }
+    
     public String Grupa.getNazwa() {
         return this.nazwa;
     }

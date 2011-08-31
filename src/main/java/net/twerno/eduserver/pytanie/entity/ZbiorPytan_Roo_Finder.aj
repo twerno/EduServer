@@ -6,18 +6,8 @@ package net.twerno.eduserver.pytanie.entity;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import net.twerno.eduserver.pytanie.entity.ZbiorPytan;
-import net.twerno.eduserver.user.entity.Account;
 
 privileged aspect ZbiorPytan_Roo_Finder {
-    
-    public static TypedQuery<ZbiorPytan> ZbiorPytan.findZbiorPytansByAutorAndUsuniety(Account autor, boolean usuniety) {
-        if (autor == null) throw new IllegalArgumentException("The autor argument is required");
-        EntityManager em = ZbiorPytan.entityManager();
-        TypedQuery<ZbiorPytan> q = em.createQuery("SELECT o FROM ZbiorPytan AS o WHERE o.autor = :autor AND o.usuniety = :usuniety", ZbiorPytan.class);
-        q.setParameter("autor", autor);
-        q.setParameter("usuniety", usuniety);
-        return q;
-    }
     
     public static TypedQuery<ZbiorPytan> ZbiorPytan.findZbiorPytansByIsPublicAndUsuniety(boolean isPublic, boolean usuniety) {
         EntityManager em = ZbiorPytan.entityManager();

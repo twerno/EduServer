@@ -4,14 +4,11 @@
 package net.twerno.eduserver.user.entity;
 
 import java.lang.Integer;
-import java.lang.Long;
+import java.lang.String;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Version;
 import net.twerno.eduserver.user.entity.Grupa;
@@ -24,22 +21,9 @@ privileged aspect Grupa_Roo_Entity {
     @PersistenceContext
     transient EntityManager Grupa.entityManager;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long Grupa.id;
-    
     @Version
     @Column(name = "version")
     private Integer Grupa.version;
-    
-    public Long Grupa.getId() {
-        return this.id;
-    }
-    
-    public void Grupa.setId(Long id) {
-        this.id = id;
-    }
     
     public Integer Grupa.getVersion() {
         return this.version;
@@ -100,8 +84,8 @@ privileged aspect Grupa_Roo_Entity {
         return entityManager().createQuery("SELECT o FROM Grupa o", Grupa.class).getResultList();
     }
     
-    public static Grupa Grupa.findGrupa(Long id) {
-        if (id == null) return null;
+    public static Grupa Grupa.findGrupa(String id) {
+        if (id == null || id.length() == 0) return null;
         return entityManager().find(Grupa.class, id);
     }
     

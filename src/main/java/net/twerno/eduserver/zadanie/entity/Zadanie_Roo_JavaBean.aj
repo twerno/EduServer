@@ -4,12 +4,22 @@
 package net.twerno.eduserver.zadanie.entity;
 
 import java.lang.String;
+import java.util.Date;
 import java.util.Set;
-import net.twerno.eduserver.pytanie.entity.ZbiorPytan;
-import net.twerno.eduserver.user.entity.Account;
+import net.twerno.eduserver.zadanie.TrybSprawdzenia;
+import net.twerno.eduserver.zadanie.TypWyboruPytan;
 import net.twerno.eduserver.zadanie.TypZadania;
+import net.twerno.eduserver.zadanie.entity.Zadanie_ZbiorPytan;
 
 privileged aspect Zadanie_Roo_JavaBean {
+    
+    public String Zadanie.getId() {
+        return this.id;
+    }
+    
+    public void Zadanie.setId(String id) {
+        this.id = id;
+    }
     
     public String Zadanie.getNazwa() {
         return this.nazwa;
@@ -19,44 +29,84 @@ privileged aspect Zadanie_Roo_JavaBean {
         this.nazwa = nazwa;
     }
     
-    public String Zadanie.getOpis() {
-        return this.opis;
+    public String Zadanie.getAutorId() {
+        return this.autorId;
     }
     
-    public void Zadanie.setOpis(String opis) {
-        this.opis = opis;
+    public void Zadanie.setAutorId(String autorId) {
+        this.autorId = autorId;
     }
     
-    public Account Zadanie.getAutor() {
-        return this.autor;
+    public TypZadania Zadanie.getTypZadania() {
+        return this.typZadania;
     }
     
-    public void Zadanie.setAutor(Account autor) {
-        this.autor = autor;
+    public void Zadanie.setTypZadania(TypZadania typZadania) {
+        this.typZadania = typZadania;
     }
     
-    public TypZadania Zadanie.getTypZdania() {
-        return this.typZdania;
+    public TypWyboruPytan Zadanie.getTypWyboruPytan() {
+        return this.typWyboruPytan;
     }
     
-    public void Zadanie.setTypZdania(TypZadania typZdania) {
-        this.typZdania = typZdania;
+    public void Zadanie.setTypWyboruPytan(TypWyboruPytan typWyboruPytan) {
+        this.typWyboruPytan = typWyboruPytan;
     }
     
-    public Set<ZbiorPytan> Zadanie.getZbiorPytan() {
-        return this.zbiorPytan;
+    public boolean Zadanie.isObowiazkowe() {
+        return this.obowiazkowe;
     }
     
-    public void Zadanie.setZbiorPytan(Set<ZbiorPytan> zbiorPytan) {
-        this.zbiorPytan = zbiorPytan;
+    public void Zadanie.setObowiazkowe(boolean obowiazkowe) {
+        this.obowiazkowe = obowiazkowe;
     }
     
-    public boolean Zadanie.isUsuniete() {
-        return this.usuniete;
+    public Date Zadanie.getDtOd() {
+        return this.dtOd;
     }
     
-    public void Zadanie.setUsuniete(boolean usuniete) {
-        this.usuniete = usuniete;
+    public void Zadanie.setDtOd(Date dtOd) {
+        this.dtOd = dtOd;
+    }
+    
+    public Date Zadanie.getDtDo() {
+        return this.dtDo;
+    }
+    
+    public void Zadanie.setDtDo(Date dtDo) {
+        this.dtDo = dtDo;
+    }
+    
+    public int Zadanie.getLimitCzasowy() {
+        return this.limitCzasowy;
+    }
+    
+    public void Zadanie.setLimitCzasowy(int limitCzasowy) {
+        this.limitCzasowy = limitCzasowy;
+    }
+    
+    public int Zadanie.getLimitPytan() {
+        return this.limitPytan;
+    }
+    
+    public void Zadanie.setLimitPytan(int limitPytan) {
+        this.limitPytan = limitPytan;
+    }
+    
+    public TrybSprawdzenia Zadanie.getTrybSprawdzenia() {
+        return this.trybSprawdzenia;
+    }
+    
+    public void Zadanie.setTrybSprawdzenia(TrybSprawdzenia trybSprawdzenia) {
+        this.trybSprawdzenia = trybSprawdzenia;
+    }
+    
+    public Set<Zadanie_ZbiorPytan> Zadanie.getZadanie_zbioryPytan() {
+        return this.zadanie_zbioryPytan;
+    }
+    
+    public void Zadanie.setZadanie_zbioryPytan(Set<Zadanie_ZbiorPytan> zadanie_zbioryPytan) {
+        this.zadanie_zbioryPytan = zadanie_zbioryPytan;
     }
     
 }

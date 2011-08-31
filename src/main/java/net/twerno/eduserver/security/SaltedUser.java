@@ -13,13 +13,24 @@ public class SaltedUser extends User implements SaltedUserDetails {
 	private static final long serialVersionUID = 1L;
 
 	private String salt;
+	
+	private String id;
 
-	public SaltedUser(String username, String password, boolean enabled,
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public SaltedUser(String id, String username, String password, boolean enabled,
 			boolean accountNonExpired, boolean credentialsNonExpired,
 			boolean accountNonLocked,
 			Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired,
 				accountNonLocked, authorities);
+		this.id = id;
 	}
 
 	@Override

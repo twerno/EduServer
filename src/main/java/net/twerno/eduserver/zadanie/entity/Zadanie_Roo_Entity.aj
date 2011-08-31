@@ -4,14 +4,11 @@
 package net.twerno.eduserver.zadanie.entity;
 
 import java.lang.Integer;
-import java.lang.Long;
+import java.lang.String;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Version;
 import net.twerno.eduserver.zadanie.entity.Zadanie;
@@ -24,22 +21,9 @@ privileged aspect Zadanie_Roo_Entity {
     @PersistenceContext
     transient EntityManager Zadanie.entityManager;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long Zadanie.id;
-    
     @Version
     @Column(name = "version")
     private Integer Zadanie.version;
-    
-    public Long Zadanie.getId() {
-        return this.id;
-    }
-    
-    public void Zadanie.setId(Long id) {
-        this.id = id;
-    }
     
     public Integer Zadanie.getVersion() {
         return this.version;
@@ -100,8 +84,8 @@ privileged aspect Zadanie_Roo_Entity {
         return entityManager().createQuery("SELECT o FROM Zadanie o", Zadanie.class).getResultList();
     }
     
-    public static Zadanie Zadanie.findZadanie(Long id) {
-        if (id == null) return null;
+    public static Zadanie Zadanie.findZadanie(String id) {
+        if (id == null || id.length() == 0) return null;
         return entityManager().find(Zadanie.class, id);
     }
     

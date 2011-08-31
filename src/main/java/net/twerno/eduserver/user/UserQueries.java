@@ -1,13 +1,11 @@
 package net.twerno.eduserver.user;
 
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.Session;
-
 import net.twerno.eduserver.helpers.HibernateHelper;
-import net.twerno.eduserver.user.entity.Account;
 import net.twerno.eduserver.user.entity.Grupa;
+
+import org.hibernate.Session;
 
 public class UserQueries {
 	

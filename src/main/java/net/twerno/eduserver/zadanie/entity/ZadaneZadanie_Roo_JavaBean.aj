@@ -3,21 +3,55 @@
 
 package net.twerno.eduserver.zadanie.entity;
 
+import java.lang.String;
 import java.util.Date;
 import java.util.Set;
-import net.twerno.eduserver.user.entity.Account;
+import net.twerno.eduserver.pytanie.entity.ZbiorPytan;
 import net.twerno.eduserver.user.entity.Grupa;
-import net.twerno.eduserver.zadanie.entity.TypWyboru;
-import net.twerno.eduserver.zadanie.entity.Zadanie;
+import net.twerno.eduserver.zadanie.TrybSprawdzenia;
+import net.twerno.eduserver.zadanie.TypWyboruPytan;
+import net.twerno.eduserver.zadanie.TypZadania;
 
 privileged aspect ZadaneZadanie_Roo_JavaBean {
     
-    public Zadanie ZadaneZadanie.getZadanie() {
-        return this.zadanie;
+    public String ZadaneZadanie.getId() {
+        return this.id;
     }
     
-    public void ZadaneZadanie.setZadanie(Zadanie zadanie) {
-        this.zadanie = zadanie;
+    public void ZadaneZadanie.setId(String id) {
+        this.id = id;
+    }
+    
+    public String ZadaneZadanie.getNazwa() {
+        return this.nazwa;
+    }
+    
+    public void ZadaneZadanie.setNazwa(String nazwa) {
+        this.nazwa = nazwa;
+    }
+    
+    public String ZadaneZadanie.getAutorId() {
+        return this.autorId;
+    }
+    
+    public void ZadaneZadanie.setAutorId(String autorId) {
+        this.autorId = autorId;
+    }
+    
+    public TypZadania ZadaneZadanie.getTypZadania() {
+        return this.typZadania;
+    }
+    
+    public void ZadaneZadanie.setTypZadania(TypZadania typZadania) {
+        this.typZadania = typZadania;
+    }
+    
+    public TypWyboruPytan ZadaneZadanie.getTypWyboruPytan() {
+        return this.typWyboruPytan;
+    }
+    
+    public void ZadaneZadanie.setTypWyboruPytan(TypWyboruPytan typWyboruPytan) {
+        this.typWyboruPytan = typWyboruPytan;
     }
     
     public boolean ZadaneZadanie.isObowiazkowe() {
@@ -26,22 +60,6 @@ privileged aspect ZadaneZadanie_Roo_JavaBean {
     
     public void ZadaneZadanie.setObowiazkowe(boolean obowiazkowe) {
         this.obowiazkowe = obowiazkowe;
-    }
-    
-    public Set<Grupa> ZadaneZadanie.getGrupy() {
-        return this.grupy;
-    }
-    
-    public void ZadaneZadanie.setGrupy(Set<Grupa> grupy) {
-        this.grupy = grupy;
-    }
-    
-    public Date ZadaneZadanie.getDataUtworzenia() {
-        return this.dataUtworzenia;
-    }
-    
-    public void ZadaneZadanie.setDataUtworzenia(Date dataUtworzenia) {
-        this.dataUtworzenia = dataUtworzenia;
     }
     
     public Date ZadaneZadanie.getDtOd() {
@@ -60,28 +78,44 @@ privileged aspect ZadaneZadanie_Roo_JavaBean {
         this.dtDo = dtDo;
     }
     
-    public int ZadaneZadanie.getMaxIloscPytan() {
-        return this.maxIloscPytan;
+    public int ZadaneZadanie.getLimitCzasowy() {
+        return this.limitCzasowy;
     }
     
-    public void ZadaneZadanie.setMaxIloscPytan(int maxIloscPytan) {
-        this.maxIloscPytan = maxIloscPytan;
+    public void ZadaneZadanie.setLimitCzasowy(int limitCzasowy) {
+        this.limitCzasowy = limitCzasowy;
     }
     
-    public TypWyboru ZadaneZadanie.getTypWyboru() {
-        return this.typWyboru;
+    public int ZadaneZadanie.getLimitPytan() {
+        return this.limitPytan;
     }
     
-    public void ZadaneZadanie.setTypWyboru(TypWyboru typWyboru) {
-        this.typWyboru = typWyboru;
+    public void ZadaneZadanie.setLimitPytan(int limitPytan) {
+        this.limitPytan = limitPytan;
     }
     
-    public Account ZadaneZadanie.getAutor() {
-        return this.autor;
+    public TrybSprawdzenia ZadaneZadanie.getTrybSprawdzenia() {
+        return this.trybSprawdzenia;
     }
     
-    public void ZadaneZadanie.setAutor(Account autor) {
-        this.autor = autor;
+    public void ZadaneZadanie.setTrybSprawdzenia(TrybSprawdzenia trybSprawdzenia) {
+        this.trybSprawdzenia = trybSprawdzenia;
+    }
+    
+    public Set<ZbiorPytan> ZadaneZadanie.getZbiorPytan() {
+        return this.zbiorPytan;
+    }
+    
+    public void ZadaneZadanie.setZbiorPytan(Set<ZbiorPytan> zbiorPytan) {
+        this.zbiorPytan = zbiorPytan;
+    }
+    
+    public Set<Grupa> ZadaneZadanie.getGrupy() {
+        return this.grupy;
+    }
+    
+    public void ZadaneZadanie.setGrupy(Set<Grupa> grupy) {
+        this.grupy = grupy;
     }
     
 }

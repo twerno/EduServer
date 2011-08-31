@@ -15,22 +15,26 @@ import org.springframework.security.access.annotation.Secured;
 public interface PytanieService {
 
 	@Secured(UserRole._ROLE_NAUCZYCIEL)
-	void zapiszZbiorPytan(ZbiorPytan zbior, List<PytanieZamkniete> pytania)
+	ZbiorPytan zapiszZbiorPytan(ZbiorPytan zbior, List<PytanieZamkniete> pytania)
+			throws Exception;
+	
+	@Secured(UserRole._ROLE_NAUCZYCIEL)
+	String usunZbiorPytan(String zbiorPytanId)
 			throws Exception;
 
 	@Secured(UserRole._ROLE_NAUCZYCIEL)
-	ZbiorPytan wczytajZbiorPytan(long zbiorPytanId)
+	ZbiorPytan wczytajZbiorPytan(String zbiorPytanId)
 			 throws Exception;
 
 	@Secured(UserRole._ROLE_NAUCZYCIEL)
-	List<PytanieZamkniete> wczytajPytania(long zbiorPytanId)
+	List<PytanieZamkniete> wczytajPytania(String zbiorPytanId)
 			throws Exception;;
 
 	@Secured(UserRole._ROLE_NAUCZYCIEL)
 	List<ZbiorPytan> wczytajDostepneZbiory();
 
 	@Secured(UserRole._ROLE_NAUCZYCIEL)
-	List<ZbiorPytan> wczytajDostepneZbioryTypy(TypZadania typZadania);
+	List<ZbiorPytan> wczytajDostepneZbioryTypu(TypZadania typZadania);
 	
 	// metoda wewneczna - wczytuje pytania na potrzeby rozwiazanaia zadania
 	@RemotingExclude

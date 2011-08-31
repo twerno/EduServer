@@ -16,7 +16,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class UserHelper {
 	public static SaltedUserDetails getUserDetailsFromAccount(Account account) {
 		if (account == null) return null;
-		SaltedUser userDetails = new SaltedUser(account.getUsername(), 
+		SaltedUser userDetails = new SaltedUser(account.getId(),
+						account.getUsername(), 
 			            account.getPassword(),
 		                account.getEnabled(), 
 				        true, 
@@ -37,6 +38,7 @@ public class UserHelper {
 	
 	public static Account getAccountFromUserDetails(SaltedUserDetails userDetails) {
 		Account account = new Account();
+		account.setId(userDetails.getId());
 		account.setEnabled(true);
 		account.setUsername(userDetails.getUsername());
 		account.setPassword(userDetails.getPassword());
@@ -86,20 +88,29 @@ public class UserHelper {
 			usunKontaZGrup(account);
 	}
 	
-	public static Account getCurrentUser(boolean zamazDaneWrazliwe) {
+	public static Account getCurrentUser() {
 		SaltedUser user = (SaltedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Account account = getAccountFromUserDetails(user);
-		if (zamazDaneWrazliwe) {
-			zamazHaslo(account);
-			zamazSalt(account);
-			usunKontaZGrup(account);
-		}
-		return account;
+		return getAccountFromUserDetails(user);
+//		Account account = getClearCurrentAccount();
+//		if (zamazDaneWrazliwe) {
+//			zamazHaslo(account);
+//			zamazSalt(account);
+//			usunKontaZGrup(account);
+//		}
+//		return account;
 	}
 	
-	public static Account getCurrentUser() {
-		return getCurrentUser(true);
+	public static String getCurrentUserId() {
+		return getCurrentUser().getId();
 	}
+	
+	public static Account getClearUser() {
+		return Account.findAccount(getCurrentUser().getId());
+	}
+	
+//	public static Account getCurrentUser() {
+//		return getCurrentUser(true);
+//	}
 	
 	public static void przygotujAccount(Account account) {
 		zamazHaslo(account);
@@ -113,5 +124,10 @@ public class UserHelper {
 			zamazSalt(account);
 			usunKontaZGrup(account);
 		}
+	}
+	
+	public static Account getClearCurrentAccount() {
+		SaltedUser user = (SaltedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return Account.findAccount(user.getId());
 	}
 }

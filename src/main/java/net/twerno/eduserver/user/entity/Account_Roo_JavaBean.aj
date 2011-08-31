@@ -11,6 +11,14 @@ import net.twerno.eduserver.user.entity.Grupa;
 
 privileged aspect Account_Roo_JavaBean {
     
+    public String Account.getId() {
+        return this.id;
+    }
+    
+    public void Account.setId(String id) {
+        this.id = id;
+    }
+    
     public String Account.getUsername() {
         return this.username;
     }

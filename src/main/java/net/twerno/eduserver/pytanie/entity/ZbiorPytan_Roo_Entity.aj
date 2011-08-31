@@ -4,14 +4,11 @@
 package net.twerno.eduserver.pytanie.entity;
 
 import java.lang.Integer;
-import java.lang.Long;
+import java.lang.String;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Version;
 import net.twerno.eduserver.pytanie.entity.ZbiorPytan;
@@ -24,22 +21,9 @@ privileged aspect ZbiorPytan_Roo_Entity {
     @PersistenceContext
     transient EntityManager ZbiorPytan.entityManager;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long ZbiorPytan.id;
-    
     @Version
     @Column(name = "version")
     private Integer ZbiorPytan.version;
-    
-    public Long ZbiorPytan.getId() {
-        return this.id;
-    }
-    
-    public void ZbiorPytan.setId(Long id) {
-        this.id = id;
-    }
     
     public Integer ZbiorPytan.getVersion() {
         return this.version;
@@ -100,8 +84,8 @@ privileged aspect ZbiorPytan_Roo_Entity {
         return entityManager().createQuery("SELECT o FROM ZbiorPytan o", ZbiorPytan.class).getResultList();
     }
     
-    public static ZbiorPytan ZbiorPytan.findZbiorPytan(Long id) {
-        if (id == null) return null;
+    public static ZbiorPytan ZbiorPytan.findZbiorPytan(String id) {
+        if (id == null || id.length() == 0) return null;
         return entityManager().find(ZbiorPytan.class, id);
     }
     

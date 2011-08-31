@@ -3,19 +3,18 @@
 
 package net.twerno.eduserver.zadanie.entity;
 
+import java.lang.String;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import net.twerno.eduserver.user.entity.Account;
 import net.twerno.eduserver.zadanie.entity.Zadanie;
 
 privileged aspect Zadanie_Roo_Finder {
     
-    public static TypedQuery<Zadanie> Zadanie.findZadaniesByAutorAndUsuniete(Account autor, boolean usuniete) {
-        if (autor == null) throw new IllegalArgumentException("The autor argument is required");
+    public static TypedQuery<Zadanie> Zadanie.findZadaniesByAutorId(String autorId) {
+        if (autorId == null || autorId.length() == 0) throw new IllegalArgumentException("The autorId argument is required");
         EntityManager em = Zadanie.entityManager();
-        TypedQuery<Zadanie> q = em.createQuery("SELECT o FROM Zadanie AS o WHERE o.autor = :autor AND o.usuniete = :usuniete", Zadanie.class);
-        q.setParameter("autor", autor);
-        q.setParameter("usuniete", usuniete);
+        TypedQuery<Zadanie> q = em.createQuery("SELECT o FROM Zadanie AS o WHERE o.autorId = :autorId", Zadanie.class);
+        q.setParameter("autorId", autorId);
         return q;
     }
     

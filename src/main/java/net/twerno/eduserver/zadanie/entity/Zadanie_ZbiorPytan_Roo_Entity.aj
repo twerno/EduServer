@@ -11,86 +11,86 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Version;
-import net.twerno.eduserver.zadanie.entity.ZadaneZadanie;
+import net.twerno.eduserver.zadanie.entity.Zadanie_ZbiorPytan;
 import org.springframework.transaction.annotation.Transactional;
 
-privileged aspect ZadaneZadanie_Roo_Entity {
+privileged aspect Zadanie_ZbiorPytan_Roo_Entity {
     
-    declare @type: ZadaneZadanie: @Entity;
+    declare @type: Zadanie_ZbiorPytan: @Entity;
     
     @PersistenceContext
-    transient EntityManager ZadaneZadanie.entityManager;
+    transient EntityManager Zadanie_ZbiorPytan.entityManager;
     
     @Version
     @Column(name = "version")
-    private Integer ZadaneZadanie.version;
+    private Integer Zadanie_ZbiorPytan.version;
     
-    public Integer ZadaneZadanie.getVersion() {
+    public Integer Zadanie_ZbiorPytan.getVersion() {
         return this.version;
     }
     
-    public void ZadaneZadanie.setVersion(Integer version) {
+    public void Zadanie_ZbiorPytan.setVersion(Integer version) {
         this.version = version;
     }
     
     @Transactional
-    public void ZadaneZadanie.persist() {
+    public void Zadanie_ZbiorPytan.persist() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.persist(this);
     }
     
     @Transactional
-    public void ZadaneZadanie.remove() {
+    public void Zadanie_ZbiorPytan.remove() {
         if (this.entityManager == null) this.entityManager = entityManager();
         if (this.entityManager.contains(this)) {
             this.entityManager.remove(this);
         } else {
-            ZadaneZadanie attached = ZadaneZadanie.findZadaneZadanie(this.id);
+            Zadanie_ZbiorPytan attached = Zadanie_ZbiorPytan.findZadanie_ZbiorPytan(this.id);
             this.entityManager.remove(attached);
         }
     }
     
     @Transactional
-    public void ZadaneZadanie.flush() {
+    public void Zadanie_ZbiorPytan.flush() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.flush();
     }
     
     @Transactional
-    public void ZadaneZadanie.clear() {
+    public void Zadanie_ZbiorPytan.clear() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.clear();
     }
     
     @Transactional
-    public ZadaneZadanie ZadaneZadanie.merge() {
+    public Zadanie_ZbiorPytan Zadanie_ZbiorPytan.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
-        ZadaneZadanie merged = this.entityManager.merge(this);
+        Zadanie_ZbiorPytan merged = this.entityManager.merge(this);
         this.entityManager.flush();
         return merged;
     }
     
-    public static final EntityManager ZadaneZadanie.entityManager() {
-        EntityManager em = new ZadaneZadanie().entityManager;
+    public static final EntityManager Zadanie_ZbiorPytan.entityManager() {
+        EntityManager em = new Zadanie_ZbiorPytan().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
         return em;
     }
     
-    public static long ZadaneZadanie.countZadaneZadanies() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM ZadaneZadanie o", Long.class).getSingleResult();
+    public static long Zadanie_ZbiorPytan.countZadanie_ZbiorPytans() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM Zadanie_ZbiorPytan o", Long.class).getSingleResult();
     }
     
-    public static List<ZadaneZadanie> ZadaneZadanie.findAllZadaneZadanies() {
-        return entityManager().createQuery("SELECT o FROM ZadaneZadanie o", ZadaneZadanie.class).getResultList();
+    public static List<Zadanie_ZbiorPytan> Zadanie_ZbiorPytan.findAllZadanie_ZbiorPytans() {
+        return entityManager().createQuery("SELECT o FROM Zadanie_ZbiorPytan o", Zadanie_ZbiorPytan.class).getResultList();
     }
     
-    public static ZadaneZadanie ZadaneZadanie.findZadaneZadanie(String id) {
+    public static Zadanie_ZbiorPytan Zadanie_ZbiorPytan.findZadanie_ZbiorPytan(String id) {
         if (id == null || id.length() == 0) return null;
-        return entityManager().find(ZadaneZadanie.class, id);
+        return entityManager().find(Zadanie_ZbiorPytan.class, id);
     }
     
-    public static List<ZadaneZadanie> ZadaneZadanie.findZadaneZadanieEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM ZadaneZadanie o", ZadaneZadanie.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<Zadanie_ZbiorPytan> Zadanie_ZbiorPytan.findZadanie_ZbiorPytanEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM Zadanie_ZbiorPytan o", Zadanie_ZbiorPytan.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

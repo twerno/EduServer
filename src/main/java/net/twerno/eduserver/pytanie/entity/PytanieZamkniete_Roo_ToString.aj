@@ -13,7 +13,7 @@ privileged aspect PytanieZamkniete_Roo_ToString {
         sb.append("Kategoria: ").append(getKategoria()).append(", ");
         sb.append("Odpowiedzi: ").append(getOdpowiedzi() == null ? "null" : getOdpowiedzi().size()).append(", ");
         sb.append("TrescPytania: ").append(getTrescPytania()).append(", ");
-        sb.append("TypZdania: ").append(getTypZdania()).append(", ");
+        sb.append("TypZadania: ").append(getTypZadania()).append(", ");
         sb.append("Version: ").append(getVersion()).append(", ");
         sb.append("ZbiorPytanId: ").append(getZbiorPytanId()).append(", ");
         sb.append("Usuniety: ").append(isUsuniety());

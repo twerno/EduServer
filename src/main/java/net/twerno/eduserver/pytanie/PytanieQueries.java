@@ -31,7 +31,7 @@ public class PytanieQueries {
     }
     
     public static List<ZbiorPytan> dajDostepneZbioryPytan(Account autor) {
-    	String SQL = "SELECT o.* FROM Zbior_Pytan o WHERE ((o.is_Public = 1) OR (o.autor = :autorId)) AND o.usuniety = 0";
+    	String SQL = "SELECT o FROM ZbiorPytan o WHERE ((o.isPublic = 1) OR (o.autorId = :autorId)) AND o.usuniety = 0";
     	return ZbiorPytan.entityManager()
     				.createQuery(SQL, ZbiorPytan.class)
     				.setParameter("autorId", autor.getId())
@@ -39,7 +39,7 @@ public class PytanieQueries {
     }
     
     public static List<ZbiorPytan> dajDostepneZbioryPytan(Account autor, TypZadania typZadania) {
-    	String SQL = "SELECT o.* FROM Zbior_Pytan o WHERE ((o.is_Public = 1) OR (o.autor = :autorId)) AND o.usuniety = 0 AND o.typ_zadania = :typZadania";
+    	String SQL = "SELECT o FROM ZbiorPytan o WHERE ((o.isPublic = 1) OR (o.autorId = :autorId)) AND o.usuniety = 0 AND o.typZadania = :typZadania";
     	return ZbiorPytan.entityManager()
     				.createQuery(SQL, ZbiorPytan.class)
     				.setParameter("autorId",    autor.getId())
@@ -48,7 +48,7 @@ public class PytanieQueries {
     }
     
     public static void usunPytaniaZeZbioru(long zbiorPytanId) {
-    	String SQL = "UPDATE Pytanie_Zamkniete SET usuniety = 1 WHERE zbior_Pytan_Id = :zbiorPytanId";
+    	String SQL = "UPDATE PytanieZamkniete SET usuniety = 1 WHERE zbiorPytanId = :zbiorPytanId";
     	PytanieZamkniete.entityManager()
     		.createQuery(SQL, PytanieZamkniete.class)
     		.setParameter("zbiorPytanId", zbiorPytanId)

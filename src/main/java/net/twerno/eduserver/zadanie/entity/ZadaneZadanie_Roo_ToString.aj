@@ -9,16 +9,19 @@ privileged aspect ZadaneZadanie_Roo_ToString {
     
     public String ZadaneZadanie.toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Autor: ").append(getAutor()).append(", ");
-        sb.append("DataUtworzenia: ").append(getDataUtworzenia()).append(", ");
+        sb.append("AutorId: ").append(getAutorId()).append(", ");
         sb.append("DtDo: ").append(getDtDo()).append(", ");
         sb.append("DtOd: ").append(getDtOd()).append(", ");
         sb.append("Grupy: ").append(getGrupy() == null ? "null" : getGrupy().size()).append(", ");
         sb.append("Id: ").append(getId()).append(", ");
-        sb.append("MaxIloscPytan: ").append(getMaxIloscPytan()).append(", ");
-        sb.append("TypWyboru: ").append(getTypWyboru()).append(", ");
+        sb.append("LimitCzasowy: ").append(getLimitCzasowy()).append(", ");
+        sb.append("LimitPytan: ").append(getLimitPytan()).append(", ");
+        sb.append("Nazwa: ").append(getNazwa()).append(", ");
+        sb.append("TrybSprawdzenia: ").append(getTrybSprawdzenia()).append(", ");
+        sb.append("TypWyboruPytan: ").append(getTypWyboruPytan()).append(", ");
+        sb.append("TypZadania: ").append(getTypZadania()).append(", ");
         sb.append("Version: ").append(getVersion()).append(", ");
-        sb.append("Zadanie: ").append(getZadanie()).append(", ");
+        sb.append("ZbiorPytan: ").append(getZbiorPytan() == null ? "null" : getZbiorPytan().size()).append(", ");
         sb.append("Obowiazkowe: ").append(isObowiazkowe());
         return sb.toString();
     }
