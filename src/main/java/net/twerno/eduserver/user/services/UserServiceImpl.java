@@ -54,14 +54,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Account getLoggedUser() {
 		Account account = UserHelper.getCurrentUser();
-		UserHelper.przygotujAccount(account);
+		UserHelper.przygotujDoSerializacji(account);
 		return account;
 	}
 
 	@Override
 	public List<Account> findAllAccounds() {
 		List<Account> accounts = Account.findAllAccounts();
-		UserHelper.przygotujAccount(accounts);
+		UserHelper.przygotujDoSerializacji(accounts);
 		return accounts;
 	}
 

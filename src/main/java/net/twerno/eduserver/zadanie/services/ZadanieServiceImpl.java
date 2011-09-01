@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import net.twerno.eduserver.user.UserHelper;
+import net.twerno.eduserver.zadanie.entity.ZadaneZadanie;
 import net.twerno.eduserver.zadanie.entity.Zadanie;
 import net.twerno.eduserver.zadanie.entity.Zadanie_ZbiorPytan;
 
@@ -44,16 +45,30 @@ public class ZadanieServiceImpl implements ZadanieService {
 		return Zadanie.findZadaniesByAutorId(UserHelper.getCurrentUserId()).getResultList();
 	}
 
+	@Override
+	public void zadajZadanie(String zadanieID, List<String> grupy) throws Exception {
+		Zadanie zadanie = Zadanie.findZadanie(zadanieID);
+		if (zadanie == null)
+			throw new Exception("Nie istnieje zadanie o id: " +zadanieID);
+		if (!zadanie.getAutorId().equals(UserHelper.getCurrentUserId()))
+			throw new Exception("Nie jesteœ autorem zadania o id: " +zadanieID);
+		
+		ZadaneZadanie zadZad = ZadaneZadanie.createFromZadanie(zadanie);
+		for (String grupa: grupy)
+			zadZad.getGrupy().add(grupa);
+		zadZad.merge();		
+	}
+
 //	@Override
 //	public void zapiszZadaneZadanie(ZadaneZadanie zadanie) {
 ////		zadanie.setAutor(UserHelper.getCurrentUser());
 //		zadanie.merge();
 //	}
 //
-//	@Override
-//	public List<ZadaneZadanie> dajZadanePrzezeMnie() {
-////		return ZadaneZadanie.findZadaneZadaniesByAutor(UserHelper.getCurrentUser()).getResultList();
-//	}
+	@Override
+	public List<ZadaneZadanie> dajZadanePrzezeMnie() {
+		return ZadaneZadanie.findZadaneZadaniesByAutorId(UserHelper.getCurrentUserId()).getResultList();
+	}
 //
 //	@Override
 //	public List<ZadaneZadanie> dajZadaneMi() {

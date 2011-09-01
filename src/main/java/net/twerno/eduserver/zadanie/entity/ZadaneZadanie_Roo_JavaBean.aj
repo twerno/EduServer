@@ -6,11 +6,10 @@ package net.twerno.eduserver.zadanie.entity;
 import java.lang.String;
 import java.util.Date;
 import java.util.Set;
-import net.twerno.eduserver.pytanie.entity.ZbiorPytan;
-import net.twerno.eduserver.user.entity.Grupa;
 import net.twerno.eduserver.zadanie.TrybSprawdzenia;
 import net.twerno.eduserver.zadanie.TypWyboruPytan;
 import net.twerno.eduserver.zadanie.TypZadania;
+import net.twerno.eduserver.zadanie.entity.ZadaneZadanie_ZbiorPytan;
 
 privileged aspect ZadaneZadanie_Roo_JavaBean {
     
@@ -102,19 +101,19 @@ privileged aspect ZadaneZadanie_Roo_JavaBean {
         this.trybSprawdzenia = trybSprawdzenia;
     }
     
-    public Set<ZbiorPytan> ZadaneZadanie.getZbiorPytan() {
-        return this.zbiorPytan;
+    public Set<ZadaneZadanie_ZbiorPytan> ZadaneZadanie.getZadanie_zbioryPytan() {
+        return this.zadanie_zbioryPytan;
     }
     
-    public void ZadaneZadanie.setZbiorPytan(Set<ZbiorPytan> zbiorPytan) {
-        this.zbiorPytan = zbiorPytan;
+    public void ZadaneZadanie.setZadanie_zbioryPytan(Set<ZadaneZadanie_ZbiorPytan> zadanie_zbioryPytan) {
+        this.zadanie_zbioryPytan = zadanie_zbioryPytan;
     }
     
-    public Set<Grupa> ZadaneZadanie.getGrupy() {
+    public Set<String> ZadaneZadanie.getGrupy() {
         return this.grupy;
     }
     
-    public void ZadaneZadanie.setGrupy(Set<Grupa> grupy) {
+    public void ZadaneZadanie.setGrupy(Set<String> grupy) {
         this.grupy = grupy;
     }
     

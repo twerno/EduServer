@@ -21,7 +21,7 @@ privileged aspect ZadaneZadanie_Roo_ToString {
         sb.append("TypWyboruPytan: ").append(getTypWyboruPytan()).append(", ");
         sb.append("TypZadania: ").append(getTypZadania()).append(", ");
         sb.append("Version: ").append(getVersion()).append(", ");
-        sb.append("ZbiorPytan: ").append(getZbiorPytan() == null ? "null" : getZbiorPytan().size()).append(", ");
+        sb.append("Zadanie_zbioryPytan: ").append(getZadanie_zbioryPytan() == null ? "null" : getZadanie_zbioryPytan().size()).append(", ");
         sb.append("Obowiazkowe: ").append(isObowiazkowe());
         return sb.toString();
     }

@@ -1,6 +1,10 @@
 package net.twerno.eduserver.security;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+import net.twerno.eduserver.user.entity.Grupa;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -15,6 +19,8 @@ public class SaltedUser extends User implements SaltedUserDetails {
 	private String salt;
 	
 	private String id;
+	
+	private Set<Grupa> grupy = new HashSet<Grupa>();
 
 	public String getId() {
 		return id;
@@ -40,5 +46,10 @@ public class SaltedUser extends User implements SaltedUserDetails {
 
 	public void setSalt(String salt) {
 		this.salt = salt;
+	}
+
+	@Override
+	public Set<Grupa> getGrupy() {
+		return grupy;
 	}
 }

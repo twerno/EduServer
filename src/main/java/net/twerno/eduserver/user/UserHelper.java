@@ -25,6 +25,8 @@ public class UserHelper {
 				        true,
 				        getAuthorities(account.getRoles()));
 		userDetails.setSalt(account.getSalt());
+		for (Grupa grupa: account.getGrupy())
+			userDetails.getGrupy().add(grupa);
 		return userDetails;
 	}
 
@@ -47,6 +49,14 @@ public class UserHelper {
 			newRole = UserRole.valueOf(role.getAuthority());
 			if (newRole != null)
 				account.getRoles().add(newRole);
+		}
+
+		Grupa newGrupa;
+		for (Grupa grupa: userDetails.getGrupy()) {
+			newGrupa = new Grupa();
+			newGrupa.setNazwa(grupa.getNazwa());
+			newGrupa.setId(grupa.getId());
+			account.getGrupy().add(newGrupa);
 		}
 		return account;
 	}
@@ -112,18 +122,15 @@ public class UserHelper {
 //		return getCurrentUser(true);
 //	}
 	
-	public static void przygotujAccount(Account account) {
+	public static void przygotujDoSerializacji(Account account) {
 		zamazHaslo(account);
 		zamazSalt(account);
 		usunKontaZGrup(account);
 	}
 	
-	public static void przygotujAccount(List<Account> accounts) {
-		for (Account account : accounts) {
-			zamazHaslo(account);
-			zamazSalt(account);
-			usunKontaZGrup(account);
-		}
+	public static void przygotujDoSerializacji(List<Account> accounts) {
+		for (Account account : accounts) 
+			przygotujDoSerializacji(account);
 	}
 	
 	public static Account getClearCurrentAccount() {
