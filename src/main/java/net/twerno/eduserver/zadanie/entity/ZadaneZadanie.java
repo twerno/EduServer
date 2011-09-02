@@ -47,6 +47,8 @@ public class ZadaneZadanie {
 	@NotNull
 	private boolean obowiazkowe;
 	
+	private int minimalnyWynik;
+	
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
     private Date dtOd;
@@ -72,6 +74,14 @@ public class ZadaneZadanie {
     @ElementCollection
     private Set<String> grupy = new HashSet<String>();
     
+    public ZadaneZadanie() {
+		// TODO Auto-generated constructor stub
+	}
+    
+    public ZadaneZadanie(String id) {
+		this.id = id;
+	}    
+    
     public static ZadaneZadanie createFromZadanie(Zadanie zadanie) {
     	ZadaneZadanie zadZad = new ZadaneZadanie();
     	zadZad.setId(UUID.randomUUID().toString());
@@ -79,6 +89,7 @@ public class ZadaneZadanie {
     	zadZad.autorId         = zadanie.getAutorId();
     	zadZad.typZadania      = zadanie.getTypZadania();
     	zadZad.typWyboruPytan  = zadanie.getTypWyboruPytan();
+    	zadZad.minimalnyWynik  = zadanie.getMinimalnyWynik();
     	zadZad.obowiazkowe     = zadanie.isObowiazkowe();
     	zadZad.dtOd            = zadanie.getDtOd();
     	zadZad.dtDo            = zadanie.getDtDo();

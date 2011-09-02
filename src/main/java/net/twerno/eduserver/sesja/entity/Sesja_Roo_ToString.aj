@@ -9,14 +9,14 @@ privileged aspect Sesja_Roo_ToString {
     
     public String Sesja.toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("DtSesja: ").append(getDtSesja()).append(", ");
+        sb.append("DtOtwarcia: ").append(getDtOtwarcia()).append(", ");
+        sb.append("DtZamkniecia: ").append(getDtZamkniecia()).append(", ");
         sb.append("Id: ").append(getId()).append(", ");
+        sb.append("Odpowiedzi: ").append(getOdpowiedzi() == null ? "null" : getOdpowiedzi().size()).append(", ");
         sb.append("StanSesji: ").append(getStanSesji()).append(", ");
         sb.append("UczenId: ").append(getUczenId()).append(", ");
-        sb.append("Version: ").append(getVersion()).append(", ");
         sb.append("Wynik: ").append(getWynik()).append(", ");
-        sb.append("ZadaneZadanieId: ").append(getZadaneZadanieId()).append(", ");
-        sb.append("Ukonczone: ").append(isUkonczone());
+        sb.append("ZadaneZadanieId: ").append(getZadaneZadanieId());
         return sb.toString();
     }
     

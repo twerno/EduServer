@@ -1,6 +1,8 @@
 package net.twerno.eduserver.user.entity;
 
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -69,5 +71,19 @@ public class Account {
 	
 	public boolean equals(Account account) {
 		return this.getId() == account.getId();
+	}
+	
+	public boolean hasGrupa(String grupaId) {
+		for (Grupa grupa: grupy)
+			if (grupa.getId().equals(grupaId))
+				return true;
+		return false;		
+	}
+	
+	public boolean hasGrupa(Collection<String> grupyId) {
+		for (String grupaId: grupyId)
+			if (this.hasGrupa(grupaId))
+				return true;
+		return false;		
 	}
 }

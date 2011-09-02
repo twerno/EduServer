@@ -1,5 +1,6 @@
 package net.twerno.eduserver.zadanie.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -8,6 +9,7 @@ import net.twerno.eduserver.zadanie.entity.ZadaneZadanie;
 import net.twerno.eduserver.zadanie.entity.Zadanie;
 import net.twerno.eduserver.zadanie.entity.Zadanie_ZbiorPytan;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 @Service("zadanieService")
 public class ZadanieServiceImpl implements ZadanieService {
-
+	
+	@Autowired
+	private InternalZadanieService internalZadanieService;
+	
 	@Override
 	@Transactional
 	public Zadanie zapiszZadanie(Zadanie zadanie) {
@@ -69,9 +74,9 @@ public class ZadanieServiceImpl implements ZadanieService {
 	public List<ZadaneZadanie> dajZadanePrzezeMnie() {
 		return ZadaneZadanie.findZadaneZadaniesByAutorId(UserHelper.getCurrentUserId()).getResultList();
 	}
-//
-//	@Override
-//	public List<ZadaneZadanie> dajZadaneMi() {
-//		return ZadanieQueries.dajZadaneMi(UserHelper.getCurrentUser());
-//	}
+
+	@Override
+	public List<ZadaneZadanie> dajZadaneMi() {
+		return internalZadanieService.dajZadaneMi();
+	}
 }

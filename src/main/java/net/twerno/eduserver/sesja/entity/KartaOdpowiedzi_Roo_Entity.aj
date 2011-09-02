@@ -11,86 +11,86 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Version;
-import net.twerno.eduserver.sesja.entity.Sesja;
+import net.twerno.eduserver.sesja.entity.KartaOdpowiedzi;
 import org.springframework.transaction.annotation.Transactional;
 
-privileged aspect Sesja_Roo_Entity {
+privileged aspect KartaOdpowiedzi_Roo_Entity {
     
-    declare @type: Sesja: @Entity;
+    declare @type: KartaOdpowiedzi: @Entity;
     
     @PersistenceContext
-    transient EntityManager Sesja.entityManager;
+    transient EntityManager KartaOdpowiedzi.entityManager;
     
     @Version
     @Column(name = "version")
-    private Integer Sesja.version;
+    private Integer KartaOdpowiedzi.version;
     
-    public Integer Sesja.getVersion() {
+    public Integer KartaOdpowiedzi.getVersion() {
         return this.version;
     }
     
-    public void Sesja.setVersion(Integer version) {
+    public void KartaOdpowiedzi.setVersion(Integer version) {
         this.version = version;
     }
     
     @Transactional
-    public void Sesja.persist() {
+    public void KartaOdpowiedzi.persist() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.persist(this);
     }
     
     @Transactional
-    public void Sesja.remove() {
+    public void KartaOdpowiedzi.remove() {
         if (this.entityManager == null) this.entityManager = entityManager();
         if (this.entityManager.contains(this)) {
             this.entityManager.remove(this);
         } else {
-            Sesja attached = Sesja.findSesja(this.id);
+            KartaOdpowiedzi attached = KartaOdpowiedzi.findKartaOdpowiedzi(this.id);
             this.entityManager.remove(attached);
         }
     }
     
     @Transactional
-    public void Sesja.flush() {
+    public void KartaOdpowiedzi.flush() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.flush();
     }
     
     @Transactional
-    public void Sesja.clear() {
+    public void KartaOdpowiedzi.clear() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.clear();
     }
     
     @Transactional
-    public Sesja Sesja.merge() {
+    public KartaOdpowiedzi KartaOdpowiedzi.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
-        Sesja merged = this.entityManager.merge(this);
+        KartaOdpowiedzi merged = this.entityManager.merge(this);
         this.entityManager.flush();
         return merged;
     }
     
-    public static final EntityManager Sesja.entityManager() {
-        EntityManager em = new Sesja().entityManager;
+    public static final EntityManager KartaOdpowiedzi.entityManager() {
+        EntityManager em = new KartaOdpowiedzi().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
         return em;
     }
     
-    public static long Sesja.countSesjas() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Sesja o", Long.class).getSingleResult();
+    public static long KartaOdpowiedzi.countKartaOdpowiedzis() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM KartaOdpowiedzi o", Long.class).getSingleResult();
     }
     
-    public static List<Sesja> Sesja.findAllSesjas() {
-        return entityManager().createQuery("SELECT o FROM Sesja o", Sesja.class).getResultList();
+    public static List<KartaOdpowiedzi> KartaOdpowiedzi.findAllKartaOdpowiedzis() {
+        return entityManager().createQuery("SELECT o FROM KartaOdpowiedzi o", KartaOdpowiedzi.class).getResultList();
     }
     
-    public static Sesja Sesja.findSesja(String id) {
+    public static KartaOdpowiedzi KartaOdpowiedzi.findKartaOdpowiedzi(String id) {
         if (id == null || id.length() == 0) return null;
-        return entityManager().find(Sesja.class, id);
+        return entityManager().find(KartaOdpowiedzi.class, id);
     }
     
-    public static List<Sesja> Sesja.findSesjaEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Sesja o", Sesja.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<KartaOdpowiedzi> KartaOdpowiedzi.findKartaOdpowiedziEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM KartaOdpowiedzi o", KartaOdpowiedzi.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

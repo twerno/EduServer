@@ -3,33 +3,52 @@
 
 package net.twerno.eduserver.sesja.entity;
 
+import java.lang.String;
 import java.util.Date;
+import java.util.Set;
 import net.twerno.eduserver.sesja.SesjaStan;
+import net.twerno.eduserver.sesja.entity.KartaOdpowiedzi;
 
 privileged aspect Sesja_Roo_JavaBean {
     
-    public long Sesja.getUczenId() {
+    public String Sesja.getId() {
+        return this.id;
+    }
+    
+    public void Sesja.setId(String id) {
+        this.id = id;
+    }
+    
+    public String Sesja.getUczenId() {
         return this.uczenId;
     }
     
-    public void Sesja.setUczenId(long uczenId) {
+    public void Sesja.setUczenId(String uczenId) {
         this.uczenId = uczenId;
     }
     
-    public long Sesja.getZadaneZadanieId() {
+    public String Sesja.getZadaneZadanieId() {
         return this.zadaneZadanieId;
     }
     
-    public void Sesja.setZadaneZadanieId(long zadaneZadanieId) {
+    public void Sesja.setZadaneZadanieId(String zadaneZadanieId) {
         this.zadaneZadanieId = zadaneZadanieId;
     }
     
-    public Date Sesja.getDtSesja() {
-        return this.dtSesja;
+    public Date Sesja.getDtOtwarcia() {
+        return this.dtOtwarcia;
     }
     
-    public void Sesja.setDtSesja(Date dtSesja) {
-        this.dtSesja = dtSesja;
+    public void Sesja.setDtOtwarcia(Date dtOtwarcia) {
+        this.dtOtwarcia = dtOtwarcia;
+    }
+    
+    public Date Sesja.getDtZamkniecia() {
+        return this.dtZamkniecia;
+    }
+    
+    public void Sesja.setDtZamkniecia(Date dtZamkniecia) {
+        this.dtZamkniecia = dtZamkniecia;
     }
     
     public SesjaStan Sesja.getStanSesji() {
@@ -48,12 +67,12 @@ privileged aspect Sesja_Roo_JavaBean {
         this.wynik = wynik;
     }
     
-    public boolean Sesja.isUkonczone() {
-        return this.ukonczone;
+    public Set<KartaOdpowiedzi> Sesja.getOdpowiedzi() {
+        return this.odpowiedzi;
     }
     
-    public void Sesja.setUkonczone(boolean ukonczone) {
-        this.ukonczone = ukonczone;
+    public void Sesja.setOdpowiedzi(Set<KartaOdpowiedzi> odpowiedzi) {
+        this.odpowiedzi = odpowiedzi;
     }
     
 }

@@ -27,7 +27,7 @@ public interface ZadanieService {
 //
 	@Secured(UserRole._ROLE_NAUCZYCIEL)
 	List<ZadaneZadanie> dajZadanePrzezeMnie();
-//	
-//	@Secured(UserRole._ROLE_UCZEN)
-//	List<ZadaneZadanie> dajZadaneMi();
+
+	@Secured(UserRole._ROLE_UCZEN)
+	List<ZadaneZadanie> dajZadaneMi();
 }

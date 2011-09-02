@@ -32,12 +32,12 @@ privileged aspect ZbiorPytan_Roo_JavaBean {
         this.opis = opis;
     }
     
-    public String ZbiorPytan.getKategoria() {
-        return this.kategoria;
+    public String ZbiorPytan.getPrzedmiot() {
+        return this.przedmiot;
     }
     
-    public void ZbiorPytan.setKategoria(String kategoria) {
-        this.kategoria = kategoria;
+    public void ZbiorPytan.setPrzedmiot(String przedmiot) {
+        this.przedmiot = przedmiot;
     }
     
     public String ZbiorPytan.getAutorId() {

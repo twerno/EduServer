@@ -12,7 +12,6 @@ privileged aspect ZadaneZadanie_ZbiorPytan_Roo_ToString {
         sb.append("CoNajmniej: ").append(getCoNajmniej()).append(", ");
         sb.append("Id: ").append(getId()).append(", ");
         sb.append("NieWiecejNiz: ").append(getNieWiecejNiz()).append(", ");
-        sb.append("Version: ").append(getVersion()).append(", ");
         sb.append("Zadanie: ").append(getZadanie()).append(", ");
         sb.append("ZbiorPytanId: ").append(getZbiorPytanId());
         return sb.toString();

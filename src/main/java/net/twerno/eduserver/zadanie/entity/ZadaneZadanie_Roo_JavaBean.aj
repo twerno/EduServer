@@ -61,6 +61,14 @@ privileged aspect ZadaneZadanie_Roo_JavaBean {
         this.obowiazkowe = obowiazkowe;
     }
     
+    public int ZadaneZadanie.getMinimalnyWynik() {
+        return this.minimalnyWynik;
+    }
+    
+    public void ZadaneZadanie.setMinimalnyWynik(int minimalnyWynik) {
+        this.minimalnyWynik = minimalnyWynik;
+    }
+    
     public Date ZadaneZadanie.getDtOd() {
         return this.dtOd;
     }

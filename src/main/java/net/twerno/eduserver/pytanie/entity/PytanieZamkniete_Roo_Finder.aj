@@ -19,4 +19,12 @@ privileged aspect PytanieZamkniete_Roo_Finder {
         return q;
     }
     
+    public static TypedQuery<PytanieZamkniete> PytanieZamkniete.findPytanieZamknietesByZbiorPytanIdEquals(String zbiorPytanId) {
+        if (zbiorPytanId == null || zbiorPytanId.length() == 0) throw new IllegalArgumentException("The zbiorPytanId argument is required");
+        EntityManager em = PytanieZamkniete.entityManager();
+        TypedQuery<PytanieZamkniete> q = em.createQuery("SELECT o FROM PytanieZamkniete AS o WHERE o.zbiorPytanId = :zbiorPytanId", PytanieZamkniete.class);
+        q.setParameter("zbiorPytanId", zbiorPytanId);
+        return q;
+    }
+    
 }

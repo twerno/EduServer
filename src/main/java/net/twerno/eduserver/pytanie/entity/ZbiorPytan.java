@@ -27,7 +27,7 @@ public class ZbiorPytan {
     private String opis;
 
     @NotNull
-    private String kategoria;
+    private String przedmiot;
 
     @NotNull
 //    @Index

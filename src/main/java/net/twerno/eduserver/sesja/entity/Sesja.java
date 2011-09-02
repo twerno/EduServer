@@ -1,7 +1,11 @@
 package net.twerno.eduserver.sesja.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -15,25 +19,32 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooEntity
+@RooEntity(finders={"findSesjasByZadaneZadanieId"})
 public class Sesja {
 	
-	@NotNull
-	private long uczenId;
+	@Id
+	private String id;
 	
 	@NotNull
-	private long zadaneZadanieId;
+	private String uczenId;
+	
+	@NotNull
+	private String zadaneZadanieId;
 	
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
-    private Date dtSesja;
+    private Date dtOtwarcia;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(style = "M-")
+    private Date dtZamkniecia;
     
     @NotNull
-    private SesjaStan stanSesji;
+    private SesjaStan stanSesji = SesjaStan.SESJA_ROZPOCZETA;
     
     @NotNull
-    private double wynik;
+    private double wynik = 0;
     
-    @NotNull
-    private boolean ukonczone;
+    @OneToMany(mappedBy="sesjaId")
+    private Set<KartaOdpowiedzi> odpowiedzi = new HashSet<KartaOdpowiedzi>();
 }

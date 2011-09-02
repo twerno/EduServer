@@ -45,6 +45,8 @@ public class Zadanie {
 	@NotNull
 	private boolean obowiazkowe;
 	
+	private int minimalnyWynik;
+	
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
     private Date dtOd;

@@ -11,10 +11,9 @@ privileged aspect ZbiorPytan_Roo_ToString {
         StringBuilder sb = new StringBuilder();
         sb.append("AutorId: ").append(getAutorId()).append(", ");
         sb.append("Id: ").append(getId()).append(", ");
-        sb.append("Kategoria: ").append(getKategoria()).append(", ");
         sb.append("Opis: ").append(getOpis()).append(", ");
+        sb.append("Przedmiot: ").append(getPrzedmiot()).append(", ");
         sb.append("TypZadania: ").append(getTypZadania()).append(", ");
-        sb.append("Version: ").append(getVersion()).append(", ");
         sb.append("IsPublic: ").append(isIsPublic()).append(", ");
         sb.append("Usuniety: ").append(isUsuniety());
         return sb.toString();
