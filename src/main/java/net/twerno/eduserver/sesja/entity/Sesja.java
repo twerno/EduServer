@@ -45,6 +45,6 @@ public class Sesja {
     @NotNull
     private double wynik = 0;
     
-    @OneToMany(mappedBy="sesjaId")
+    @OneToMany(mappedBy="sesja")
     private Set<KartaOdpowiedzi> odpowiedzi = new HashSet<KartaOdpowiedzi>();
 }

@@ -68,7 +68,7 @@ public class PytanieServiceImpl implements PytanieService {
 		Account currentUser = UserHelper.getCurrentUser();
 		ZbiorPytan zbiorPytan = ZbiorPytan.findZbiorPytan(zbiorPytanId);
 
-		if (!zbiorPytan.getAutorId().equals(currentUser.getId()) || !zbiorPytan.isIsPublic())
+		if (!zbiorPytan.isIsPublic() && !zbiorPytan.getAutorId().equals(currentUser.getId()))
 			throw new Exception("Nie masz uprawnieñ do przegl¹dania zbioru: " +zbiorPytan.getOpis());
 
 		return PytanieZamkniete.findPytanieZamknietesByZbiorPytanIdAndUsuniety(zbiorPytanId, false).getResultList();

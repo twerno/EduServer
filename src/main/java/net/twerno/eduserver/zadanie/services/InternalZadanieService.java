@@ -1,7 +1,5 @@
 package net.twerno.eduserver.zadanie.services;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,18 +11,12 @@ import net.twerno.eduserver.zadanie.entity.ZadaneZadanie;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class InternalZadanieService {
-
-//	@Autowired
-//	private DataSource dataSource;
 	
 	private JdbcTemplate jdbcTemplate;
-//	@Autowired
-//	private SessionFactory session;
 	
     @Autowired
     public void setDataSource(DataSource dataSource) {

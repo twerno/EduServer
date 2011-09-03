@@ -3,13 +3,14 @@ package net.twerno.eduserver.sesja.entity;
 import java.util.Date;
 import java.util.UUID;
 
-import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.entity.RooEntity;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -21,10 +22,11 @@ import org.springframework.roo.addon.tostring.RooToString;
 public class KartaOdpowiedzi {
 
 	@Id
+	@GeneratedValue(generator="uuid")
+	@GenericGenerator(name="uuid", strategy="uuid")
 	private String id;
 
 	@ManyToOne
-	@Column(name="sesjaId")
 	private Sesja sesja;
 
 	@NotNull

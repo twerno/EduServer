@@ -14,6 +14,7 @@ privileged aspect KartaOdpowiedzi_Roo_ToString {
         sb.append("IdPytanie: ").append(getIdPytanie()).append(", ");
         sb.append("IloscProb: ").append(getIloscProb()).append(", ");
         sb.append("Sesja: ").append(getSesja()).append(", ");
+        sb.append("Version: ").append(getVersion()).append(", ");
         sb.append("TnPoprawna: ").append(isTnPoprawna());
         return sb.toString();
     }

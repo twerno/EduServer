@@ -1,6 +1,5 @@
 package net.twerno.eduserver.zadanie.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,14 +24,11 @@ public class ZadanieServiceImpl implements ZadanieService {
 	@Transactional
 	public Zadanie zapiszZadanie(Zadanie zadanie) {
 		zadanie.setAutorId(UserHelper.getCurrentUser().getId());
-		if (zadanie.getId() == "")
+		if (zadanie.getId().isEmpty())
 			zadanie.setId(UUID.randomUUID().toString());
 		else {
 			Zadanie cleanZadanie = Zadanie.findZadanie(zadanie.getId());
 			zadanie.setVersion(cleanZadanie.getVersion());
-			cleanZadanie.getZadanie_zbioryPytan().removeAll(zadanie.getZadanie_zbioryPytan());
-			for (Zadanie_ZbiorPytan zzp: cleanZadanie.getZadanie_zbioryPytan())
-				zzp.remove();
 		}
 
 		for (Zadanie_ZbiorPytan zzp: zadanie.getZadanie_zbioryPytan()) {
@@ -64,12 +60,6 @@ public class ZadanieServiceImpl implements ZadanieService {
 		zadZad.merge();		
 	}
 
-//	@Override
-//	public void zapiszZadaneZadanie(ZadaneZadanie zadanie) {
-////		zadanie.setAutor(UserHelper.getCurrentUser());
-//		zadanie.merge();
-//	}
-//
 	@Override
 	public List<ZadaneZadanie> dajZadanePrzezeMnie() {
 		return ZadaneZadanie.findZadaneZadaniesByAutorId(UserHelper.getCurrentUserId()).getResultList();

@@ -105,6 +105,7 @@ public class ZadaneZadanie {
     		zadZadZZP.setNieWiecejNiz(zzp.getNieWiecejNiz());
     		zadZadZZP.setCoNajmniej(zzp.getCoNajmniej());
     		zadZadZZP.setZadanie(zadZad);
+    		zadZadZZP.setZbiorPytanId(zzp.getZbiorPytanId());
     		zadZad.getZadanie_zbioryPytan().add(zadZadZZP);
     	}
     	// brakuje jeszcze grup

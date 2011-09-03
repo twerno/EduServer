@@ -21,10 +21,7 @@ public interface ZadanieService {
 	@Secured(UserRole._ROLE_NAUCZYCIEL)
 	void zadajZadanie(String zadanieID, List<String> grupy)
 			throws Exception;
-	
-//	@Secured(UserRole._ROLE_NAUCZYCIEL)
-//	void zapiszZadaneZadanie(ZadaneZadanie zadanie);
-//
+
 	@Secured(UserRole._ROLE_NAUCZYCIEL)
 	List<ZadaneZadanie> dajZadanePrzezeMnie();
 

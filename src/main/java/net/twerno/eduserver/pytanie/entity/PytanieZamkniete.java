@@ -2,12 +2,15 @@ package net.twerno.eduserver.pytanie.entity;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
 import net.twerno.eduserver.zadanie.TypZadania;
+
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.roo.addon.entity.RooEntity;
 import org.springframework.roo.addon.javabean.RooJavaBean;

@@ -1,13 +1,10 @@
 package net.twerno.eduserver.sesja.ro;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import net.twerno.eduserver.pytanie.entity.PytanieZamkniete;
 import net.twerno.eduserver.zadanie.entity.ZadaneZadanie;
-import net.twerno.eduserver.zadanie.entity.ZadaneZadanie_ZbiorPytan;
 
 public class SesjaOtwartaRO {
 	
