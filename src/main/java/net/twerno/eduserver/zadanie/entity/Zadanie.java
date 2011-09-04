@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.OrderColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -67,4 +68,8 @@ public class Zadanie {
     @NotNull
     @OneToMany(mappedBy="zadanie", cascade=CascadeType.ALL)
     private Set<Zadanie_ZbiorPytan> zadanie_zbioryPytan = new HashSet<Zadanie_ZbiorPytan>();
+    
+    @NotNull
+    @OneToOne(mappedBy="zadanie", cascade=CascadeType.ALL)
+    private Zadanie_Zasady zasady;
 }

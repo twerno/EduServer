@@ -37,4 +37,7 @@ public interface SesjaService {
 	@RemotingExclude
 	Sesja InternalDajSesje(String sesjaId)
 			throws Exception;
+	
+	@RemotingExclude
+	void sprawdzZasady(Sesja sesja);
 }

@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Set;
 import net.twerno.eduserver.sesja.SesjaStan;
 import net.twerno.eduserver.sesja.entity.KartaOdpowiedzi;
+import net.twerno.eduserver.sesja.entity.Sesja_Zasady;
 
 privileged aspect Sesja_Roo_JavaBean {
     
@@ -73,6 +74,14 @@ privileged aspect Sesja_Roo_JavaBean {
     
     public void Sesja.setOdpowiedzi(Set<KartaOdpowiedzi> odpowiedzi) {
         this.odpowiedzi = odpowiedzi;
+    }
+    
+    public Sesja_Zasady Sesja.getZasady() {
+        return this.zasady;
+    }
+    
+    public void Sesja.setZasady(Sesja_Zasady zasady) {
+        this.zasady = zasady;
     }
     
 }

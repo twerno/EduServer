@@ -64,4 +64,12 @@ privileged aspect ZbiorPytan_Roo_JavaBean {
         this.usuniety = usuniety;
     }
     
+    public int ZbiorPytan.getSize() {
+        return this.size;
+    }
+    
+    public void ZbiorPytan.setSize(int size) {
+        this.size = size;
+    }
+    
 }

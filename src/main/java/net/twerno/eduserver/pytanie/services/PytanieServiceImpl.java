@@ -39,6 +39,12 @@ public class PytanieServiceImpl implements PytanieService {
 		if (cleanZb != null)
 			zbior.setVersion(cleanZb.getVersion());
 
+		int size = 0;
+		for (PytanieZamkniete pytanie: pytania)
+			if (!pytanie.isUsuniety())
+				size++;
+		
+		zbior.setSize(size);
 		zbior.merge();
 
 		for (PytanieZamkniete pytanie: pytania) {

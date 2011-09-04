@@ -9,6 +9,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.OrderColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -71,6 +72,10 @@ public class ZadaneZadanie {
     private Set<ZadaneZadanie_ZbiorPytan> zadanie_zbioryPytan = new HashSet<ZadaneZadanie_ZbiorPytan>();
     
     @NotNull
+    @OneToOne(mappedBy="zadanie", cascade=CascadeType.ALL)
+    private ZadaneZadanie_Zasady zasady;
+    
+    @NotNull
     @ElementCollection
     private Set<String> grupy = new HashSet<String>();
     
@@ -98,7 +103,9 @@ public class ZadaneZadanie {
     	zadZad.trybSprawdzenia = zadanie.getTrybSprawdzenia();
 
     	ZadaneZadanie_ZbiorPytan zadZadZZP;
-
+    	ZadaneZadanie_Zasady zadZadZasady;
+    	
+    	// przepisz zbiory pytan
     	for (Zadanie_ZbiorPytan zzp: zadanie.getZadanie_zbioryPytan()) {
     		zadZadZZP = new ZadaneZadanie_ZbiorPytan();
     		zadZadZZP.setId(UUID.randomUUID().toString());
@@ -108,6 +115,20 @@ public class ZadaneZadanie {
     		zadZadZZP.setZbiorPytanId(zzp.getZbiorPytanId());
     		zadZad.getZadanie_zbioryPytan().add(zadZadZZP);
     	}
+    	
+    	// przepisz zasady
+    	Zadanie_Zasady zz = zadanie.getZasady();
+    	zadZadZasady = new ZadaneZadanie_Zasady();
+    	zadZadZasady.setId(UUID.randomUUID().toString());
+    	zadZadZasady.setCzas_bronze(zz.getCzas_bronze());
+    	zadZadZasady.setCzas_silver(zz.getCzas_silver());
+    	zadZadZasady.setCzas_gold(zz.getCzas_gold());
+    	zadZadZasady.setPunkty_bronze(zz.getPunkty_bronze());
+    	zadZadZasady.setPunkty_silver(zz.getPunkty_silver());
+    	zadZadZasady.setPunkty_gold(zz.getPunkty_gold());
+    	zadZadZasady.setZadanie(zadZad);
+    	zadZad.setZasady(zadZadZasady);
+
     	// brakuje jeszcze grup
     	return zadZad;
     }

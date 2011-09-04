@@ -23,6 +23,7 @@ privileged aspect ZadaneZadanie_Roo_ToString {
         sb.append("TypZadania: ").append(getTypZadania()).append(", ");
         sb.append("Version: ").append(getVersion()).append(", ");
         sb.append("Zadanie_zbioryPytan: ").append(getZadanie_zbioryPytan() == null ? "null" : getZadanie_zbioryPytan().size()).append(", ");
+        sb.append("Zasady: ").append(getZasady()).append(", ");
         sb.append("Obowiazkowe: ").append(isObowiazkowe());
         return sb.toString();
     }

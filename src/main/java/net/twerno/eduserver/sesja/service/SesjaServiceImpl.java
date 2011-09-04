@@ -9,6 +9,7 @@ import net.twerno.eduserver.sesja.SesjaHelper;
 import net.twerno.eduserver.sesja.SesjaStan;
 import net.twerno.eduserver.sesja.entity.KartaOdpowiedzi;
 import net.twerno.eduserver.sesja.entity.Sesja;
+import net.twerno.eduserver.sesja.entity.Sesja_Zasady;
 import net.twerno.eduserver.sesja.ro.SesjaOtwartaRO;
 import net.twerno.eduserver.user.UserHelper;
 import net.twerno.eduserver.zadanie.entity.ZadaneZadanie;
@@ -42,6 +43,8 @@ public class SesjaServiceImpl implements SesjaService {
 		sesja.setDtOtwarcia(new Date());
 		sesja.setUczenId(UserHelper.getCurrentUserId());
 		sesja.setZadaneZadanieId(zadanieId);
+		sesja.setZasady(new Sesja_Zasady());
+		sesja.getZasady().setSesja(sesja);
 		sesja.merge();
 		
 		SesjaOtwartaRO sesjaOtwarta = new SesjaOtwartaRO();
@@ -62,6 +65,7 @@ public class SesjaServiceImpl implements SesjaService {
 		sesja.setDtZamkniecia(new Date());
 		sesja.setStanSesji(SesjaStan.SESJA_ZAKONCZONA);
 		sesja.setWynik(SesjaHelper.wyliczWynik(sesja));
+		sprawdzZasady(sesja);
 		sesja.merge();
 	}
 
@@ -116,5 +120,34 @@ public class SesjaServiceImpl implements SesjaService {
 		if (!sesja.getUczenId().equals(UserHelper.getCurrentUserId()))
 			throw new Exception("User o id: "+ UserHelper.getCurrentUserId() +" nie jest przypisany do sesji o id: " +sesjaId);
 		return sesja;
+	}
+
+	@Override
+	public void sprawdzZasady(Sesja sesja) {
+		ZadaneZadanie zadanie = ZadaneZadanie.findZadaneZadanie(sesja.getZadaneZadanieId());
+		
+		// ukonczone
+		boolean ukonczone = sesja.getWynik() >= zadanie.getMinimalnyWynik();
+		sesja.getZasady().setUkonczone(ukonczone);
+		
+		//bezblednie
+		boolean bezblednie = true;
+		for (KartaOdpowiedzi ko: sesja.getOdpowiedzi())
+			if (!ko.isTnPoprawna() || ko.getIloscProb() != 0) {
+				bezblednie = false;
+				break;
+			}
+		sesja.getZasady().setBezblednie(bezblednie);
+
+		//punkty
+		sesja.getZasady().setPunkty_bronze(sesja.getWynik() >= zadanie.getZasady().getPunkty_bronze());
+		sesja.getZasady().setPunkty_silver(sesja.getWynik() >= zadanie.getZasady().getPunkty_silver());
+		sesja.getZasady().setPunkty_gold(  sesja.getWynik() >= zadanie.getZasady().getPunkty_gold());
+
+		int czasZadania = (int)((sesja.getDtZamkniecia().getTime() -sesja.getDtOtwarcia().getTime()) /1000);
+		//czas
+		sesja.getZasady().setCzas_bronze(zadanie.getZasady().getCzas_bronze() < czasZadania);
+		sesja.getZasady().setCzas_silver(zadanie.getZasady().getCzas_silver() < czasZadania);
+		sesja.getZasady().setCzas_gold(  zadanie.getZasady().getCzas_gold()   < czasZadania);
 	}
 }

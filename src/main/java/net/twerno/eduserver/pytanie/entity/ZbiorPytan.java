@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 
 import net.twerno.eduserver.zadanie.TypZadania;
 
+import org.hibernate.annotations.Index;
 import org.springframework.roo.addon.entity.RooEntity;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -30,14 +31,15 @@ public class ZbiorPytan {
     private String przedmiot;
 
     @NotNull
-//    @Index
+    @Index(name="ZbiorPytanAutorId_index")
     private String autorId;
 
     @NotNull
-//    @OrderColumn
     private boolean isPublic;
 
     @NotNull
-//    @OrderColumn
     private boolean usuniety;
+    
+    @NotNull
+    private int size;
 }

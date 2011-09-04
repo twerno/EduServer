@@ -17,7 +17,8 @@ privileged aspect Sesja_Roo_ToString {
         sb.append("UczenId: ").append(getUczenId()).append(", ");
         sb.append("Version: ").append(getVersion()).append(", ");
         sb.append("Wynik: ").append(getWynik()).append(", ");
-        sb.append("ZadaneZadanieId: ").append(getZadaneZadanieId());
+        sb.append("ZadaneZadanieId: ").append(getZadaneZadanieId()).append(", ");
+        sb.append("Zasady: ").append(getZasady());
         return sb.toString();
     }
     

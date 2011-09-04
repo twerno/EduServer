@@ -9,6 +9,7 @@ import java.util.Set;
 import net.twerno.eduserver.zadanie.TrybSprawdzenia;
 import net.twerno.eduserver.zadanie.TypWyboruPytan;
 import net.twerno.eduserver.zadanie.TypZadania;
+import net.twerno.eduserver.zadanie.entity.ZadaneZadanie_Zasady;
 import net.twerno.eduserver.zadanie.entity.ZadaneZadanie_ZbiorPytan;
 
 privileged aspect ZadaneZadanie_Roo_JavaBean {
@@ -115,6 +116,14 @@ privileged aspect ZadaneZadanie_Roo_JavaBean {
     
     public void ZadaneZadanie.setZadanie_zbioryPytan(Set<ZadaneZadanie_ZbiorPytan> zadanie_zbioryPytan) {
         this.zadanie_zbioryPytan = zadanie_zbioryPytan;
+    }
+    
+    public ZadaneZadanie_Zasady ZadaneZadanie.getZasady() {
+        return this.zasady;
+    }
+    
+    public void ZadaneZadanie.setZasady(ZadaneZadanie_Zasady zasady) {
+        this.zasady = zasady;
     }
     
     public Set<String> ZadaneZadanie.getGrupy() {

@@ -12,11 +12,11 @@ public class SesjaHelper {
 		double wynik = 0;
 
 		for (KartaOdpowiedzi ko: sesja.getOdpowiedzi()) {
-			if (ko.isTnPoprawna()) {
-				wynik += 1/(ko.getIloscProb() +1);
+			if (ko.isTnPoprawna() && ko.getIloscProb() == 0) {
+				wynik += 1;
 			}
 		}
 
-		return wynik/sesja.getOdpowiedzi().size();
+		return wynik;
 	}
 }

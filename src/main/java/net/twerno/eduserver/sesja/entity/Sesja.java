@@ -4,8 +4,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -47,4 +49,7 @@ public class Sesja {
     
     @OneToMany(mappedBy="sesja")
     private Set<KartaOdpowiedzi> odpowiedzi = new HashSet<KartaOdpowiedzi>();
+    
+    @OneToOne(mappedBy="sesja", cascade=CascadeType.ALL)
+    private Sesja_Zasady zasady;
 }
