@@ -60,7 +60,7 @@ public class Zadanie {
 	private int limitCzasowy;
 	
 	@NotNull 
-	private int limitPytan;
+	private int iloscPytan;
 	
 	@NotNull
 	private TrybSprawdzenia trybSprawdzenia;

@@ -36,7 +36,6 @@ public interface PytanieService {
 	@Secured(UserRole._ROLE_NAUCZYCIEL)
 	List<ZbiorPytan> wczytajDostepneZbioryTypu(TypZadania typZadania);
 	
-	// metoda wewneczna - wczytuje pytania na potrzeby rozwiazanaia zadania
-	@RemotingExclude
-	List<PytanieZamkniete> internalWczytajPytania(long zadaneZadanieId);
+//	@Secured(UserRole._ROLE_NAUCZYCIEL)
+//	List<PytanieZamkniete> dajPytaniaZZbioru(String sesjaId, String userId);
 }

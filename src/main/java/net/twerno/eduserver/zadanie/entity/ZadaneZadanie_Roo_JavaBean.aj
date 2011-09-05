@@ -94,12 +94,12 @@ privileged aspect ZadaneZadanie_Roo_JavaBean {
         this.limitCzasowy = limitCzasowy;
     }
     
-    public int ZadaneZadanie.getLimitPytan() {
-        return this.limitPytan;
+    public int ZadaneZadanie.getIloscPytan() {
+        return this.iloscPytan;
     }
     
-    public void ZadaneZadanie.setLimitPytan(int limitPytan) {
-        this.limitPytan = limitPytan;
+    public void ZadaneZadanie.setIloscPytan(int iloscPytan) {
+        this.iloscPytan = iloscPytan;
     }
     
     public TrybSprawdzenia ZadaneZadanie.getTrybSprawdzenia() {

@@ -2,10 +2,12 @@ package net.twerno.eduserver.sesja.service;
 
 import java.util.List;
 
+import net.twerno.eduserver.pytanie.entity.PytanieZamkniete;
 import net.twerno.eduserver.sesja.entity.Sesja;
 import net.twerno.eduserver.sesja.ro.OpanowaniePytaniaRO;
 import net.twerno.eduserver.sesja.ro.SesjaOtwartaRO;
 import net.twerno.eduserver.user.UserRole;
+import net.twerno.eduserver.zadanie.entity.ZadaneZadanie;
 
 import org.springframework.flex.remoting.RemotingDestination;
 import org.springframework.flex.remoting.RemotingExclude;
@@ -42,4 +44,8 @@ public interface SesjaService {
 	
 	@RemotingExclude
 	List<OpanowaniePytaniaRO> dajOpanowaniePytania(String sesjaId, String userId);
+	
+	// metoda wewneczna - wczytuje pytania na potrzeby rozwiazanaia zadania
+	@RemotingExclude
+	List<PytanieZamkniete> internalWczytajPytania(ZadaneZadanie zadaneZadanie);
 }

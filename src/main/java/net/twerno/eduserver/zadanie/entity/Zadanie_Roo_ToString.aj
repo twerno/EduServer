@@ -13,8 +13,8 @@ privileged aspect Zadanie_Roo_ToString {
         sb.append("DtDo: ").append(getDtDo()).append(", ");
         sb.append("DtOd: ").append(getDtOd()).append(", ");
         sb.append("Id: ").append(getId()).append(", ");
+        sb.append("IloscPytan: ").append(getIloscPytan()).append(", ");
         sb.append("LimitCzasowy: ").append(getLimitCzasowy()).append(", ");
-        sb.append("LimitPytan: ").append(getLimitPytan()).append(", ");
         sb.append("MinimalnyWynik: ").append(getMinimalnyWynik()).append(", ");
         sb.append("Nazwa: ").append(getNazwa()).append(", ");
         sb.append("TrybSprawdzenia: ").append(getTrybSprawdzenia()).append(", ");

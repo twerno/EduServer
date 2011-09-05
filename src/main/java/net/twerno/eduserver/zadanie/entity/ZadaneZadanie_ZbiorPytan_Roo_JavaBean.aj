@@ -16,20 +16,12 @@ privileged aspect ZadaneZadanie_ZbiorPytan_Roo_JavaBean {
         this.id = id;
     }
     
-    public int ZadaneZadanie_ZbiorPytan.getCoNajmniej() {
-        return this.coNajmniej;
+    public int ZadaneZadanie_ZbiorPytan.getIloscPytan() {
+        return this.iloscPytan;
     }
     
-    public void ZadaneZadanie_ZbiorPytan.setCoNajmniej(int coNajmniej) {
-        this.coNajmniej = coNajmniej;
-    }
-    
-    public int ZadaneZadanie_ZbiorPytan.getNieWiecejNiz() {
-        return this.nieWiecejNiz;
-    }
-    
-    public void ZadaneZadanie_ZbiorPytan.setNieWiecejNiz(int nieWiecejNiz) {
-        this.nieWiecejNiz = nieWiecejNiz;
+    public void ZadaneZadanie_ZbiorPytan.setIloscPytan(int iloscPytan) {
+        this.iloscPytan = iloscPytan;
     }
     
     public ZadaneZadanie ZadaneZadanie_ZbiorPytan.getZadanie() {

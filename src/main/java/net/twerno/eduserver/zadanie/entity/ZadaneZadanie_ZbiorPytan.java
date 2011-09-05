@@ -19,10 +19,7 @@ public class ZadaneZadanie_ZbiorPytan {
 	private String id;
 	
 	@NotNull
-	private int coNajmniej;
-	
-	@NotNull
-	private int nieWiecejNiz;
+	private int iloscPytan;
 	
 	@NotNull
 	@ManyToOne

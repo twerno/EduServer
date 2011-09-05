@@ -9,6 +9,7 @@ import java.util.UUID;
 import javax.sql.DataSource;
 
 import net.twerno.eduserver.pytanie.entity.PytanieZamkniete;
+import net.twerno.eduserver.pytanie.services.PytanieService;
 import net.twerno.eduserver.sesja.SesjaHelper;
 import net.twerno.eduserver.sesja.SesjaStan;
 import net.twerno.eduserver.sesja.entity.KartaOdpowiedzi;
@@ -36,7 +37,7 @@ public class SesjaServiceImpl implements SesjaService {
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
-	
+
 	@Override
 	public SesjaOtwartaRO otworzSesje(String zadanieId) throws Exception {
 		zamknijWszystkieSesje();
@@ -63,11 +64,8 @@ public class SesjaServiceImpl implements SesjaService {
 		SesjaOtwartaRO sesjaOtwarta = new SesjaOtwartaRO();
 		sesjaOtwarta.setSesjaId(sesja.getId());
 		sesjaOtwarta.setZadanie(zadanie);
-		for (ZadaneZadanie_ZbiorPytan zzzp: zadanie.getZadanie_zbioryPytan())
-			sesjaOtwarta.getPytania().addAll(
-					PytanieZamkniete
-					.findPytanieZamknietesByZbiorPytanIdAndUsuniety(zzzp.getZbiorPytanId(), false)
-					.getResultList());
+		sesjaOtwarta.setPytania(internalWczytajPytania(zadanie));
+
 
 		// doczytujemy dodatkowe dane
 		if (zadanie.getTypWyboruPytan() == TypWyboruPytan.INTELIGENTNIE)
@@ -190,6 +188,18 @@ public class SesjaServiceImpl implements SesjaService {
 					row.get("id_pytanie").toString(),
 					Integer.valueOf(row.get("iloscPodejsc").toString()).intValue(),
 					Integer.valueOf(row.get("correctAnswers").toString()).intValue()));
+		return result;
+	}
+
+	@Override
+	@RemotingExclude
+	public List<PytanieZamkniete> internalWczytajPytania(ZadaneZadanie zadaneZadanie) {
+		List<PytanieZamkniete> result = new ArrayList<PytanieZamkniete>();
+		for (ZadaneZadanie_ZbiorPytan zzzp: zadaneZadanie.getZadanie_zbioryPytan())
+			result.addAll(
+				PytanieZamkniete
+				.findPytanieZamknietesByZbiorPytanIdAndUsuniety(zzzp.getZbiorPytanId(), false)
+				.getResultList());
 		return result;
 	}
 }

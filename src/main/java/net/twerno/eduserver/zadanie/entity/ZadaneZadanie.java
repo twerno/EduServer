@@ -62,7 +62,7 @@ public class ZadaneZadanie {
 	private int limitCzasowy;
 	
 	@NotNull 
-	private int limitPytan;
+	private int iloscPytan;
 	
 	@NotNull
 	private TrybSprawdzenia trybSprawdzenia;
@@ -98,7 +98,7 @@ public class ZadaneZadanie {
     	zadZad.dtOd            = zadanie.getDtOd();
     	zadZad.dtDo            = zadanie.getDtDo();
     	zadZad.limitCzasowy    = zadanie.getLimitCzasowy();
-    	zadZad.limitPytan      = zadanie.getLimitPytan();
+    	zadZad.iloscPytan      = zadanie.getIloscPytan();
     	zadZad.trybSprawdzenia = zadanie.getTrybSprawdzenia();
 
     	ZadaneZadanie_ZbiorPytan zadZadZZP;
@@ -108,8 +108,7 @@ public class ZadaneZadanie {
     	for (Zadanie_ZbiorPytan zzp: zadanie.getZadanie_zbioryPytan()) {
     		zadZadZZP = new ZadaneZadanie_ZbiorPytan();
     		zadZadZZP.setId(UUID.randomUUID().toString());
-    		zadZadZZP.setNieWiecejNiz(zzp.getNieWiecejNiz());
-    		zadZadZZP.setCoNajmniej(zzp.getCoNajmniej());
+    		zadZadZZP.setIloscPytan(zzp.getIloscPytan());
     		zadZadZZP.setZadanie(zadZad);
     		zadZadZZP.setZbiorPytanId(zzp.getZbiorPytanId());
     		zadZad.getZadanie_zbioryPytan().add(zadZadZZP);

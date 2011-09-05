@@ -1,5 +1,6 @@
 package net.twerno.eduserver.pytanie.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -88,13 +89,6 @@ public class PytanieServiceImpl implements PytanieService {
 	@Override
 	public List<ZbiorPytan> wczytajDostepneZbioryTypu(TypZadania typZadania) {
 		return PytanieQueries.dajDostepneZbioryPytan(UserHelper.getClearCurrentAccount(), typZadania);
-	}
-
-	@Override
-	public List<PytanieZamkniete> internalWczytajPytania(long zadaneZadanieId) {
-		return null;
-		//TODO
-//		return PytanieZamkniete.;
 	}
 
 	@Override
