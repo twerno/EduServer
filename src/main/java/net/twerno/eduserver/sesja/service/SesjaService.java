@@ -3,6 +3,7 @@ package net.twerno.eduserver.sesja.service;
 import java.util.List;
 
 import net.twerno.eduserver.sesja.entity.Sesja;
+import net.twerno.eduserver.sesja.ro.OpanowaniePytaniaRO;
 import net.twerno.eduserver.sesja.ro.SesjaOtwartaRO;
 import net.twerno.eduserver.user.UserRole;
 
@@ -32,12 +33,13 @@ public interface SesjaService {
 	@Secured(UserRole._ROLE_NAUCZYCIEL)
 	List<Sesja> dajWyniki(String zadaneZadanieId);
 
-	// wyniki na potrzeby wyliczenia zestawu pytan
-
 	@RemotingExclude
 	Sesja InternalDajSesje(String sesjaId)
 			throws Exception;
 	
 	@RemotingExclude
 	void sprawdzZasady(Sesja sesja);
+	
+	@RemotingExclude
+	List<OpanowaniePytaniaRO> dajOpanowaniePytania(String sesjaId, String userId);
 }

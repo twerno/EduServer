@@ -1,8 +1,6 @@
 package net.twerno.eduserver.zadanie.entity;
 
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.roo.addon.entity.RooEntity;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -14,11 +12,9 @@ import org.springframework.roo.addon.tostring.RooToString;
 public class ZadaneZadanie_Zasady {
 
 	@Id
+//	@GeneratedValue(generator="uuid")
+//	@GenericGenerator(name="uuid", strategy="uuid")
 	private String id;
-	
-	@NotNull
-	@OneToOne
-	private ZadaneZadanie zadanie;
 	
 	private int czas_bronze;
 	

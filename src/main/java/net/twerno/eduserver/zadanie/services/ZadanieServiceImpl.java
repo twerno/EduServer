@@ -24,11 +24,15 @@ public class ZadanieServiceImpl implements ZadanieService {
 	@Transactional
 	public Zadanie zapiszZadanie(Zadanie zadanie) {
 		zadanie.setAutorId(UserHelper.getCurrentUser().getId());
-		if (zadanie.getId().isEmpty())
+		if (zadanie.getId().isEmpty()) {
 			zadanie.setId(UUID.randomUUID().toString());
+			zadanie.getZasady().setId(UUID.randomUUID().toString());
+			zadanie.getZasady().merge();
+		}
 		else {
 			Zadanie cleanZadanie = Zadanie.findZadanie(zadanie.getId());
 			zadanie.setVersion(cleanZadanie.getVersion());
+			zadanie.getZasady().setVersion(cleanZadanie.getZasady().getVersion());
 		}
 
 		for (Zadanie_ZbiorPytan zzp: zadanie.getZadanie_zbioryPytan()) {
@@ -37,6 +41,7 @@ public class ZadanieServiceImpl implements ZadanieService {
 			else
 				zzp.setVersion(Zadanie_ZbiorPytan.findZadanie_ZbiorPytan(zzp.getId()).getVersion());
 		}
+
 		zadanie.merge();
 		return zadanie;
 	}

@@ -70,6 +70,6 @@ public class Zadanie {
     private Set<Zadanie_ZbiorPytan> zadanie_zbioryPytan = new HashSet<Zadanie_ZbiorPytan>();
     
     @NotNull
-    @OneToOne(mappedBy="zadanie", cascade=CascadeType.ALL)
+    @OneToOne//(optional=false)//(mappedBy="zadanie", cascade=CascadeType.ALL)
     private Zadanie_Zasady zasady;
 }

@@ -1,11 +1,9 @@
 package net.twerno.eduserver.sesja.entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.Id;
+
 import org.springframework.roo.addon.entity.RooEntity;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -15,13 +13,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooEntity
 public class Sesja_Zasady {
 	@Id
-	@GeneratedValue(generator="uuid")
-	@GenericGenerator(name="uuid", strategy="uuid")
-	private String id;
-
-	@NotNull
-	@OneToOne
-	private Sesja sesja;
+	private String id = UUID.randomUUID().toString();
 	
 	private boolean czas_bronze;
 	

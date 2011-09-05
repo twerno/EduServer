@@ -14,6 +14,7 @@ public class SesjaOtwartaRO {
 	
 	private List<PytanieZamkniete> pytania = new ArrayList<PytanieZamkniete>();
 	
+	private List<OpanowaniePytaniaRO> opanowanePytania = new ArrayList<OpanowaniePytaniaRO>();
 
 	
 	
@@ -43,6 +44,14 @@ public class SesjaOtwartaRO {
 
 	public void setZadanie(ZadaneZadanie zadanie) {
 		this.zadanie = zadanie;
+	}
+
+	public List<OpanowaniePytaniaRO> getOpanowanePytania() {
+		return opanowanePytania;
+	}
+
+	public void setOpanowanePytania(List<OpanowaniePytaniaRO> opanowanePytania) {
+		this.opanowanePytania = opanowanePytania;
 	}
 
 }

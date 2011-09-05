@@ -4,7 +4,6 @@
 package net.twerno.eduserver.sesja.entity;
 
 import java.lang.String;
-import net.twerno.eduserver.sesja.entity.Sesja;
 
 privileged aspect Sesja_Zasady_Roo_JavaBean {
     
@@ -14,14 +13,6 @@ privileged aspect Sesja_Zasady_Roo_JavaBean {
     
     public void Sesja_Zasady.setId(String id) {
         this.id = id;
-    }
-    
-    public Sesja Sesja_Zasady.getSesja() {
-        return this.sesja;
-    }
-    
-    public void Sesja_Zasady.setSesja(Sesja sesja) {
-        this.sesja = sesja;
     }
     
     public boolean Sesja_Zasady.isCzas_bronze() {

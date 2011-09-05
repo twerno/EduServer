@@ -72,7 +72,7 @@ public class ZadaneZadanie {
     private Set<ZadaneZadanie_ZbiorPytan> zadanie_zbioryPytan = new HashSet<ZadaneZadanie_ZbiorPytan>();
     
     @NotNull
-    @OneToOne(mappedBy="zadanie", cascade=CascadeType.ALL)
+    @OneToOne
     private ZadaneZadanie_Zasady zasady;
     
     @NotNull
@@ -80,7 +80,6 @@ public class ZadaneZadanie {
     private Set<String> grupy = new HashSet<String>();
     
     public ZadaneZadanie() {
-		// TODO Auto-generated constructor stub
 	}
     
     public ZadaneZadanie(String id) {
@@ -126,8 +125,8 @@ public class ZadaneZadanie {
     	zadZadZasady.setPunkty_bronze(zz.getPunkty_bronze());
     	zadZadZasady.setPunkty_silver(zz.getPunkty_silver());
     	zadZadZasady.setPunkty_gold(zz.getPunkty_gold());
-    	zadZadZasady.setZadanie(zadZad);
     	zadZad.setZasady(zadZadZasady);
+    	zadZadZasady.persist();
 
     	// brakuje jeszcze grup
     	return zadZad;

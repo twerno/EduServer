@@ -1,8 +1,6 @@
 package net.twerno.eduserver.zadanie.entity;
 
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.roo.addon.entity.RooEntity;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -15,10 +13,6 @@ public class Zadanie_Zasady {
 	
 	@Id
 	private String id;
-	
-	@NotNull
-	@OneToOne
-	private Zadanie zadanie;
 	
 	private int czas_bronze;
 	

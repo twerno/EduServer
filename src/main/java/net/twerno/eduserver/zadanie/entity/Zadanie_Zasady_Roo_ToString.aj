@@ -16,8 +16,7 @@ privileged aspect Zadanie_Zasady_Roo_ToString {
         sb.append("Punkty_bronze: ").append(getPunkty_bronze()).append(", ");
         sb.append("Punkty_gold: ").append(getPunkty_gold()).append(", ");
         sb.append("Punkty_silver: ").append(getPunkty_silver()).append(", ");
-        sb.append("Version: ").append(getVersion()).append(", ");
-        sb.append("Zadanie: ").append(getZadanie());
+        sb.append("Version: ").append(getVersion());
         return sb.toString();
     }
     

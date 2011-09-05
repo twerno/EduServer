@@ -43,7 +43,6 @@ public class KartaOdpowiedzi {
     private Date dtOdpowiedzi;
     
     public KartaOdpowiedzi() {
-		// TODO Auto-generated constructor stub
 	}
 
     public KartaOdpowiedzi(Sesja sesja, String idPytanie, int iloscProb, boolean tnPoprawna) {

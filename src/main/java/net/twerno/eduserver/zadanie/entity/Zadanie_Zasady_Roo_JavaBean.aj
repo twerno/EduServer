@@ -4,7 +4,6 @@
 package net.twerno.eduserver.zadanie.entity;
 
 import java.lang.String;
-import net.twerno.eduserver.zadanie.entity.Zadanie;
 
 privileged aspect Zadanie_Zasady_Roo_JavaBean {
     
@@ -14,14 +13,6 @@ privileged aspect Zadanie_Zasady_Roo_JavaBean {
     
     public void Zadanie_Zasady.setId(String id) {
         this.id = id;
-    }
-    
-    public Zadanie Zadanie_Zasady.getZadanie() {
-        return this.zadanie;
-    }
-    
-    public void Zadanie_Zasady.setZadanie(Zadanie zadanie) {
-        this.zadanie = zadanie;
     }
     
     public int Zadanie_Zasady.getCzas_bronze() {
