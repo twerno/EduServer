@@ -114,8 +114,7 @@ public class SesjaServiceImpl implements SesjaService {
 		if (!poprawnyZbiorPytan)
 			throw new Exception("Sesja id: " +sesjaId +" Pytanie id: " +pytanieId +" nie nale¿y do ¿adnego ze zbiorów pytañ z zadania id: " +sesja.getZadaneZadanieId());
 
-		KartaOdpowiedzi ko = new KartaOdpowiedzi(sesja, pytanieId, iloscProb, poprawna);
-//		System.out.println(ko);
+		KartaOdpowiedzi ko = new KartaOdpowiedzi(sesja, pytanieId, iloscProb, (iloscProb == 0) ? poprawna : false);
 		ko.merge();
 		sesja.getOdpowiedzi().add(ko);
 		sesja.merge();
@@ -177,11 +176,10 @@ public class SesjaServiceImpl implements SesjaService {
 				     +"   ko.id_pytanie, "
 				     +"   count(ko.id_pytanie) as iloscPodejsc, "
 				     +"   sum(ko.tn_poprawna)  as correctAnswers"
-			   	     +" FROM      sesja s"
-			   	     +" LEFT JOIN Karta_odpowiedzi ko ON ko.sesja = s.id"
+			   	     +" FROM sesja            s"
+			   	     +" JOIN Karta_odpowiedzi ko ON ko.sesja = s.id"
 			   	     +" WHERE s.uczen_id = ? "
 			   	     +"   AND s.zadane_zadanie_id = ? "
-			   	     +"   AND ko.ilosc_prob = 0"
 			   	     +" GROUP BY 1";
 
 		List<OpanowaniePytaniaRO> result = new ArrayList<OpanowaniePytaniaRO>();
