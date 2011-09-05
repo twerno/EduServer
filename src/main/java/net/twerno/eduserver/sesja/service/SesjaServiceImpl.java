@@ -9,7 +9,6 @@ import java.util.UUID;
 import javax.sql.DataSource;
 
 import net.twerno.eduserver.pytanie.entity.PytanieZamkniete;
-import net.twerno.eduserver.pytanie.services.PytanieService;
 import net.twerno.eduserver.sesja.SesjaHelper;
 import net.twerno.eduserver.sesja.SesjaStan;
 import net.twerno.eduserver.sesja.entity.KartaOdpowiedzi;

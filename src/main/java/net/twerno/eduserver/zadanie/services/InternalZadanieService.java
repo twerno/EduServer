@@ -25,16 +25,18 @@ public class InternalZadanieService {
 
 	public List<ZadaneZadanie> dajZadaneMi() {
 		String SQL = " SELECT z.id" 
-                +" FROM      account_grupa        a" 
-				+" LEFT JOIN zadane_zadanie_grupy zzg ON zzg.grupy = a.grupa_id"
-				+" LEFT JOIN zadane_zadanie       z   ON z.id      = zzg.zadane_zadanie"
-				+" WHERE a.account_id = ?";
+                    +" FROM      account_grupa        a" 
+			    	+" JOIN zadane_zadanie_grupy zzg ON zzg.grupy = a.grupa_id"
+			    	+" JOIN zadane_zadanie       z   ON z.id      = zzg.zadane_zadanie"
+				    +" WHERE a.account_id = ?";
 
 		List<ZadaneZadanie> result = new ArrayList<ZadaneZadanie>();
 		List<Map<String,Object>> queryResult = jdbcTemplate.queryForList(SQL, 
 					new Object[] { UserHelper.getCurrentUserId() });
-		for (Map<String, Object> row: queryResult)
-			result.add(ZadaneZadanie.findZadaneZadanie(row.get("id").toString()));
+		if (!queryResult.isEmpty())
+			for (Map<String, Object> row: queryResult)
+				result.add(ZadaneZadanie.findZadaneZadanie(row.get("id").toString()));
+				
 		return result;
 	}
 	

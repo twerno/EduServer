@@ -8,7 +8,6 @@ import net.twerno.eduserver.user.UserRole;
 import net.twerno.eduserver.zadanie.TypZadania;
 
 import org.springframework.flex.remoting.RemotingDestination;
-import org.springframework.flex.remoting.RemotingExclude;
 import org.springframework.security.access.annotation.Secured;
 
 @RemotingDestination
