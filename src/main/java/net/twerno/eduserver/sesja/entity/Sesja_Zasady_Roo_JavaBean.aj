@@ -3,6 +3,7 @@
 
 package net.twerno.eduserver.sesja.entity;
 
+import java.lang.Integer;
 import java.lang.String;
 
 privileged aspect Sesja_Zasady_Roo_JavaBean {
@@ -13,6 +14,22 @@ privileged aspect Sesja_Zasady_Roo_JavaBean {
     
     public void Sesja_Zasady.setId(String id) {
         this.id = id;
+    }
+    
+    public Integer Sesja_Zasady.getCzas() {
+        return this.czas;
+    }
+    
+    public void Sesja_Zasady.setCzas(Integer czas) {
+        this.czas = czas;
+    }
+    
+    public double Sesja_Zasady.getWynik() {
+        return this.wynik;
+    }
+    
+    public void Sesja_Zasady.setWynik(double wynik) {
+        this.wynik = wynik;
     }
     
     public boolean Sesja_Zasady.isCzas_bronze() {

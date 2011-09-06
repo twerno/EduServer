@@ -5,6 +5,8 @@ import java.util.List;
 import net.twerno.eduserver.user.UserRole;
 import net.twerno.eduserver.zadanie.entity.ZadaneZadanie;
 import net.twerno.eduserver.zadanie.entity.Zadanie;
+import net.twerno.eduserver.zadanie.ro.ZadaneZadanie_WithStats;
+import net.twerno.eduserver.zadanie.ro.ZadaneZadanie_Wynik;
 
 import org.springframework.flex.remoting.RemotingDestination;
 import org.springframework.security.access.annotation.Secured;
@@ -26,5 +28,7 @@ public interface ZadanieService {
 	List<ZadaneZadanie> dajZadanePrzezeMnie();
 
 	@Secured(UserRole._ROLE_UCZEN)
-	List<ZadaneZadanie> dajZadaneMi();
+	List<ZadaneZadanie_WithStats> dajZadaneMi(boolean ukonczone);
+	
+	List<ZadaneZadanie_Wynik> dajTabliceWynikow(String zadaneZadanieId);
 }

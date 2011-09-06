@@ -140,18 +140,28 @@ public class SesjaServiceImpl implements SesjaService {
 	@Override
 	public void sprawdzZasady(Sesja sesja) {
 		ZadaneZadanie zadanie = ZadaneZadanie.findZadaneZadanie(sesja.getZadaneZadanieId());
-		
+
+		//wynik
+		sesja.getZasady().setWynik(sesja.getWynik());
+
 		// ukonczone
 		boolean ukonczone = sesja.getWynik() >= zadanie.getMinimalnyWynik();
 		sesja.getZasady().setUkonczone(ukonczone);
-		
+
+		//czas
+		int czasZadania = (int)((sesja.getDtZamkniecia().getTime() -sesja.getDtOtwarcia().getTime()) /1000);
+		sesja.getZasady().setCzas((ukonczone) ? czasZadania : null);
+
 		//bezblednie
 		boolean bezblednie = true;
-		for (KartaOdpowiedzi ko: sesja.getOdpowiedzi())
+		for (KartaOdpowiedzi ko: sesja.getOdpowiedzi()) {
+			System.out.println(ko);
 			if (!ko.isTnPoprawna() || ko.getIloscProb() != 0) {
+				
 				bezblednie = false;
 				break;
 			}
+		}
 		sesja.getZasady().setBezblednie(bezblednie);
 
 		//punkty
@@ -159,7 +169,6 @@ public class SesjaServiceImpl implements SesjaService {
 		sesja.getZasady().setPunkty_silver(sesja.getWynik() >= zadanie.getZasady().getPunkty_silver());
 		sesja.getZasady().setPunkty_gold(  sesja.getWynik() >= zadanie.getZasady().getPunkty_gold());
 
-		int czasZadania = (int)((sesja.getDtZamkniecia().getTime() -sesja.getDtOtwarcia().getTime()) /1000);
 		//czas
 		sesja.getZasady().setCzas_bronze(zadanie.getZasady().getCzas_bronze() < czasZadania);
 		sesja.getZasady().setCzas_silver(zadanie.getZasady().getCzas_silver() < czasZadania);

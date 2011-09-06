@@ -9,8 +9,10 @@ privileged aspect Sesja_Zasady_Roo_ToString {
     
     public String Sesja_Zasady.toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append("Czas: ").append(getCzas()).append(", ");
         sb.append("Id: ").append(getId()).append(", ");
         sb.append("Version: ").append(getVersion()).append(", ");
+        sb.append("Wynik: ").append(getWynik()).append(", ");
         sb.append("Bezblednie: ").append(isBezblednie()).append(", ");
         sb.append("Czas_bronze: ").append(isCzas_bronze()).append(", ");
         sb.append("Czas_gold: ").append(isCzas_gold()).append(", ");

@@ -7,6 +7,8 @@ import net.twerno.eduserver.user.UserHelper;
 import net.twerno.eduserver.zadanie.entity.ZadaneZadanie;
 import net.twerno.eduserver.zadanie.entity.Zadanie;
 import net.twerno.eduserver.zadanie.entity.Zadanie_ZbiorPytan;
+import net.twerno.eduserver.zadanie.ro.ZadaneZadanie_WithStats;
+import net.twerno.eduserver.zadanie.ro.ZadaneZadanie_Wynik;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -71,7 +73,12 @@ public class ZadanieServiceImpl implements ZadanieService {
 	}
 
 	@Override
-	public List<ZadaneZadanie> dajZadaneMi() {
-		return internalZadanieService.dajZadaneMi();
+	public List<ZadaneZadanie_WithStats> dajZadaneMi(boolean ukonczone) {
+		return internalZadanieService.dajZadaneMi(ukonczone);
+	}
+
+	@Override
+	public List<ZadaneZadanie_Wynik> dajTabliceWynikow(String zadaneZadanieId) {
+		return internalZadanieService.dajTabliceWynikow(zadaneZadanieId);
 	}
 }

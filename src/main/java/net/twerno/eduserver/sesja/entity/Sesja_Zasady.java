@@ -15,6 +15,10 @@ public class Sesja_Zasady {
 	@Id
 	private String id = UUID.randomUUID().toString();
 	
+	private Integer czas;
+	
+	private double wynik;
+	
 	private boolean czas_bronze;
 	
 	private boolean czas_silver;
