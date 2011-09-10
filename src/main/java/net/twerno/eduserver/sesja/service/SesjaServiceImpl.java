@@ -13,6 +13,7 @@ import net.twerno.eduserver.sesja.SesjaHelper;
 import net.twerno.eduserver.sesja.SesjaStan;
 import net.twerno.eduserver.sesja.entity.KartaOdpowiedzi;
 import net.twerno.eduserver.sesja.entity.Sesja;
+import net.twerno.eduserver.sesja.entity.Sesja_Wynik;
 import net.twerno.eduserver.sesja.ro.OpanowaniePytaniaRO;
 import net.twerno.eduserver.sesja.ro.SesjaOtwartaRO;
 import net.twerno.eduserver.user.UserHelper;
@@ -57,7 +58,7 @@ public class SesjaServiceImpl implements SesjaService {
 		sesja.setDtOtwarcia(new Date());
 		sesja.setUczenId(UserHelper.getCurrentUserId());
 		sesja.setZadaneZadanieId(zadanieId);
-		sesja.getZasady().persist();
+		sesja.getWynik().persist();
 		sesja.merge();
 		
 		SesjaOtwartaRO sesjaOtwarta = new SesjaOtwartaRO();
@@ -79,7 +80,6 @@ public class SesjaServiceImpl implements SesjaService {
 		Sesja sesja = InternalDajSesje(sesjaId);
 		sesja.setDtZamkniecia(new Date());
 		sesja.setStanSesji(SesjaStan.SESJA_ZAKONCZONA);
-		sesja.setWynik(SesjaHelper.wyliczWynik(sesja));
 		sprawdzZasady(sesja);
 		sesja.merge();
 	}
@@ -141,16 +141,18 @@ public class SesjaServiceImpl implements SesjaService {
 	public void sprawdzZasady(Sesja sesja) {
 		ZadaneZadanie zadanie = ZadaneZadanie.findZadaneZadanie(sesja.getZadaneZadanieId());
 
+		Sesja_Wynik wynik = sesja.getWynik(); 
+		
 		//wynik
-		sesja.getZasady().setWynik(sesja.getWynik());
+		wynik.setWynik(SesjaHelper.wyliczWynik(sesja));
 
 		// ukonczone
-		boolean ukonczone = sesja.getWynik() >= zadanie.getMinimalnyWynik();
-		sesja.getZasady().setUkonczone(ukonczone);
+		boolean ukonczone = wynik.getWynik() >= zadanie.getMinimalnyWynik();
+		wynik.setUkonczone(ukonczone);
 
 		//czas
 		int czasZadania = (int)((sesja.getDtZamkniecia().getTime() -sesja.getDtOtwarcia().getTime()) /1000);
-		sesja.getZasady().setCzas((ukonczone) ? czasZadania : null);
+		wynik.setCzas((ukonczone) ? czasZadania : null);
 
 		//bezblednie
 		boolean bezblednie = true;
@@ -162,17 +164,17 @@ public class SesjaServiceImpl implements SesjaService {
 				break;
 			}
 		}
-		sesja.getZasady().setBezblednie(bezblednie);
+		wynik.setBezblednie(bezblednie);
 
 		//punkty
-		sesja.getZasady().setPunkty_bronze(sesja.getWynik() >= zadanie.getZasady().getPunkty_bronze());
-		sesja.getZasady().setPunkty_silver(sesja.getWynik() >= zadanie.getZasady().getPunkty_silver());
-		sesja.getZasady().setPunkty_gold(  sesja.getWynik() >= zadanie.getZasady().getPunkty_gold());
+		wynik.setPunkty_bronze(wynik.getWynik() >= zadanie.getZasady().getPunkty_bronze());
+		wynik.setPunkty_silver(wynik.getWynik() >= zadanie.getZasady().getPunkty_silver());
+		wynik.setPunkty_gold(  wynik.getWynik() >= zadanie.getZasady().getPunkty_gold());
 
 		//czas
-		sesja.getZasady().setCzas_bronze(zadanie.getZasady().getCzas_bronze() < czasZadania);
-		sesja.getZasady().setCzas_silver(zadanie.getZasady().getCzas_silver() < czasZadania);
-		sesja.getZasady().setCzas_gold(  zadanie.getZasady().getCzas_gold()   < czasZadania);
+		wynik.setCzas_bronze(zadanie.getZasady().getCzas_bronze() < czasZadania);
+		wynik.setCzas_silver(zadanie.getZasady().getCzas_silver() < czasZadania);
+		wynik.setCzas_gold(  zadanie.getZasady().getCzas_gold()   < czasZadania);
 	}
 
 	@Override

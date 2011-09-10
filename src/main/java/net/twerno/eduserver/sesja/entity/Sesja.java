@@ -43,12 +43,9 @@ public class Sesja {
     @NotNull
     private SesjaStan stanSesji = SesjaStan.SESJA_ROZPOCZETA;
     
-    @NotNull
-    private double wynik = 0;
-    
     @OneToMany(mappedBy="sesja")
     private Set<KartaOdpowiedzi> odpowiedzi = new HashSet<KartaOdpowiedzi>();
     
     @OneToOne
-    private Sesja_Zasady zasady = new Sesja_Zasady();
+    private Sesja_Wynik wynik = new Sesja_Wynik();
 }

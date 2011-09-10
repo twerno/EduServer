@@ -48,6 +48,21 @@ public class ZadaneZadanie_Stats {
 		this.iloscZdanych  = getIntFromObj(iloscZdanych);
 	}
 	
+	public void fill(ZadaneZadanie_Stats stats) {
+		this.czas_bronze   = stats.isCzas_bronze();
+		this.czas_silver   = stats.isCzas_silver();
+		this.czas_gold     = stats.isCzas_gold();
+		this.bezblednie    = stats.isBezblednie();
+		this.punkty_bronze = stats.isPunkty_bronze();
+		this.punkty_silver = stats.isPunkty_silver();
+		this.punkty_gold   = stats.isPunkty_gold();
+		this.ukonczone     = stats.isUkonczone();
+		this.maxWynik      = stats.getMaxWynik();
+		this.minCzas       = stats.getMinCzas();
+		this.iloscPodejsc  = stats.getIloscPodejsc();
+		this.iloscZdanych  = stats.getIloscZdanych();
+	}
+
 	private boolean getBoolFrom(Object o) {
 		if (o == null)
 			return false;

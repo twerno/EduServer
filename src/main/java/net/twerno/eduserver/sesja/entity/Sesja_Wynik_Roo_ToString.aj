@@ -5,9 +5,9 @@ package net.twerno.eduserver.sesja.entity;
 
 import java.lang.String;
 
-privileged aspect Sesja_Zasady_Roo_ToString {
+privileged aspect Sesja_Wynik_Roo_ToString {
     
-    public String Sesja_Zasady.toString() {
+    public String Sesja_Wynik.toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Czas: ").append(getCzas()).append(", ");
         sb.append("Id: ").append(getId()).append(", ");

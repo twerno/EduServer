@@ -11,7 +11,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJavaBean
 @RooToString
 @RooEntity
-public class Sesja_Zasady {
+public class Sesja_Wynik {
 	@Id
 	private String id = UUID.randomUUID().toString();
 	

@@ -5,8 +5,8 @@ package net.twerno.eduserver.sesja.entity;
 
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect Sesja_Zasady_Roo_Configurable {
+privileged aspect Sesja_Wynik_Roo_Configurable {
     
-    declare @type: Sesja_Zasady: @Configurable;
+    declare @type: Sesja_Wynik: @Configurable;
     
 }

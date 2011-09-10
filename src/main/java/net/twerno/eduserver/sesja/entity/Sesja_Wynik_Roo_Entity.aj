@@ -11,86 +11,86 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Version;
-import net.twerno.eduserver.sesja.entity.Sesja_Zasady;
+import net.twerno.eduserver.sesja.entity.Sesja_Wynik;
 import org.springframework.transaction.annotation.Transactional;
 
-privileged aspect Sesja_Zasady_Roo_Entity {
+privileged aspect Sesja_Wynik_Roo_Entity {
     
-    declare @type: Sesja_Zasady: @Entity;
+    declare @type: Sesja_Wynik: @Entity;
     
     @PersistenceContext
-    transient EntityManager Sesja_Zasady.entityManager;
+    transient EntityManager Sesja_Wynik.entityManager;
     
     @Version
     @Column(name = "version")
-    private Integer Sesja_Zasady.version;
+    private Integer Sesja_Wynik.version;
     
-    public Integer Sesja_Zasady.getVersion() {
+    public Integer Sesja_Wynik.getVersion() {
         return this.version;
     }
     
-    public void Sesja_Zasady.setVersion(Integer version) {
+    public void Sesja_Wynik.setVersion(Integer version) {
         this.version = version;
     }
     
     @Transactional
-    public void Sesja_Zasady.persist() {
+    public void Sesja_Wynik.persist() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.persist(this);
     }
     
     @Transactional
-    public void Sesja_Zasady.remove() {
+    public void Sesja_Wynik.remove() {
         if (this.entityManager == null) this.entityManager = entityManager();
         if (this.entityManager.contains(this)) {
             this.entityManager.remove(this);
         } else {
-            Sesja_Zasady attached = Sesja_Zasady.findSesja_Zasady(this.id);
+            Sesja_Wynik attached = Sesja_Wynik.findSesja_Wynik(this.id);
             this.entityManager.remove(attached);
         }
     }
     
     @Transactional
-    public void Sesja_Zasady.flush() {
+    public void Sesja_Wynik.flush() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.flush();
     }
     
     @Transactional
-    public void Sesja_Zasady.clear() {
+    public void Sesja_Wynik.clear() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.clear();
     }
     
     @Transactional
-    public Sesja_Zasady Sesja_Zasady.merge() {
+    public Sesja_Wynik Sesja_Wynik.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
-        Sesja_Zasady merged = this.entityManager.merge(this);
+        Sesja_Wynik merged = this.entityManager.merge(this);
         this.entityManager.flush();
         return merged;
     }
     
-    public static final EntityManager Sesja_Zasady.entityManager() {
-        EntityManager em = new Sesja_Zasady().entityManager;
+    public static final EntityManager Sesja_Wynik.entityManager() {
+        EntityManager em = new Sesja_Wynik().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
         return em;
     }
     
-    public static long Sesja_Zasady.countSesja_Zasadys() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Sesja_Zasady o", Long.class).getSingleResult();
+    public static long Sesja_Wynik.countSesja_Wyniks() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM Sesja_Wynik o", Long.class).getSingleResult();
     }
     
-    public static List<Sesja_Zasady> Sesja_Zasady.findAllSesja_Zasadys() {
-        return entityManager().createQuery("SELECT o FROM Sesja_Zasady o", Sesja_Zasady.class).getResultList();
+    public static List<Sesja_Wynik> Sesja_Wynik.findAllSesja_Wyniks() {
+        return entityManager().createQuery("SELECT o FROM Sesja_Wynik o", Sesja_Wynik.class).getResultList();
     }
     
-    public static Sesja_Zasady Sesja_Zasady.findSesja_Zasady(String id) {
+    public static Sesja_Wynik Sesja_Wynik.findSesja_Wynik(String id) {
         if (id == null || id.length() == 0) return null;
-        return entityManager().find(Sesja_Zasady.class, id);
+        return entityManager().find(Sesja_Wynik.class, id);
     }
     
-    public static List<Sesja_Zasady> Sesja_Zasady.findSesja_ZasadyEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Sesja_Zasady o", Sesja_Zasady.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<Sesja_Wynik> Sesja_Wynik.findSesja_WynikEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM Sesja_Wynik o", Sesja_Wynik.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

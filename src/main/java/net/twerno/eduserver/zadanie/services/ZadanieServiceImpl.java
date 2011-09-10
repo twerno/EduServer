@@ -9,6 +9,7 @@ import net.twerno.eduserver.zadanie.entity.Zadanie;
 import net.twerno.eduserver.zadanie.entity.Zadanie_ZbiorPytan;
 import net.twerno.eduserver.zadanie.ro.ZadaneZadanie_WithStats;
 import net.twerno.eduserver.zadanie.ro.ZadaneZadanie_Wynik;
+import net.twerno.eduserver.zadanie.ro.ZadanieZadanie_Wynik_WithSkrot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -80,5 +81,21 @@ public class ZadanieServiceImpl implements ZadanieService {
 	@Override
 	public List<ZadaneZadanie_Wynik> dajTabliceWynikow(String zadaneZadanieId) {
 		return internalZadanieService.dajTabliceWynikow(zadaneZadanieId);
+	}
+
+	@Override
+	public void usunZadanie(String zadanieId) throws Exception {
+		Zadanie zadanie = Zadanie.findZadanie(zadanieId);
+		if (zadanie == null)
+			throw new Exception("Nie istnieje zadanie o id: " +zadanieId);
+		if (!zadanie.getAutorId().equals(UserHelper.getCurrentUserId()))
+			throw new Exception("Nie jesteœ autorem zadania o id: " +zadanieId);
+		zadanie.remove();
+	}
+
+	@Override
+	public List<ZadanieZadanie_Wynik_WithSkrot> dajSkroconeWyniki(
+			String zadaneZadanieId) {
+		return internalZadanieService.dajSkroconeWyniki(zadaneZadanieId);
 	}
 }

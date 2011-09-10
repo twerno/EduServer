@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Set;
 import net.twerno.eduserver.sesja.SesjaStan;
 import net.twerno.eduserver.sesja.entity.KartaOdpowiedzi;
-import net.twerno.eduserver.sesja.entity.Sesja_Zasady;
+import net.twerno.eduserver.sesja.entity.Sesja_Wynik;
 
 privileged aspect Sesja_Roo_JavaBean {
     
@@ -60,14 +60,6 @@ privileged aspect Sesja_Roo_JavaBean {
         this.stanSesji = stanSesji;
     }
     
-    public double Sesja.getWynik() {
-        return this.wynik;
-    }
-    
-    public void Sesja.setWynik(double wynik) {
-        this.wynik = wynik;
-    }
-    
     public Set<KartaOdpowiedzi> Sesja.getOdpowiedzi() {
         return this.odpowiedzi;
     }
@@ -76,12 +68,12 @@ privileged aspect Sesja_Roo_JavaBean {
         this.odpowiedzi = odpowiedzi;
     }
     
-    public Sesja_Zasady Sesja.getZasady() {
-        return this.zasady;
+    public Sesja_Wynik Sesja.getWynik() {
+        return this.wynik;
     }
     
-    public void Sesja.setZasady(Sesja_Zasady zasady) {
-        this.zasady = zasady;
+    public void Sesja.setWynik(Sesja_Wynik wynik) {
+        this.wynik = wynik;
     }
     
 }
