@@ -30,13 +30,12 @@ public class ZadanieServiceImpl implements ZadanieService {
 		if (zadanie.getId().isEmpty()) {
 			zadanie.setId(UUID.randomUUID().toString());
 			zadanie.getZasady().setId(UUID.randomUUID().toString());
-			zadanie.getZasady().merge();
-		}
-		else {
+		} else {
 			Zadanie cleanZadanie = Zadanie.findZadanie(zadanie.getId());
 			zadanie.setVersion(cleanZadanie.getVersion());
 			zadanie.getZasady().setVersion(cleanZadanie.getZasady().getVersion());
 		}
+		zadanie.getZasady().merge();
 
 		for (Zadanie_ZbiorPytan zzp: zadanie.getZadanie_zbioryPytan()) {
 			if (zzp.getId().isEmpty())
