@@ -13,7 +13,7 @@ import net.twerno.eduserver.zadanie.entity.ZadaneZadanie;
 import net.twerno.eduserver.zadanie.ro.ZadaneZadanie_Stats;
 import net.twerno.eduserver.zadanie.ro.ZadaneZadanie_WithStats;
 import net.twerno.eduserver.zadanie.ro.ZadaneZadanie_Wynik;
-import net.twerno.eduserver.zadanie.ro.ZadanieZadanie_Wynik_WithSkrot;
+import net.twerno.eduserver.zadanie.ro.ZadaneZadanie_Wynik_WithSkrot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -41,7 +41,7 @@ public class InternalZadanieService {
 				    +" JOIN zadane_zadanie            z    ON z.id                = zzg.zadane_zadanie"
 				    +" LEFT JOIN sesja                s    ON s.zadane_zadanie_id = z.id "
 				    +"                                    AND s.uczen_id          = a.account_id"
-				    +" LEFT JOIN sesja_wynik          sz   ON sz.id               = s.zasady"
+				    +" LEFT JOIN sesja_wynik          sz   ON sz.id               = s.wynik"
 				    +" WHERE a.account_id = ?";
 		
 		String ukonczone_warunek    = " GROUP BY z.id"
@@ -86,7 +86,7 @@ public class InternalZadanieService {
 				    +" JOIN      account              a    ON a.id                = ag.account_id    "
 				    +" LEFT JOIN sesja                s    ON s.zadane_zadanie_id = zzg.zadane_zadanie "
 				    +"                                    AND s.uczen_id          = ag.account_id"
-				    +" LEFT JOIN sesja_wynik          sz   ON sz.id               = s.zasady"
+				    +" LEFT JOIN sesja_wynik          sz   ON sz.id               = s.wynik"
 				    +" WHERE zzg.zadane_zadanie = ?"
 				    +" GROUP BY a.username";
 		List<ZadaneZadanie_Wynik> result = new ArrayList<ZadaneZadanie_Wynik>();
@@ -106,15 +106,15 @@ public class InternalZadanieService {
 		return result;
 	}
 
-	public List<ZadanieZadanie_Wynik_WithSkrot> dajSkroconeWyniki(String zadaneZadanieId) {
+	public List<ZadaneZadanie_Wynik_WithSkrot> dajSkroconeWyniki(String zadaneZadanieId) {
 		List<ZadaneZadanie_Wynik> tablica            = dajTabliceWynikow(zadaneZadanieId);
 		Map<String, List<Sesja_SkrotWynikow>> skroty = dajSzczegolyWynikow(zadaneZadanieId);
-		List<ZadanieZadanie_Wynik_WithSkrot>  result = new ArrayList<ZadanieZadanie_Wynik_WithSkrot>();
+		List<ZadaneZadanie_Wynik_WithSkrot>  result = new ArrayList<ZadaneZadanie_Wynik_WithSkrot>();
 		
-		ZadanieZadanie_Wynik_WithSkrot skrot;
+		ZadaneZadanie_Wynik_WithSkrot skrot;
 		
 		for (ZadaneZadanie_Wynik wynik: tablica) {
-			skrot = new ZadanieZadanie_Wynik_WithSkrot();
+			skrot = new ZadaneZadanie_Wynik_WithSkrot();
 			skrot.fill(wynik);
 			skrot.setUsername(wynik.getUsername());
 			skrot.setSkroty_wynikow(skroty.get(skrot.getUsername()));
@@ -134,7 +134,7 @@ public class InternalZadanieService {
 					+"    sz.wynik"
 					+" FROM sesja                s"
 					+" JOIN account              a  ON a.id  = s.uczen_id"
-					+" JOIN sesja_wynik          sz ON sz.id = s.zasady"
+					+" JOIN sesja_wynik          sz ON sz.id = s.wynik"
 					+" WHERE s.dt_zamkniecia is NOT NULL" /* tylko zamkniete sesje */
 					+"   AND s.zadane_zadanie_id = ?"
 					+" ORDER BY s.dt_otwarcia";

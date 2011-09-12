@@ -157,7 +157,6 @@ public class SesjaServiceImpl implements SesjaService {
 		//bezblednie
 		boolean bezblednie = true;
 		for (KartaOdpowiedzi ko: sesja.getOdpowiedzi()) {
-			System.out.println(ko);
 			if (!ko.isTnPoprawna() || ko.getIloscProb() != 0) {
 				
 				bezblednie = false;
@@ -167,14 +166,14 @@ public class SesjaServiceImpl implements SesjaService {
 		wynik.setBezblednie(bezblednie);
 
 		//punkty
-		wynik.setPunkty_bronze(wynik.getWynik() >= zadanie.getZasady().getPunkty_bronze());
-		wynik.setPunkty_silver(wynik.getWynik() >= zadanie.getZasady().getPunkty_silver());
-		wynik.setPunkty_gold(  wynik.getWynik() >= zadanie.getZasady().getPunkty_gold());
+		wynik.setPunkty_bronze(wynik.getWynik() >= zadanie.getZasady().getPunkty_bronze() && zadanie.getZasady().getPunkty_bronze() > 0);
+		wynik.setPunkty_silver(wynik.getWynik() >= zadanie.getZasady().getPunkty_silver() && zadanie.getZasady().getPunkty_silver() > 0);
+		wynik.setPunkty_gold(  wynik.getWynik() >= zadanie.getZasady().getPunkty_gold()   && zadanie.getZasady().getPunkty_gold()   > 0);
 
 		//czas
-		wynik.setCzas_bronze(zadanie.getZasady().getCzas_bronze() < czasZadania);
-		wynik.setCzas_silver(zadanie.getZasady().getCzas_silver() < czasZadania);
-		wynik.setCzas_gold(  zadanie.getZasady().getCzas_gold()   < czasZadania);
+		wynik.setCzas_bronze(zadanie.getZasady().getCzas_bronze() < czasZadania && zadanie.getZasady().getCzas_bronze() > 0);
+		wynik.setCzas_silver(zadanie.getZasady().getCzas_silver() < czasZadania && zadanie.getZasady().getCzas_silver() > 0);
+		wynik.setCzas_gold(  zadanie.getZasady().getCzas_gold()   < czasZadania && zadanie.getZasady().getCzas_gold()   > 0);
 	}
 
 	@Override

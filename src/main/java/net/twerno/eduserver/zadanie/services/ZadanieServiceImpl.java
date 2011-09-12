@@ -9,7 +9,7 @@ import net.twerno.eduserver.zadanie.entity.Zadanie;
 import net.twerno.eduserver.zadanie.entity.Zadanie_ZbiorPytan;
 import net.twerno.eduserver.zadanie.ro.ZadaneZadanie_WithStats;
 import net.twerno.eduserver.zadanie.ro.ZadaneZadanie_Wynik;
-import net.twerno.eduserver.zadanie.ro.ZadanieZadanie_Wynik_WithSkrot;
+import net.twerno.eduserver.zadanie.ro.ZadaneZadanie_Wynik_WithSkrot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -93,7 +93,7 @@ public class ZadanieServiceImpl implements ZadanieService {
 	}
 
 	@Override
-	public List<ZadanieZadanie_Wynik_WithSkrot> dajSkroconeWyniki(
+	public List<ZadaneZadanie_Wynik_WithSkrot> dajSkroconeWyniki(
 			String zadaneZadanieId) {
 		return internalZadanieService.dajSkroconeWyniki(zadaneZadanieId);
 	}

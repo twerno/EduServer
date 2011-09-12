@@ -16,15 +16,15 @@ public class CreateUsersAtStartup implements ApplicationListener<ContextRefreshe
     public void onApplicationEvent(ContextRefreshedEvent event) {
 		 try {
 			 userService.InternalRegisterUser("admin", "admin", UserRole.ROLE_ADMIN);
-		 } catch (Exception e) {System.out.println(e.getMessage());}
+		 } catch (Exception e) {}
 
 		 try {
 			 userService.InternalRegisterUser("uczen", "uczen", UserRole.ROLE_UCZEN);
-		 } catch (Exception e) {System.out.println(e.getMessage());}
+		 } catch (Exception e) {}
 
 		 try {
 			 userService.InternalRegisterUser("nauczyciel", "nauczyciel", UserRole.ROLE_NAUCZYCIEL);
-		 } catch (Exception e) {System.out.println(e.getMessage());}
+		 } catch (Exception e) {}
 		 
 		 try {
 			 Grupa grupa = new Grupa();
@@ -33,6 +33,6 @@ public class CreateUsersAtStartup implements ApplicationListener<ContextRefreshe
 			 grupa.getAccounts().add(Account.findAccountsByUsernameEquals("uczen").getSingleResult());
 			 grupa.getAccounts().add(Account.findAccountsByUsernameEquals("nauczyciel").getSingleResult());
 			 grupa.merge();
-		 } catch (Exception e) {System.out.println(e.getMessage());}
-    }
+		 } catch (Exception e) {}
+    }   
 }
